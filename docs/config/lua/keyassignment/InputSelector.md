@@ -15,8 +15,8 @@ upon the input.
   is itself a table with a `label` field and an optional `id` field.
   The label will be shown in the list, while the id can be a different
   string that is meaningful to your action. The label can be used together
-  with [wezterm.format](../wezterm/format.md) to produce styled test.
-* `action` - and event callback registerd via `wezterm.action_callback`.  The
+  with [weenyterm.format](../weenyterm/format.md) to produce styled test.
+* `action` - and event callback registerd via `weenyterm.action_callback`.  The
   callback's function signature is `(window, pane, id, label)` where `window` and
   `pane` are the [Window](../window/index.md) and [Pane](../pane/index.md)
   objects from the current pane and window, and `id` and `label` hold the
@@ -71,20 +71,20 @@ Note: If the InputSelector is started with `fuzzy` set to `false`, then <kbd>Bac
 ## Example of choosing some canned text to enter into the terminal
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
-local config = wezterm.config_builder()
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
+local config = weenyterm.config_builder()
 
 config.keys = {
   {
     key = 'E',
     mods = 'CTRL|SHIFT',
     action = act.InputSelector {
-      action = wezterm.action_callback(function(window, pane, id, label)
+      action = weenyterm.action_callback(function(window, pane, id, label)
         if not id and not label then
-          wezterm.log_info 'cancelled'
+          weenyterm.log_info 'cancelled'
         else
-          wezterm.log_info('you selected ', id, label)
+          weenyterm.log_info('you selected ', id, label)
           pane:send_text(id)
         end
       end),
@@ -92,10 +92,10 @@ config.keys = {
       choices = {
         -- This is the first entry
         {
-          -- Here we're using wezterm.format to color the text.
+          -- Here we're using weenyterm.format to color the text.
           -- You can just use a string directly if you don't want
           -- to control the colors
-          label = wezterm.format {
+          label = weenyterm.format {
             { Foreground = { AnsiColor = 'Red' } },
             { Text = 'No' },
             { Foreground = { AnsiColor = 'Green' } },
@@ -126,15 +126,15 @@ return config
 ## Example of dynamically constructing a list
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
-local config = wezterm.config_builder()
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
+local config = weenyterm.config_builder()
 
 config.keys = {
   {
     key = 'R',
     mods = 'CTRL|SHIFT',
-    action = wezterm.action_callback(function(window, pane)
+    action = weenyterm.action_callback(function(window, pane)
       -- We're going to dynamically construct the list and then
       -- show it.  Here we're just showing some numbers but you
       -- could read or compute data from other sources
@@ -146,11 +146,11 @@ config.keys = {
 
       window:perform_action(
         act.InputSelector {
-          action = wezterm.action_callback(function(window, pane, id, label)
+          action = weenyterm.action_callback(function(window, pane, id, label)
             if not id and not label then
-              wezterm.log_info 'cancelled'
+              weenyterm.log_info 'cancelled'
             else
-              wezterm.log_info('you selected ', id, label)
+              weenyterm.log_info('you selected ', id, label)
               -- Since we didn't set an id in this example, we're
               -- sending the label
               pane:send_text(label)
@@ -173,18 +173,18 @@ return config
 ## Example of switching between a list of workspaces with the InputSelector
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
-local config = wezterm.config_builder()
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
+local config = weenyterm.config_builder()
 
 config.keys = {
   {
     key = 'S',
     mods = 'CTRL|SHIFT',
-    action = wezterm.action_callback(function(window, pane)
+    action = weenyterm.action_callback(function(window, pane)
       -- Here you can dynamically construct a longer list if needed
 
-      local home = wezterm.home_dir
+      local home = weenyterm.home_dir
       local workspaces = {
         { id = home, label = 'Home' },
         { id = home .. '/work', label = 'Work' },
@@ -194,13 +194,13 @@ config.keys = {
 
       window:perform_action(
         act.InputSelector {
-          action = wezterm.action_callback(
+          action = weenyterm.action_callback(
             function(inner_window, inner_pane, id, label)
               if not id and not label then
-                wezterm.log_info 'cancelled'
+                weenyterm.log_info 'cancelled'
               else
-                wezterm.log_info('id = ' .. id)
-                wezterm.log_info('label = ' .. label)
+                weenyterm.log_info('id = ' .. id)
+                weenyterm.log_info('label = ' .. label)
                 inner_window:perform_action(
                   act.SwitchToWorkspace {
                     name = label,

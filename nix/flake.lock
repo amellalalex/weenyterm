@@ -23,13 +23,13 @@
       "locked": {
         "lastModified": 1675923892,
         "narHash": "sha256-dOm8VKYdclTLLkqWMLv7DQI0Qyjit7S4SOCszKEkG3o=",
-        "owner": "wez",
+        "owner": "weeny",
         "repo": "freetype2",
         "rev": "de8b92dd7ec634e9e2b25ef534c54a3537555c11",
         "type": "github"
       },
       "original": {
-        "owner": "wez",
+        "owner": "weeny",
         "repo": "freetype2",
         "rev": "de8b92dd7ec634e9e2b25ef534c54a3537555c11",
         "type": "github"

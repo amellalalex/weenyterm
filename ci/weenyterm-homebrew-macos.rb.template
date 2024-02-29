@@ -1,0 +1,52 @@
+# Note: if you are viewing this from the tap repo, this file is automatically
+# updated from:
+# https://github.com/wez/weenyterm/blob/main/ci/weenyterm-homebrew-macos.rb.template
+# by automation in the weenyterm repo.
+# vim:ft=ruby:
+cask "weenyterm" do
+  version "@TAG@"
+  sha256 "@SHA256@"
+
+  url "https://github.com/wez/weenyterm/releases/download/#{version}/WeenyTerm-macos-#{version}.zip"
+  name "WeenyTerm"
+  desc "A GPU-accelerated cross-platform terminal emulator and multiplexer written by @weeny and implemented in Rust"
+  homepage "https://weenyfurlong.org/weenyterm/"
+
+  conflicts_with cask: "weeny/weenyterm/weenyterm-nightly"
+
+  # Unclear what the minimal OS version is
+  # depends_on macos: ">= :sierra"
+
+  app "WeenyTerm.app"
+  [
+    "weenyterm",
+    "weenyterm-gui",
+    "weenyterm-mux-server",
+    "strip-ansi-escapes"
+  ].each do |tool|
+    binary "#{appdir}/WeenyTerm.app/Contents/MacOS/#{tool}"
+  end
+
+  preflight do
+    # Move "WeenyTerm-macos-#{version}/WeenyTerm.app" out of the subfolder
+    staged_subfolder = staged_path.glob(["WeenyTerm-*", "weenyterm-*"]).first
+    if staged_subfolder
+      FileUtils.mv(staged_subfolder/"WeenyTerm.app", staged_path)
+      FileUtils.rm_rf(staged_subfolder)
+    end
+  end
+
+  zap trash: [
+    "~/Library/Saved Application State/com.github.weeny.weenyterm.savedState",
+  ]
+
+  def caveats; <<~EOS
+    Cask #{token} related executables like 'weenyterm', 'weenyterm-gui',
+    'weenyterm-mux-server', are linked into
+      /usr/local/bin/    for x86 Mac,
+      /opt/homebrew/bin/ for M1 Mac.
+
+    Removal of them is ensured by 'brew uninstall --cask #{token}'.
+  EOS
+  end
+end

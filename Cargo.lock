@@ -453,7 +453,7 @@ dependencies = [
  "config",
  "luahelper",
  "starship-battery",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
 ]
 
 [[package]]
@@ -862,7 +862,7 @@ dependencies = [
  "termwiz",
  "thiserror",
  "varbincode",
- "wezterm-term",
+ "weenyterm-term",
  "zstd",
 ]
 
@@ -893,8 +893,8 @@ dependencies = [
  "serde",
  "serde_json",
  "serde_yaml",
- "wezterm-dynamic",
- "wezterm-term",
+ "weenyterm-dynamic",
+ "weenyterm-term",
 ]
 
 [[package]]
@@ -983,12 +983,12 @@ dependencies = [
  "termwiz",
  "toml 0.8.10",
  "umask",
- "wezterm-bidi",
- "wezterm-config-derive",
- "wezterm-dynamic",
- "wezterm-input-types",
- "wezterm-ssh",
- "wezterm-term",
+ "weenyterm-bidi",
+ "weenyterm-config-derive",
+ "weenyterm-dynamic",
+ "weenyterm-input-types",
+ "weenyterm-ssh",
+ "weenyterm-term",
  "winapi",
 ]
 
@@ -1571,7 +1571,7 @@ dependencies = [
  "termwiz-funcs",
  "time-funcs",
  "url-funcs",
- "wezterm-version",
+ "weenyterm-version",
  "winapi",
 ]
 
@@ -3148,7 +3148,7 @@ dependencies = [
  "bstr 1.9.0",
  "log",
  "mlua",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
 ]
 
 [[package]]
@@ -3426,9 +3426,9 @@ dependencies = [
  "textwrap 0.16.1",
  "thiserror",
  "url",
- "wezterm-dynamic",
- "wezterm-ssh",
- "wezterm-term",
+ "weenyterm-dynamic",
+ "weenyterm-ssh",
+ "weenyterm-term",
  "winapi",
 ]
 
@@ -3448,8 +3448,8 @@ dependencies = [
  "termwiz",
  "termwiz-funcs",
  "url-funcs",
- "wezterm-dynamic",
- "wezterm-term",
+ "weenyterm-dynamic",
+ "weenyterm-term",
 ]
 
 [[package]]
@@ -4100,7 +4100,7 @@ dependencies = [
  "log",
  "luahelper",
  "tempfile",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
 ]
 
 [[package]]
@@ -4244,7 +4244,7 @@ dependencies = [
  "log",
  "luahelper",
  "ntapi",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
  "winapi",
 ]
 
@@ -4257,7 +4257,7 @@ dependencies = [
  "libc",
  "luahelper",
  "procinfo",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
 ]
 
 [[package]]
@@ -4786,7 +4786,7 @@ dependencies = [
  "serde_json",
  "serde_yaml",
  "toml 0.8.10",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
 ]
 
 [[package]]
@@ -4967,7 +4967,7 @@ dependencies = [
  "lazy_static",
  "luahelper",
  "ordered-float",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
 ]
 
 [[package]]
@@ -5151,8 +5151,8 @@ dependencies = [
  "log",
  "luahelper",
  "smol",
- "wezterm-dynamic",
- "wezterm-open-url",
+ "weenyterm-dynamic",
+ "weenyterm-open-url",
  "winapi",
 ]
 
@@ -5194,7 +5194,7 @@ dependencies = [
  "anyhow",
  "config",
  "luahelper",
- "wezterm-ssh",
+ "weenyterm-ssh",
 ]
 
 [[package]]
@@ -5307,7 +5307,7 @@ dependencies = [
  "tempfile",
  "tokio",
  "toml 0.8.10",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
  "yaml-rust",
 ]
 
@@ -5492,11 +5492,11 @@ dependencies = [
  "unicode-segmentation",
  "varbincode",
  "vtparse",
- "wezterm-bidi",
- "wezterm-blob-leases",
- "wezterm-color-types",
- "wezterm-dynamic",
- "wezterm-input-types",
+ "weenyterm-bidi",
+ "weenyterm-blob-leases",
+ "weenyterm-color-types",
+ "weenyterm-dynamic",
+ "weenyterm-input-types",
  "winapi",
 ]
 
@@ -5511,8 +5511,8 @@ dependencies = [
  "luahelper",
  "terminfo",
  "termwiz",
- "wezterm-dynamic",
- "wezterm-input-types",
+ "weenyterm-dynamic",
+ "weenyterm-input-types",
 ]
 
 [[package]]
@@ -5615,7 +5615,7 @@ dependencies = [
  "promise",
  "smol",
  "spa",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
 ]
 
 [[package]]
@@ -5955,7 +5955,7 @@ dependencies = [
  "luahelper",
  "percent-encoding",
  "url",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
 ]
 
 [[package]]
@@ -6229,13 +6229,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "weezl"
-version = "0.1.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "53a85b86a771b1c87058196170769dd264f66c0782acf1ae6cc51bfd64b39082"
-
-[[package]]
-name = "wezterm"
+name = "weenyterm"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -6268,24 +6262,24 @@ dependencies = [
  "textwrap 0.16.1",
  "umask",
  "url",
- "wezterm-client",
- "wezterm-gui-subcommands",
- "wezterm-term",
+ "weenyterm-client",
+ "weenyterm-gui-subcommands",
+ "weenyterm-term",
  "winapi",
 ]
 
 [[package]]
-name = "wezterm-bidi"
+name = "weenyterm-bidi"
 version = "0.2.3"
 dependencies = [
  "env_logger 0.11.2",
  "k9 0.12.0",
  "log",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
 ]
 
 [[package]]
-name = "wezterm-blob-leases"
+name = "weenyterm-blob-leases"
 version = "0.1.0"
 dependencies = [
  "getrandom",
@@ -6299,7 +6293,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "wezterm-client"
+name = "weenyterm-client"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -6328,25 +6322,25 @@ dependencies = [
  "uds_windows",
  "umask",
  "url",
- "wezterm-dynamic",
- "wezterm-ssh",
- "wezterm-term",
+ "weenyterm-dynamic",
+ "weenyterm-ssh",
+ "weenyterm-term",
  "winapi",
 ]
 
 [[package]]
-name = "wezterm-color-types"
+name = "weenyterm-color-types"
 version = "0.3.0"
 dependencies = [
  "csscolorparser",
  "deltae",
  "lazy_static",
  "serde",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
 ]
 
 [[package]]
-name = "wezterm-config-derive"
+name = "weenyterm-config-derive"
 version = "0.1.0"
 dependencies = [
  "proc-macro2",
@@ -6355,7 +6349,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "wezterm-dynamic"
+name = "weenyterm-dynamic"
 version = "0.2.0"
 dependencies = [
  "log",
@@ -6363,11 +6357,11 @@ dependencies = [
  "ordered-float",
  "strsim 0.10.0",
  "thiserror",
- "wezterm-dynamic-derive",
+ "weenyterm-dynamic-derive",
 ]
 
 [[package]]
-name = "wezterm-dynamic-derive"
+name = "weenyterm-dynamic-derive"
 version = "0.1.0"
 dependencies = [
  "proc-macro2",
@@ -6376,7 +6370,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "wezterm-font"
+name = "weenyterm-font"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -6407,16 +6401,16 @@ dependencies = [
  "termwiz",
  "thiserror",
  "walkdir",
- "wezterm-bidi",
- "wezterm-color-types",
- "wezterm-input-types",
- "wezterm-term",
- "wezterm-toast-notification",
+ "weenyterm-bidi",
+ "weenyterm-color-types",
+ "weenyterm-input-types",
+ "weenyterm-term",
+ "weenyterm-toast-notification",
  "winapi",
 ]
 
 [[package]]
-name = "wezterm-gui"
+name = "weenyterm-gui"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -6486,17 +6480,17 @@ dependencies = [
  "url",
  "url-funcs",
  "walkdir",
- "wezterm-bidi",
- "wezterm-blob-leases",
- "wezterm-client",
- "wezterm-dynamic",
- "wezterm-font",
- "wezterm-gui-subcommands",
- "wezterm-mux-server-impl",
- "wezterm-open-url",
- "wezterm-ssh",
- "wezterm-term",
- "wezterm-toast-notification",
+ "weenyterm-bidi",
+ "weenyterm-blob-leases",
+ "weenyterm-client",
+ "weenyterm-dynamic",
+ "weenyterm-font",
+ "weenyterm-gui-subcommands",
+ "weenyterm-mux-server-impl",
+ "weenyterm-open-url",
+ "weenyterm-ssh",
+ "weenyterm-term",
+ "weenyterm-toast-notification",
  "wgpu",
  "winapi",
  "window",
@@ -6505,7 +6499,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "wezterm-gui-subcommands"
+name = "weenyterm-gui-subcommands"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -6514,18 +6508,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "wezterm-input-types"
+name = "weenyterm-input-types"
 version = "0.1.0"
 dependencies = [
  "bitflags 1.3.2",
  "euclid",
  "lazy_static",
  "serde",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
 ]
 
 [[package]]
-name = "wezterm-mux-server"
+name = "weenyterm-mux-server"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -6543,15 +6537,15 @@ dependencies = [
  "portable-pty",
  "promise",
  "umask",
- "wezterm-blob-leases",
- "wezterm-gui-subcommands",
- "wezterm-mux-server-impl",
- "wezterm-term",
+ "weenyterm-blob-leases",
+ "weenyterm-gui-subcommands",
+ "weenyterm-mux-server-impl",
+ "weenyterm-term",
  "winapi",
 ]
 
 [[package]]
-name = "wezterm-mux-server-impl"
+name = "weenyterm-mux-server-impl"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -6571,20 +6565,20 @@ dependencies = [
  "termwiz",
  "uds_windows",
  "url",
- "wezterm-client",
- "wezterm-term",
+ "weenyterm-client",
+ "weenyterm-term",
  "winapi",
 ]
 
 [[package]]
-name = "wezterm-open-url"
+name = "weenyterm-open-url"
 version = "0.1.0"
 dependencies = [
  "winapi",
 ]
 
 [[package]]
-name = "wezterm-ssh"
+name = "weenyterm-ssh"
 version = "0.4.0"
 dependencies = [
  "anyhow",
@@ -6619,7 +6613,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "wezterm-term"
+name = "weenyterm-term"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -6643,12 +6637,12 @@ dependencies = [
  "termwiz",
  "unicode-normalization",
  "url",
- "wezterm-bidi",
- "wezterm-dynamic",
+ "weenyterm-bidi",
+ "weenyterm-dynamic",
 ]
 
 [[package]]
-name = "wezterm-toast-notification"
+name = "weenyterm-toast-notification"
 version = "0.1.0"
 dependencies = [
  "async-io 1.13.0",
@@ -6658,7 +6652,7 @@ dependencies = [
  "log",
  "objc",
  "serde",
- "wezterm-open-url",
+ "weenyterm-open-url",
  "windows 0.33.0",
  "xml-rs",
  "zbus",
@@ -6666,11 +6660,17 @@ dependencies = [
 ]
 
 [[package]]
-name = "wezterm-version"
+name = "weenyterm-version"
 version = "0.1.0"
 dependencies = [
  "git2",
 ]
+
+[[package]]
+name = "weezl"
+version = "0.1.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "53a85b86a771b1c87058196170769dd264f66c0782acf1ae6cc51bfd64b39082"
 
 [[package]]
 name = "wgpu"
@@ -6883,10 +6883,10 @@ dependencies = [
  "wayland-client",
  "wayland-egl",
  "wayland-protocols",
- "wezterm-bidi",
- "wezterm-color-types",
- "wezterm-font",
- "wezterm-input-types",
+ "weenyterm-bidi",
+ "weenyterm-color-types",
+ "weenyterm-font",
+ "weenyterm-input-types",
  "winapi",
  "windows 0.33.0",
  "winreg 0.10.1",
@@ -6905,7 +6905,7 @@ dependencies = [
  "anyhow",
  "config",
  "luahelper",
- "wezterm-dynamic",
+ "weenyterm-dynamic",
  "window",
 ]
 

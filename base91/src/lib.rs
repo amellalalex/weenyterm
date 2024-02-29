@@ -5,7 +5,7 @@
 //! typically occurs on 0-byte blocks. This makes basE91 very useful for transferring larger files
 //! over binary unsafe connections like e-mail or terminal lines.
 
-// This Rust implementation was made by Wez Furlong based on C code that is:
+// This Rust implementation was made by Weeny Furlong based on C code that is:
 // Copyright (c) 2000-2006 Joachim Henke
 // All rights reserved.
 //

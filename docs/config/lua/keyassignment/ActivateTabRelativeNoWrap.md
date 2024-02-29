@@ -12,8 +12,8 @@ but this one will not wrap around; for example, if the first tab is active
 
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
 local config = {}
 
 config.keys = {

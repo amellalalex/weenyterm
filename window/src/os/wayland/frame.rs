@@ -21,9 +21,9 @@ use wayland_client::protocol::{
     wl_surface,
 };
 use wayland_client::{Attached, DispatchData, Main};
-use wezterm_color_types::SrgbaTuple;
-use wezterm_font::{FontConfiguration, FontMetrics, GlyphInfo, RasterizedGlyph};
-use wezterm_input_types::WindowDecorations;
+use weenyterm_color_types::SrgbaTuple;
+use weenyterm_font::{FontConfiguration, FontMetrics, GlyphInfo, RasterizedGlyph};
+use weenyterm_input_types::WindowDecorations;
 
 fn color_to_paint(c: RgbaColor) -> Paint<'static> {
     let mut paint = Paint::default();
@@ -459,7 +459,7 @@ impl ConceptFrame {
                     // We don't do synthesis here, so no need to filter
                 },
                 None,
-                wezterm_bidi::Direction::LeftToRight,
+                weenyterm_bidi::Direction::LeftToRight,
                 None,
                 None,
             )

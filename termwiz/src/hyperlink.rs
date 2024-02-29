@@ -13,7 +13,7 @@ use std::fmt::{Display, Error as FmtError, Formatter};
 use std::hash::{Hash, Hasher};
 use std::ops::Range;
 use std::sync::Arc;
-use wezterm_dynamic::{FromDynamic, FromDynamicOptions, ToDynamic, Value};
+use weenyterm_dynamic::{FromDynamic, FromDynamicOptions, ToDynamic, Value};
 
 #[cfg_attr(feature = "use_serde", derive(Serialize, Deserialize))]
 #[derive(Debug, Clone, PartialEq, Eq, FromDynamic, ToDynamic)]
@@ -172,7 +172,7 @@ impl FromDynamic for RegexWrap {
     fn from_dynamic(
         value: &Value,
         options: FromDynamicOptions,
-    ) -> std::result::Result<RegexWrap, wezterm_dynamic::Error> {
+    ) -> std::result::Result<RegexWrap, weenyterm_dynamic::Error> {
         let s = String::from_dynamic(value, options)?;
         Ok(RegexWrap(Regex::new(&s).map_err(|e| e.to_string())?))
     }

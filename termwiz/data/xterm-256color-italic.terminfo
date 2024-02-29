@@ -1,4 +1,4 @@
-#	This is Wez's augmented term definition for xterm.
+#	This is Weeny's augmented term definition for xterm.
 #	It was reconstructed via infocmp from file: /lib/terminfo/x/xterm-256color
 #	and then has some additions in the top few lines (until the line starting
 #	with am).

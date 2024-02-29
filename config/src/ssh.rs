@@ -3,7 +3,7 @@ use crate::*;
 use luahelper::impl_lua_conversion_dynamic;
 use std::fmt::Display;
 use std::str::FromStr;
-use wezterm_dynamic::{FromDynamic, ToDynamic};
+use weenyterm_dynamic::{FromDynamic, ToDynamic};
 
 #[derive(Debug, Clone, Copy, FromDynamic, ToDynamic)]
 pub enum SshBackend {
@@ -19,14 +19,14 @@ impl Default for SshBackend {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, FromDynamic, ToDynamic)]
 pub enum SshMultiplexing {
-    WezTerm,
+    WeenyTerm,
     None,
     // TODO: Tmux-cc in the future?
 }
 
 impl Default for SshMultiplexing {
     fn default() -> Self {
-        Self::WezTerm
+        Self::WeenyTerm
     }
 }
 
@@ -76,20 +76,20 @@ pub struct SshDomain {
 
     /// Show time since last response when waiting for a response.
     /// It is recommended to use
-    /// <https://wezfurlong.org/wezterm/config/lua/pane/get_metadata.html#since_last_response_ms>
+    /// <https://weenyfurlong.org/weenyterm/config/lua/pane/get_metadata.html#since_last_response_ms>
     /// instead.
     #[dynamic(default)]
     pub overlay_lag_indicator: bool,
 
-    /// The path to the wezterm binary on the remote host
-    pub remote_wezterm_path: Option<String>,
+    /// The path to the weenyterm binary on the remote host
+    pub remote_weenyterm_path: Option<String>,
 
     pub ssh_backend: Option<SshBackend>,
 
     /// If false, then don't use a multiplexer connection,
     /// just connect directly using ssh. This doesn't require
-    /// that the remote host have wezterm installed, and is equivalent
-    /// to using `wezterm ssh` to connect.
+    /// that the remote host have weenyterm installed, and is equivalent
+    /// to using `weenyterm ssh` to connect.
     #[dynamic(default)]
     pub multiplexing: SshMultiplexing,
 
@@ -106,7 +106,7 @@ impl_lua_conversion_dynamic!(SshDomain);
 
 impl SshDomain {
     pub fn default_domains() -> Vec<Self> {
-        let mut config = wezterm_ssh::Config::new();
+        let mut config = weenyterm_ssh::Config::new();
         config.add_default_config_files();
 
         let mut plain_ssh = vec![];
@@ -122,7 +122,7 @@ impl SshDomain {
             mux_ssh.push(Self {
                 name: format!("SSHMUX:{host}"),
                 remote_address: host.to_string(),
-                multiplexing: SshMultiplexing::WezTerm,
+                multiplexing: SshMultiplexing::WeenyTerm,
                 ..SshDomain::default()
             });
         }

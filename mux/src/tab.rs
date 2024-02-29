@@ -12,7 +12,7 @@ use std::collections::HashMap;
 use std::convert::TryInto;
 use std::sync::Arc;
 use url::Url;
-use wezterm_term::{StableRowIndex, TerminalSize};
+use weenyterm_term::{StableRowIndex, TerminalSize};
 
 pub type Tree = bintree::Tree<Arc<dyn Pane>, SplitDirectionAndSize>;
 pub type Cursor = bintree::Cursor<Arc<dyn Pane>, SplitDirectionAndSize>;
@@ -1565,7 +1565,7 @@ impl TabInner {
                     // If the pane is no longer known to the mux, then its liveness
                     // state isn't guaranteed to be monitored or updated, so let's
                     // consider the pane effectively dead if it isn't in the mux.
-                    // <https://github.com/wez/wezterm/issues/4030>
+                    // <https://github.com/wez/weenyterm/issues/4030>
                     let in_mux = mux.get_pane(pane.pane_id()).is_some();
                     let dead = pane.is_dead();
                     log::trace!(
@@ -1911,7 +1911,7 @@ impl TabInner {
         }
 
         // Ensure that we're not zoomed, otherwise we'll end up in
-        // a bogus split state (https://github.com/wez/wezterm/issues/723)
+        // a bogus split state (https://github.com/wez/weenyterm/issues/723)
         self.set_zoomed(false);
 
         self.iter_panes().iter().nth(pane_index).map(|pos| {
@@ -2192,8 +2192,8 @@ mod test {
     use std::ops::Range;
     use termwiz::surface::SequenceNo;
     use url::Url;
-    use wezterm_term::color::ColorPalette;
-    use wezterm_term::{KeyCode, KeyModifiers, Line, MouseEvent, StableRowIndex};
+    use weenyterm_term::color::ColorPalette;
+    use weenyterm_term::{KeyCode, KeyModifiers, Line, MouseEvent, StableRowIndex};
 
     struct FakePane {
         id: PaneId,

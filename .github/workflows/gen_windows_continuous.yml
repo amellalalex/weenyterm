@@ -72,8 +72,8 @@ jobs:
         with:
           name: "windows"
           path: |
-            WezTerm-*.zip
-            WezTerm-*.exe
+            WeenyTerm-*.zip
+            WeenyTerm-*.exe
           retention-days: 5
 
   upload:
@@ -89,9 +89,9 @@ jobs:
           name: "windows"
       - name: "Checksum"
         shell: bash
-        run: "for f in WezTerm-*.zip WezTerm-*.exe ; do sha256sum $f > $f.sha256 ; done"
+        run: "for f in WeenyTerm-*.zip WeenyTerm-*.exe ; do sha256sum $f > $f.sha256 ; done"
       - name: "Upload to Nightly Release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
-        run: "bash ci/retry.sh gh release upload --clobber nightly WezTerm-*.zip WezTerm-*.exe *.sha256"
+        run: "bash ci/retry.sh gh release upload --clobber nightly WeenyTerm-*.zip WeenyTerm-*.exe *.sha256"

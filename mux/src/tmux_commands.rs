@@ -13,7 +13,7 @@ use std::fmt::{Debug, Write};
 use std::io::Write as _;
 use std::sync::Arc;
 use termwiz::tmux_cc::*;
-use wezterm_term::TerminalSize;
+use weenyterm_term::TerminalSize;
 
 pub(crate) trait TmuxCommand: Send + Debug {
     fn get_command(&self) -> String;
@@ -142,11 +142,11 @@ impl TmuxDomainState {
                 active_lock: active_lock.clone(),
             };
 
-            let terminal = wezterm_term::Terminal::new(
+            let terminal = weenyterm_term::Terminal::new(
                 size,
                 std::sync::Arc::new(config::TermConfig::new()),
-                "WezTerm",
-                config::wezterm_version(),
+                "WeenyTerm",
+                config::weenyterm_version(),
                 Box::new(writer.clone()),
             );
 

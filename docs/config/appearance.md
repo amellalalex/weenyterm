@@ -1,6 +1,6 @@
 ### Color Scheme
 
-WezTerm ships with over 700 color schemes available from
+WeenyTerm ships with over 700 color schemes available from
 [iTerm2-Color-Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes#screenshots),
 [base16](https://github.com/chriskempson/base16-schemes-source),
 [Gogh](https://gogh-co.github.io/Gogh/) and
@@ -9,7 +9,7 @@ WezTerm ships with over 700 color schemes available from
 You can select a color scheme with a line like this:
 
 ```lua
-local wezterm = require 'wezterm'
+local weenyterm = require 'weenyterm'
 local config = {}
 
 config.color_scheme = 'Batman'
@@ -22,7 +22,7 @@ in [The Color Schemes Section](../colorschemes/index.md).
 
 If you'd like to automatically adjust your color scheme based on the
 system dark mode or light mode appearance, see the example in
-[wezterm.gui.get_appearance()](lua/wezterm.gui/get_appearance.md)
+[weenyterm.gui.get_appearance()](lua/weenyterm.gui/get_appearance.md)
 
 !!! note
     if you are using multiplexing with ssh or tls domains, the color scheme
@@ -34,7 +34,7 @@ system dark mode or light mode appearance, see the example in
 
 The `color_scheme` option takes precedence over the `colors` section below,
 and is mutually exclusive with it. If you want to merge/override colors
-you need to use [wezterm.color.get_default_colors()](lua/wezterm.color/get_default_colors.md) and explicitly merge them.
+you need to use [weenyterm.color.get_default_colors()](lua/weenyterm.color/get_default_colors.md) and explicitly merge them.
 
 {{since('20220903-194523-3bb1ed61')}}
 
@@ -52,7 +52,7 @@ you can use `#RRGGBB` to specify a color code using the
 usual hex notation; eg: `#000000` is equivalent to `black`:
 
 ```lua
-local wezterm = require 'wezterm'
+local weenyterm = require 'weenyterm'
 local config = {}
 
 config.colors = {
@@ -189,14 +189,14 @@ config.colors = {
 }
 ```
 
-### Defining a Color Scheme in your `.wezterm.lua`
+### Defining a Color Scheme in your `.weenyterm.lua`
 
 If you'd like to keep a couple of color schemes handy in your configuration
 file, rather than filling out the `colors` section, place it in a
 `color_schemes` section as shown below; you can then reference it using the
 `color_scheme` setting.
 
-Color schemes names that you define in your `wezterm.lua` take precedence
+Color schemes names that you define in your `weenyterm.lua` take precedence
 over all other color schemes.
 
 All of the settings available from the `colors` section are available
@@ -215,7 +215,7 @@ config.color_schemes = {
 }
 ```
 
-See also [wezterm.get_builtin_color_schemes()](lua/wezterm/get_builtin_color_schemes.md) for
+See also [weenyterm.get_builtin_color_schemes()](lua/weenyterm/get_builtin_color_schemes.md) for
 some more advanced examples, such as picking a random color scheme, or deriving from a
 builting color scheme.
 
@@ -223,16 +223,16 @@ builting color scheme.
 
 If you'd like to factor your color schemes out into separate files, you
 can create a file with a `[colors]` section; take a look at [one of
-the available color schemes for an example](https://github.com/wez/wezterm/blob/main/assets/colors/Builtin%20Dark.toml).
+the available color schemes for an example](https://github.com/wez/weenyterm/blob/main/assets/colors/Builtin%20Dark.toml).
 
 It is recommended that you place your custom scheme in a directory
-named `$HOME/.config/wezterm/colors` if you're on a POSIX system.
+named `$HOME/.config/weenyterm/colors` if you're on a POSIX system.
 
-On a Windows system, `wezterm` will search for schemes in a directory
-named `colors` that is in the same directory as the `wezterm.exe`.
+On a Windows system, `weenyterm` will search for schemes in a directory
+named `colors` that is in the same directory as the `weenyterm.exe`.
 
 If you wish to place your color scheme files in some other location, then you
-will need to instruct wezterm where to look for your scheme files; the
+will need to instruct weenyterm where to look for your scheme files; the
 `color_scheme_dirs` setting specifies a list of directories to be searched:
 
 ```lua
@@ -244,7 +244,7 @@ take precedence over the built-in color schemes.
 
 ### Dynamic Color Escape Sequences
 
-Wezterm supports dynamically changing its color palette via escape sequences.
+Weenyterm supports dynamically changing its color palette via escape sequences.
 
 [The dynamic-colors directory](https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/dynamic-colors)
 of the color scheme repo contains shell scripts that can change the color
@@ -258,7 +258,7 @@ $ for scheme in *.sh ; do ; echo $scheme ; \
    bash "$scheme" ; ../tools/screenshotTable.sh; sleep 0.5; done
 ```
 
-  <video width="80%" controls src="../screenshots/wezterm-dynamic-colors.mp4" loop></video>
+  <video width="80%" controls src="../screenshots/weenyterm-dynamic-colors.mp4" loop></video>
 
 ### Tab Bar Appearance & Colors
 
@@ -286,11 +286,11 @@ The following options affect the fancy tab bar:
 config.window_frame = {
   -- The font used in the tab bar.
   -- Roboto Bold is the default; this font is bundled
-  -- with wezterm.
+  -- with weenyterm.
   -- Whatever font is selected here, it will have the
   -- main font setting appended to it to pick up any
   -- fallback fonts you may have used there.
-  font = wezterm.font { family = 'Roboto', weight = 'Bold' },
+  font = weenyterm.font { family = 'Roboto', weight = 'Bold' },
 
   -- The size of the font in the tab bar.
   -- Default to 10.0 on Windows but 12.0 on other systems
@@ -441,18 +441,18 @@ reduce it by half, and 2.0 will double the value.
 
 ## Window Background Image
 
-![Screenshot](../screenshots/wezterm-vday-screenshot.png)
+![Screenshot](../screenshots/weenyterm-vday-screenshot.png)
 
 {{since('20201031-154415-9614e117')}}
 
-You can attach an image to the background of the wezterm window:
+You can attach an image to the background of the weenyterm window:
 
 ```lua
 config.window_background_image = '/path/to/wallpaper.jpg'
 ```
 
 If the path is a relative path then it will be expanded relative
-to the directory containing your `wezterm.lua` config file.
+to the directory containing your `weenyterm.lua` config file.
 
 PNG, JPEG, GIF, BMP, ICO, TIFF, PNM, DDS, TGA and farbfeld files
 can be loaded.  Animated GIF and PNG files will animate while
@@ -501,7 +501,7 @@ for configuration information on gradients.
 
 {{since('20201031-154415-9614e117')}}
 
-If your Operating System provides Compositing support then WezTerm is able to
+If your Operating System provides Compositing support then WeenyTerm is able to
 specify the alpha channel value for the background content, rendering the
 window background translucent (some refer to this as transparent rather than
 translucent) and causing the windows/desktop behind it to show through the

@@ -1,9 +1,9 @@
 [package]
 name = "portable-pty"
 version = "0.8.1"
-authors = ["Wez Furlong"]
+authors = ["Weeny Furlong"]
 edition = "2018"
-repository = "https://github.com/wez/wezterm"
+repository = "https://github.com/wez/weenyterm"
 description = "Cross platform pty interface"
 license = "MIT"
 documentation = "https://docs.rs/portable-pty"

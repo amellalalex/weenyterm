@@ -9,5 +9,5 @@ edition = "2021"
 anyhow = "1.0"
 starship-battery = "0.7"
 config = { path = "../../config" }
-wezterm-dynamic = { path = "../../wezterm-dynamic" }
+weenyterm-dynamic = { path = "../../weenyterm-dynamic" }
 luahelper = { path = "../../luahelper" }

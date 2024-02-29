@@ -1,10 +1,10 @@
-# wezterm-bidi - a pure Rust bidi implementation
+# weenyterm-bidi - a pure Rust bidi implementation
 
 This crate provides an implementation of the *The Unicode Bidirectional
 Algorithm (UBA)* in Rust.
 
-This crate was developed for use in wezterm but does not depend on
-other code in wezterm.
+This crate was developed for use in weenyterm but does not depend on
+other code in weenyterm.
 
 The focus for this crate is conformance.
 
@@ -18,7 +18,7 @@ BidiCharacterTest.txt test cases (approx 780,000 test cases).
 ## License
 
 MIT compatible License
-Copyright © 2022-Present Wez Furlong.
+Copyright © 2022-Present Weeny Furlong.
 
 Portions of the code in this crate were derived from the bidiref reference
 implementation of the UBA which is:

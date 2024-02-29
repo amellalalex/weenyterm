@@ -1,6 +1,6 @@
 # Sponsoring
 
-If you use and find wezterm valuable, please consider sponsoring its
+If you use and find weenyterm valuable, please consider sponsoring its
 development.
 
 Your support helps to validate the time spent so far and encourages me to spend
@@ -23,7 +23,7 @@ I would appreciate it.
 
 You can find me on the following platforms:
 
-[:simple-githubsponsors: GitHub](https://github.com/sponsors/wez){ .md-button }
-[:simple-patreon: Patreon](https://patreon.com/WezFurlong){ .md-button }
-[:simple-kofi: Ko-Fi ](https://ko-fi.com/wezfurlong){ .md-button }
-[:simple-liberapay: Liberapay](https://liberapay.com/wez){ .md-button }
+[:simple-githubsponsors: GitHub](https://github.com/sponsors/weeny){ .md-button }
+[:simple-patreon: Patreon](https://patreon.com/WeenyFurlong){ .md-button }
+[:simple-kofi: Ko-Fi ](https://ko-fi.com/weenyfurlong){ .md-button }
+[:simple-liberapay: Liberapay](https://liberapay.com/weeny){ .md-button }

@@ -11,8 +11,8 @@ use mux::Mux;
 use portable_pty::CommandBuilder;
 use std::collections::HashMap;
 use std::sync::Arc;
-use wezterm_dynamic::{FromDynamic, ToDynamic};
-use wezterm_term::TerminalSize;
+use weenyterm_dynamic::{FromDynamic, ToDynamic};
+use weenyterm_term::TerminalSize;
 
 mod domain;
 mod pane;

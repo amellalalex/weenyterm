@@ -1,9 +1,9 @@
 [package]
-authors = ["Wez Furlong"]
+authors = ["Weeny Furlong"]
 name = "termwiz"
 version = "0.22.0"
 edition = "2018"
-repository = "https://github.com/wez/wezterm"
+repository = "https://github.com/wez/weenyterm"
 description = "Terminal Wizardry for Unix and Windows"
 license = "MIT"
 documentation = "https://docs.rs/termwiz"
@@ -42,15 +42,15 @@ thiserror = "1.0"
 unicode-segmentation = "1.8"
 ucd-trie = "0.1"
 vtparse = { version="0.6.2", path="../vtparse" }
-wezterm-bidi = { path = "../bidi", version="0.2.1" }
-wezterm-blob-leases = { path = "../wezterm-blob-leases", version="0.1" }
-wezterm-color-types = { path = "../color-types", version="0.3" }
-wezterm-input-types = { path = "../wezterm-input-types", version="0.1", default-features=false }
-wezterm-dynamic = { path = "../wezterm-dynamic", version="0.2" }
+weenyterm-bidi = { path = "../bidi", version="0.2.1" }
+weenyterm-blob-leases = { path = "../weenyterm-blob-leases", version="0.1" }
+weenyterm-color-types = { path = "../color-types", version="0.3" }
+weenyterm-input-types = { path = "../weenyterm-input-types", version="0.1", default-features=false }
+weenyterm-dynamic = { path = "../weenyterm-dynamic", version="0.2" }
 
 [features]
 widgets = ["cassowary", "fnv"]
-use_serde = ["serde", "wezterm-color-types/use_serde", "wezterm-blob-leases/serde", "bitflags/serde", "wezterm-input-types/serde"]
+use_serde = ["serde", "weenyterm-color-types/use_serde", "weenyterm-blob-leases/serde", "bitflags/serde", "weenyterm-input-types/serde"]
 use_image = ["image"]
 docs = ["widgets", "use_serde"]
 

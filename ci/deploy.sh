@@ -19,35 +19,35 @@ fi
 
 case $OSTYPE in
   darwin*)
-    zipdir=WezTerm-macos-$TAG_NAME
+    zipdir=WeenyTerm-macos-$TAG_NAME
     if [[ "$BUILD_REASON" == "Schedule" ]] ; then
-      zipname=WezTerm-macos-nightly.zip
+      zipname=WeenyTerm-macos-nightly.zip
     else
       zipname=$zipdir.zip
     fi
     rm -rf $zipdir $zipname
     mkdir $zipdir
-    cp -r assets/macos/WezTerm.app $zipdir/
+    cp -r assets/macos/WeenyTerm.app $zipdir/
     # Omit MetalANGLE for now; it's a bit laggy compared to CGL,
     # and on M1/Big Sur, CGL is implemented in terms of Metal anyway
-    rm $zipdir/WezTerm.app/*.dylib
-    mkdir -p $zipdir/WezTerm.app/Contents/MacOS
-    mkdir -p $zipdir/WezTerm.app/Contents/Resources
-    cp -r assets/shell-integration/* $zipdir/WezTerm.app/Contents/Resources
-    cp -r assets/shell-completion $zipdir/WezTerm.app/Contents/Resources
+    rm $zipdir/WeenyTerm.app/*.dylib
+    mkdir -p $zipdir/WeenyTerm.app/Contents/MacOS
+    mkdir -p $zipdir/WeenyTerm.app/Contents/Resources
+    cp -r assets/shell-integration/* $zipdir/WeenyTerm.app/Contents/Resources
+    cp -r assets/shell-completion $zipdir/WeenyTerm.app/Contents/Resources
 
-    for bin in wezterm wezterm-mux-server wezterm-gui strip-ansi-escapes ; do
+    for bin in weenyterm weenyterm-mux-server weenyterm-gui strip-ansi-escapes ; do
       # If the user ran a simple `cargo build --release`, then we want to allow
       # a single-arch package to be built
       if [[ -f target/release/$bin ]] ; then
-        cp target/release/$bin $zipdir/WezTerm.app/Contents/MacOS/$bin
+        cp target/release/$bin $zipdir/WeenyTerm.app/Contents/MacOS/$bin
       else
         # The CI runs `cargo build --target XXX --release` which means that
         # the binaries will be deployed in `target/XXX/release` instead of
         # the plain path above.
         # In that situation, we have two architectures to assemble into a
         # Universal ("fat") binary, so we use the `lipo` tool for that.
-        lipo target/*/release/$bin -output $zipdir/WezTerm.app/Contents/MacOS/$bin -create
+        lipo target/*/release/$bin -output $zipdir/WeenyTerm.app/Contents/MacOS/$bin -create
       fi
     done
 
@@ -78,7 +78,7 @@ case $OSTYPE in
       security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$MACOS_PW" build.keychain
       echo "Codesign"
       /usr/bin/codesign --keychain build.keychain --force --options runtime \
-        --entitlements ci/macos-entitlement.plist --deep --sign "$MACOS_TEAM_ID" $zipdir/WezTerm.app/
+        --entitlements ci/macos-entitlement.plist --deep --sign "$MACOS_TEAM_ID" $zipdir/WeenyTerm.app/
       echo "Restore default keychain"
       security default-keychain -d user -s $def_keychain
       echo "Remove build.keychain"
@@ -96,25 +96,25 @@ case $OSTYPE in
     set -x
 
     SHA256=$(shasum -a 256 $zipname | cut -d' ' -f1)
-    sed -e "s/@TAG@/$TAG_NAME/g" -e "s/@SHA256@/$SHA256/g" < ci/wezterm-homebrew-macos.rb.template > wezterm.rb
+    sed -e "s/@TAG@/$TAG_NAME/g" -e "s/@SHA256@/$SHA256/g" < ci/weenyterm-homebrew-macos.rb.template > weenyterm.rb
 
     ;;
   msys)
-    zipdir=WezTerm-windows-$TAG_NAME
+    zipdir=WeenyTerm-windows-$TAG_NAME
     if [[ "$BUILD_REASON" == "Schedule" ]] ; then
-      zipname=WezTerm-windows-nightly.zip
-      instname=WezTerm-nightly-setup
+      zipname=WeenyTerm-windows-nightly.zip
+      instname=WeenyTerm-nightly-setup
     else
       zipname=$zipdir.zip
-      instname=WezTerm-${TAG_NAME}-setup
+      instname=WeenyTerm-${TAG_NAME}-setup
     fi
     rm -rf $zipdir $zipname
     mkdir $zipdir
-    cp $TARGET_DIR/release/wezterm.exe \
-      $TARGET_DIR/release/wezterm-mux-server.exe \
-      $TARGET_DIR/release/wezterm-gui.exe \
+    cp $TARGET_DIR/release/weenyterm.exe \
+      $TARGET_DIR/release/weenyterm-mux-server.exe \
+      $TARGET_DIR/release/weenyterm-gui.exe \
       $TARGET_DIR/release/strip-ansi-escapes.exe \
-      $TARGET_DIR/release/wezterm.pdb \
+      $TARGET_DIR/release/weenyterm.pdb \
       assets/windows/conhost/conpty.dll \
       assets/windows/conhost/OpenConsole.exe \
       assets/windows/angle/libEGL.dll \
@@ -140,14 +140,14 @@ case $OSTYPE in
           SPEC_RELEASE=0
         fi
 
-        cat > wezterm.spec <<EOF
-Name: wezterm
+        cat > weenyterm.spec <<EOF
+Name: weenyterm
 Version: ${WEZTERM_RPM_VERSION}
 Release: ${SPEC_RELEASE}
-Packager: Wez Furlong <wez@wezfurlong.org>
+Packager: Weeny Furlong <weeny@weenyfurlong.org>
 License: MIT
-URL: https://wezfurlong.org/wezterm/
-Summary: Wez's Terminal Emulator.
+URL: https://weenyfurlong.org/weenyterm/
+Summary: Weeny's Terminal Emulator.
 %if 0%{?suse_version}
 Requires: dbus-1, fontconfig, openssl, libxcb1, libxkbcommon0, libxkbcommon-x11-0, libwayland-client0, libwayland-egl1, libwayland-cursor0, Mesa-libEGL1, libxcb-keysyms1, libxcb-ewmh2, libxcb-icccm4
 %else
@@ -164,19 +164,19 @@ EOF
 
           TAR_NAME=$(git -c "core.abbrev=8" show -s "--format=%cd_%h" "--date=format:%Y%m%d_%H%M%S")
 
-          cat >> wezterm.spec <<EOF
+          cat >> weenyterm.spec <<EOF
 BuildRequires: gcc, gcc-c++, make, curl, fontconfig-devel, openssl-devel, libxcb-devel, libxkbcommon-devel, libxkbcommon-x11-devel, wayland-devel, xcb-util-devel, xcb-util-keysyms-devel, xcb-util-image-devel, xcb-util-wm-devel, git
 %if 0%{?suse_version}
 BuildRequires: Mesa-libEGL-devel
 %else
 BuildRequires: mesa-libEGL-devel
 %endif
-Source0: wezterm-${TAR_NAME}.tar.gz
+Source0: weenyterm-${TAR_NAME}.tar.gz
 
 %global debug_package %{nil}
 
 %changelog
-* Mon Oct 2 2023 Wez Furlong
+* Mon Oct 2 2023 Weeny Furlong
 - See git for full changelog
 
 EOF
@@ -192,7 +192,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source ~/.cargo/env
 
 cargo build --release \
-      -p wezterm-gui -p wezterm -p wezterm-mux-server \
+      -p weenyterm-gui -p weenyterm -p weenyterm-mux-server \
       -p strip-ansi-escapes
 
 EOF
@@ -200,9 +200,9 @@ EOF
 
         fi
 
-        cat >> wezterm.spec <<EOF
+        cat >> weenyterm.spec <<EOF
 %description
-wezterm is a terminal emulator with support for modern features
+weenyterm is a terminal emulator with support for modern features
 such as fonts with ligatures, hyperlinks, tabs and multiple
 windows.
 
@@ -212,52 +212,52 @@ ${BUILD_COMMAND}
 set -x
 cd ${HERE}
 mkdir -p %{buildroot}/usr/bin %{buildroot}/etc/profile.d
-install -Dm755 assets/open-wezterm-here -t %{buildroot}/usr/bin
-install -Dsm755 target/release/wezterm -t %{buildroot}/usr/bin
-install -Dsm755 target/release/wezterm-mux-server -t %{buildroot}/usr/bin
-install -Dsm755 target/release/wezterm-gui -t %{buildroot}/usr/bin
+install -Dm755 assets/open-weenyterm-here -t %{buildroot}/usr/bin
+install -Dsm755 target/release/weenyterm -t %{buildroot}/usr/bin
+install -Dsm755 target/release/weenyterm-mux-server -t %{buildroot}/usr/bin
+install -Dsm755 target/release/weenyterm-gui -t %{buildroot}/usr/bin
 install -Dsm755 target/release/strip-ansi-escapes -t %{buildroot}/usr/bin
 install -Dm644 assets/shell-integration/* -t %{buildroot}/etc/profile.d
-install -Dm644 assets/shell-completion/zsh %{buildroot}/usr/share/zsh/site-functions/_wezterm
-install -Dm644 assets/shell-completion/bash %{buildroot}/etc/bash_completion.d/wezterm
-install -Dm644 assets/icon/terminal.png %{buildroot}/usr/share/icons/hicolor/128x128/apps/org.wezfurlong.wezterm.png
-install -Dm644 assets/wezterm.desktop %{buildroot}/usr/share/applications/org.wezfurlong.wezterm.desktop
-install -Dm644 assets/wezterm.appdata.xml %{buildroot}/usr/share/metainfo/org.wezfurlong.wezterm.appdata.xml
-install -Dm644 assets/wezterm-nautilus.py %{buildroot}/usr/share/nautilus-python/extensions/wezterm-nautilus.py
+install -Dm644 assets/shell-completion/zsh %{buildroot}/usr/share/zsh/site-functions/_weenyterm
+install -Dm644 assets/shell-completion/bash %{buildroot}/etc/bash_completion.d/weenyterm
+install -Dm644 assets/icon/terminal.png %{buildroot}/usr/share/icons/hicolor/128x128/apps/org.weenyfurlong.weenyterm.png
+install -Dm644 assets/weenyterm.desktop %{buildroot}/usr/share/applications/org.weenyfurlong.weenyterm.desktop
+install -Dm644 assets/weenyterm.appdata.xml %{buildroot}/usr/share/metainfo/org.weenyfurlong.weenyterm.appdata.xml
+install -Dm644 assets/weenyterm-nautilus.py %{buildroot}/usr/share/nautilus-python/extensions/weenyterm-nautilus.py
 
 %files
-/usr/bin/open-wezterm-here
-/usr/bin/wezterm
-/usr/bin/wezterm-gui
-/usr/bin/wezterm-mux-server
+/usr/bin/open-weenyterm-here
+/usr/bin/weenyterm
+/usr/bin/weenyterm-gui
+/usr/bin/weenyterm-mux-server
 /usr/bin/strip-ansi-escapes
-/usr/share/zsh/site-functions/_wezterm
-/etc/bash_completion.d/wezterm
-/usr/share/icons/hicolor/128x128/apps/org.wezfurlong.wezterm.png
-/usr/share/applications/org.wezfurlong.wezterm.desktop
-/usr/share/metainfo/org.wezfurlong.wezterm.appdata.xml
-/usr/share/nautilus-python/extensions/wezterm-nautilus.py*
+/usr/share/zsh/site-functions/_weenyterm
+/etc/bash_completion.d/weenyterm
+/usr/share/icons/hicolor/128x128/apps/org.weenyfurlong.weenyterm.png
+/usr/share/applications/org.weenyfurlong.weenyterm.desktop
+/usr/share/metainfo/org.weenyfurlong.weenyterm.appdata.xml
+/usr/share/nautilus-python/extensions/weenyterm-nautilus.py*
 /etc/profile.d/*
 EOF
 
         if test -n "${COPR_SRPM}" ; then
-          /usr/bin/rpmbuild -bs --rmspec wezterm.spec --verbose
-          mv $(rpm --eval '%{_srcrpmdir}')/wezterm-${TAR_NAME}*.src.rpm "${COPR_SRPM}"/
+          /usr/bin/rpmbuild -bs --rmspec weenyterm.spec --verbose
+          mv $(rpm --eval '%{_srcrpmdir}')/weenyterm-${TAR_NAME}*.src.rpm "${COPR_SRPM}"/
         else
-          /usr/bin/rpmbuild -bb --rmspec wezterm.spec --verbose
+          /usr/bin/rpmbuild -bb --rmspec weenyterm.spec --verbose
         fi
 
         ;;
       Ubuntu*|Debian*|Pop)
         rm -rf pkg
-        mkdir -p pkg/debian/usr/bin pkg/debian/DEBIAN pkg/debian/usr/share/{applications,wezterm}
+        mkdir -p pkg/debian/usr/bin pkg/debian/DEBIAN pkg/debian/usr/share/{applications,weenyterm}
 
         if [[ "$BUILD_REASON" == "Schedule" ]] ; then
-          pkgname=wezterm-nightly
-          conflicts=wezterm
+          pkgname=weenyterm-nightly
+          conflicts=weenyterm
         else
-          pkgname=wezterm
-          conflicts=wezterm-nightly
+          pkgname=weenyterm
+          conflicts=weenyterm-nightly
         fi
 
         cat > pkg/debian/control <<EOF
@@ -265,23 +265,23 @@ Package: $pkgname
 Version: ${TAG_NAME#nightly-}
 Conflicts: $conflicts
 Architecture: $(dpkg-architecture -q DEB_BUILD_ARCH_CPU)
-Maintainer: Wez Furlong <wez@wezfurlong.org>
+Maintainer: Weeny Furlong <weeny@weenyfurlong.org>
 Section: utils
 Priority: optional
-Homepage: https://wezfurlong.org/wezterm/
-Description: Wez's Terminal Emulator.
- wezterm is a terminal emulator with support for modern features
+Homepage: https://weenyfurlong.org/weenyterm/
+Description: Weeny's Terminal Emulator.
+ weenyterm is a terminal emulator with support for modern features
  such as fonts with ligatures, hyperlinks, tabs and multiple
  windows.
 Provides: x-terminal-emulator
-Source: https://wezfurlong.org/wezterm/
+Source: https://weenyfurlong.org/weenyterm/
 EOF
 
         cat > pkg/debian/postinst <<EOF
 #!/bin/sh
 set -e
 if [ "\$1" = "configure" ] ; then
-        update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/open-wezterm-here 20
+        update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/open-weenyterm-here 20
 fi
 EOF
 
@@ -289,14 +289,14 @@ EOF
 #!/bin/sh
 set -e
 if [ "\$1" = "remove" ]; then
-	update-alternatives --remove x-terminal-emulator /usr/bin/open-wezterm-here
+	update-alternatives --remove x-terminal-emulator /usr/bin/open-weenyterm-here
 fi
 EOF
 
-        install -Dsm755 -t pkg/debian/usr/bin target/release/wezterm-mux-server
-        install -Dsm755 -t pkg/debian/usr/bin target/release/wezterm-gui
-        install -Dsm755 -t pkg/debian/usr/bin target/release/wezterm
-        install -Dm755 -t pkg/debian/usr/bin assets/open-wezterm-here
+        install -Dsm755 -t pkg/debian/usr/bin target/release/weenyterm-mux-server
+        install -Dsm755 -t pkg/debian/usr/bin target/release/weenyterm-gui
+        install -Dsm755 -t pkg/debian/usr/bin target/release/weenyterm
+        install -Dm755 -t pkg/debian/usr/bin assets/open-weenyterm-here
         install -Dsm755 -t pkg/debian/usr/bin target/release/strip-ansi-escapes
 
         deps=$(cd pkg && dpkg-shlibdeps -O -e debian/usr/bin/*)
@@ -309,18 +309,18 @@ EOF
         echo $deps | sed -e 's/shlibs:Depends=/Depends: /' >> pkg/debian/DEBIAN/control
         cat pkg/debian/DEBIAN/control
 
-        install -Dm644 assets/icon/terminal.png pkg/debian/usr/share/icons/hicolor/128x128/apps/org.wezfurlong.wezterm.png
-        install -Dm644 assets/wezterm.desktop pkg/debian/usr/share/applications/org.wezfurlong.wezterm.desktop
-        install -Dm644 assets/wezterm.appdata.xml pkg/debian/usr/share/metainfo/org.wezfurlong.wezterm.appdata.xml
-        install -Dm644 assets/wezterm-nautilus.py pkg/debian/usr/share/nautilus-python/extensions/wezterm-nautilus.py
-        install -Dm644 assets/shell-completion/bash pkg/debian/usr/share/bash-completion/completions/wezterm
-        install -Dm644 assets/shell-completion/zsh pkg/debian/usr/share/zsh/functions/Completion/Unix/_wezterm
+        install -Dm644 assets/icon/terminal.png pkg/debian/usr/share/icons/hicolor/128x128/apps/org.weenyfurlong.weenyterm.png
+        install -Dm644 assets/weenyterm.desktop pkg/debian/usr/share/applications/org.weenyfurlong.weenyterm.desktop
+        install -Dm644 assets/weenyterm.appdata.xml pkg/debian/usr/share/metainfo/org.weenyfurlong.weenyterm.appdata.xml
+        install -Dm644 assets/weenyterm-nautilus.py pkg/debian/usr/share/nautilus-python/extensions/weenyterm-nautilus.py
+        install -Dm644 assets/shell-completion/bash pkg/debian/usr/share/bash-completion/completions/weenyterm
+        install -Dm644 assets/shell-completion/zsh pkg/debian/usr/share/zsh/functions/Completion/Unix/_weenyterm
         install -Dm644 assets/shell-integration/* -t pkg/debian/etc/profile.d
 
         if [[ "$BUILD_REASON" == "Schedule" ]] ; then
-          debname=wezterm-nightly.$distro$distver
+          debname=weenyterm-nightly.$distro$distver
         else
-          debname=wezterm-$TAG_NAME.$distro$distver
+          debname=weenyterm-$TAG_NAME.$distro$distver
         fi
         arch=$(dpkg-architecture -q DEB_BUILD_ARCH_CPU)
         case $arch in
@@ -337,8 +337,8 @@ EOF
           $SUDO apt-get install ./$debname.deb
         fi
 
-        mv pkg/debian pkg/wezterm
-        tar cJf $debname.tar.xz -C pkg wezterm
+        mv pkg/debian pkg/weenyterm
+        tar cJf $debname.tar.xz -C pkg weenyterm
         rm -rf pkg
       ;;
     esac
@@ -350,8 +350,8 @@ EOF
         abuild-keygen -a -n -b 8192
         pkgver="${TAG_NAME#nightly-}"
         cat > APKBUILD <<EOF
-# Maintainer: Wez Furlong <wez@wezfurlong.org>
-pkgname=wezterm
+# Maintainer: Weeny Furlong <weeny@weenyfurlong.org>
+pkgname=weenyterm
 pkgver=$(echo "$pkgver" | cut -d'-' -f1-2 | tr - .)
 _pkgver=$pkgver
 pkgrel=0
@@ -359,38 +359,38 @@ pkgdesc="A GPU-accelerated cross-platform terminal emulator and multiplexer writ
 license="MIT"
 arch="all"
 options="!check"
-url="https://wezfurlong.org/wezterm/"
+url="https://weenyfurlong.org/weenyterm/"
 makedepends="cmd:tic"
 source="
-  target/release/wezterm
-  target/release/wezterm-gui
-  target/release/wezterm-mux-server
-  assets/open-wezterm-here
-  assets/wezterm.desktop
-  assets/wezterm.appdata.xml
+  target/release/weenyterm
+  target/release/weenyterm-gui
+  target/release/weenyterm-mux-server
+  assets/open-weenyterm-here
+  assets/weenyterm.desktop
+  assets/weenyterm.appdata.xml
   assets/icon/terminal.png
-  assets/icon/wezterm-icon.svg
-  termwiz/data/wezterm.terminfo
+  assets/icon/weenyterm-icon.svg
+  termwiz/data/weenyterm.terminfo
 "
 builddir="\$srcdir"
 
 build() {
-  tic -x -o "\$builddir"/wezterm.terminfo "\$srcdir"/wezterm.terminfo
+  tic -x -o "\$builddir"/weenyterm.terminfo "\$srcdir"/weenyterm.terminfo
 }
 
 package() {
-  install -Dm755 -t "\$pkgdir"/usr/bin "\$srcdir"/open-wezterm-here
-  install -Dm755 -t "\$pkgdir"/usr/bin "\$srcdir"/wezterm
-  install -Dm755 -t "\$pkgdir"/usr/bin "\$srcdir"/wezterm-gui
-  install -Dm755 -t "\$pkgdir"/usr/bin "\$srcdir"/wezterm-mux-server
+  install -Dm755 -t "\$pkgdir"/usr/bin "\$srcdir"/open-weenyterm-here
+  install -Dm755 -t "\$pkgdir"/usr/bin "\$srcdir"/weenyterm
+  install -Dm755 -t "\$pkgdir"/usr/bin "\$srcdir"/weenyterm-gui
+  install -Dm755 -t "\$pkgdir"/usr/bin "\$srcdir"/weenyterm-mux-server
 
-  install -Dm644 -t "\$pkgdir"/usr/share/applications "\$srcdir"/wezterm.desktop
-  install -Dm644 -t "\$pkgdir"/usr/share/metainfo "\$srcdir"/wezterm.appdata.xml
-  install -Dm644 "\$srcdir"/terminal.png "\$pkgdir"/usr/share/pixmaps/wezterm.png
-  install -Dm644 "\$srcdir"/wezterm-icon.svg "\$pkgdir"/usr/share/pixmaps/wezterm.svg
-  install -Dm644 "\$srcdir"/terminal.png "\$pkgdir"/usr/share/icons/hicolor/128x128/apps/wezterm.png
-  install -Dm644 "\$srcdir"/wezterm-icon.svg "\$pkgdir"/usr/share/icons/hicolor/scalable/apps/wezterm.svg
-  install -Dm644 "\$builddir"/wezterm.terminfo "\$pkgdir"/usr/share/terminfo/w/wezterm
+  install -Dm644 -t "\$pkgdir"/usr/share/applications "\$srcdir"/weenyterm.desktop
+  install -Dm644 -t "\$pkgdir"/usr/share/metainfo "\$srcdir"/weenyterm.appdata.xml
+  install -Dm644 "\$srcdir"/terminal.png "\$pkgdir"/usr/share/pixmaps/weenyterm.png
+  install -Dm644 "\$srcdir"/weenyterm-icon.svg "\$pkgdir"/usr/share/pixmaps/weenyterm.svg
+  install -Dm644 "\$srcdir"/terminal.png "\$pkgdir"/usr/share/icons/hicolor/128x128/apps/weenyterm.png
+  install -Dm644 "\$srcdir"/weenyterm-icon.svg "\$pkgdir"/usr/share/icons/hicolor/scalable/apps/weenyterm.svg
+  install -Dm644 "\$builddir"/weenyterm.terminfo "\$pkgdir"/usr/share/terminfo/w/weenyterm
 }
 EOF
         abuild -F checksum

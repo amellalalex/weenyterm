@@ -24,7 +24,7 @@ The value is a set of of flags:
     * `MACOS_FORCE_DISABLE_SHADOW` - disable the window shadow effect
     * `MACOS_FORCE_ENABLE_SHADOW` - enable the window shadow effect.
 
-    The window shadow effect is normally disabled by wezterm when the
+    The window shadow effect is normally disabled by weenyterm when the
     [window_background_opacity](../../appearance.md#window-background-opacity) is set
     to less than `1.0`.
 

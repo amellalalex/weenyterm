@@ -13,7 +13,7 @@ config.keys = {
   {
     key = 'C',
     mods = 'CTRL',
-    action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection',
+    action = weenyterm.action.CopyTo 'ClipboardAndPrimarySelection',
   },
 }
 ```

@@ -186,7 +186,7 @@ impl log::Log for Logger {
                 // We use writeln! here rather than eprintln! so that we can ignore
                 // a failed log write in the case that stderr has been redirected
                 // to a device that is out of disk space.
-                // <https://github.com/wez/wezterm/issues/1839>
+                // <https://github.com/wez/weenyterm/issues/1839>
                 let mut stderr = std::io::stderr();
                 let _ = writeln!(
                     stderr,
@@ -263,11 +263,11 @@ fn setup_pretty() -> (LevelFilter, Logger) {
     let base_name = std::env::current_exe()
         .ok()
         .and_then(|p| p.file_name().map(|s| s.to_string_lossy().to_string()))
-        .unwrap_or_else(|| "wezterm".to_string());
+        .unwrap_or_else(|| "weenyterm".to_string());
 
     if base_name.contains("gui") {
         // Only tidy up logs when the gui process is starting.
-        // rationale: `wezterm cli` commands should have as low startup
+        // rationale: `weenyterm cli` commands should have as low startup
         // overhead as possible
         prune_old_logs();
     }

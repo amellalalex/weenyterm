@@ -1,0 +1,17 @@
+# Note: if you are viewing this from the tap repo, this file is automatically
+# updated from:
+# https://github.com/wez/weenyterm/blob/main/ci/weenyterm-linuxbrew.rb.template
+# by automation in the weenyterm repo.
+class Weenyterm < Formula
+  desc "A GPU-accelerated cross-platform terminal emulator and multiplexer written by @weeny and implemented in Rust"
+  homepage "https://weenyfurlong.org/weenyterm/"
+  url "https://github.com/wez/weenyterm/releases/download/@TAG@/WeenyTerm-@TAG@-Ubuntu20.04.AppImage"
+  sha256 "@SHA256@"
+  head "https://github.com/wez/weenyterm/releases/download/nightly/WeenyTerm-nightly-Ubuntu20.04.AppImage"
+
+  def install
+    Dir.glob("*.AppImage").each do |img|
+      bin.install img => "weenyterm"
+    end
+  end
+end

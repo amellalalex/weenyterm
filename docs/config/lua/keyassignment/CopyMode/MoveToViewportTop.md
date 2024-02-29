@@ -6,8 +6,8 @@ Moves the CopyMode cursor position to the top of the viewport.
 
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
 
 return {
   key_tables = {

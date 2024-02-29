@@ -33,8 +33,8 @@ function ghapi() {
   fi
 }
 
-[[ -f /tmp/wezterm.releases.json ]] || ghapi /repos/wez/wezterm/releases > /tmp/wezterm.releases.json
-[[ -f /tmp/wezterm.nightly.json ]] || ghapi /repos/wez/wezterm/releases/tags/nightly > /tmp/wezterm.nightly.json
+[[ -f /tmp/weenyterm.releases.json ]] || ghapi /repos/weeny/weenyterm/releases > /tmp/weenyterm.releases.json
+[[ -f /tmp/weenyterm.nightly.json ]] || ghapi /repos/weeny/weenyterm/releases/tags/nightly > /tmp/weenyterm.nightly.json
 python3 ci/subst-release-info.py || exit 1
 python3 ci/generate-docs.py || exit 1
 
@@ -46,14 +46,14 @@ if hash black 2>/dev/null ; then
 fi
 
 cp "assets/icon/terminal.png" docs/favicon.png
-cp "assets/icon/wezterm-icon.svg" docs/favicon.svg
+cp "assets/icon/weenyterm-icon.svg" docs/favicon.svg
 mkdir -p docs/fonts
 cp assets/fonts/SymbolsNerdFontMono-Regular.ttf docs/fonts/
 
-docker build -t wezterm/mkdocs-material -f ci/Dockerfile.docs .
+docker build -t weenyterm/mkdocs-material -f ci/Dockerfile.docs .
 
 if [ "$SERVE" == "yes" ] ; then
-  docker run --rm -it --network=host -v ${PWD}:/docs wezterm/mkdocs-material serve
+  docker run --rm -it --network=host -v ${PWD}:/docs weenyterm/mkdocs-material serve
 else
-  docker run --rm -e CARDS=true -v ${PWD}:/docs wezterm/mkdocs-material build
+  docker run --rm -e CARDS=true -v ${PWD}:/docs weenyterm/mkdocs-material build
 fi

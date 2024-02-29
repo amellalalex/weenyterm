@@ -1,6 +1,6 @@
 # What is a Terminal?
 
-WezTerm is a Terminal Emulator, but what actually is that, and what is a PTY,
+WeenyTerm is a Terminal Emulator, but what actually is that, and what is a PTY,
 and what is a shell?  This section of the docs aims to summarize how these
 things relate to each other to help clarify how things work.
 
@@ -233,8 +233,8 @@ flowchart
     SHELL["Shell Program (e.g. zsh)"] <-- input/output --> PTYC
     SHELL -. "starts" .-> APP
     APP["Application\n(e.g. vim)"] <-- input/output --> PTYC
-    PTYM  <-- input/output -->  TE["Terminal Emulator\n(e.g. wezterm)"]:::wezterm
-    classDef wezterm stroke:#00F,stroke-width:2px
+    PTYM  <-- input/output -->  TE["Terminal Emulator\n(e.g. weenyterm)"]:::weenyterm
+    classDef weenyterm stroke:#00F,stroke-width:2px
     end
 ```
 
@@ -269,7 +269,7 @@ which has opened things up a great deal for terminal emulation. The linked
 article explains in detail how ConPTY works, so I'm only going to summarize the
 main points here:
 
-When running on Windows with ConPTY, an additional helper program (for wezterm,
+When running on Windows with ConPTY, an additional helper program (for weenyterm,
 that helper is typically named `openconsole.exe`, but in some circumstances it
 may be `conhost.exe`) is spawned to help manage the PTY.
 
@@ -284,8 +284,8 @@ perceived by the user, and the application(s) that it has spawned inside.
 
 The result of this is pretty good, but still has a few edge cases where the
 ConPTY layer has some surprising behavior. I expect this to improve over time,
-but what it means for wezterm users is that they may wish to bypass ConPTY in
-some cases by using `wezterm ssh` to directly communicate with a "real" unix
+but what it means for weenyterm users is that they may wish to bypass ConPTY in
+some cases by using `weenyterm ssh` to directly communicate with a "real" unix
 pty either on a remote system or inside a WSL or VM running on the local
 machine.
 

@@ -1,8 +1,8 @@
 [package]
-name = "wezterm-config-derive"
+name = "weenyterm-config-derive"
 version = "0.1.0"
 edition = "2021"
-repository = "https://github.com/wez/wezterm"
+repository = "https://github.com/wez/weenyterm"
 description = "derive config metadata"
 license = "MIT"
 

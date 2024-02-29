@@ -5,8 +5,8 @@ use std::str::FromStr;
 use termwiz::cell::CellAttributes;
 use termwiz::color::ColorSpec as TWColorSpec;
 pub use termwiz::color::{AnsiColor, ColorAttribute, RgbColor, SrgbaTuple};
-use wezterm_dynamic::{FromDynamic, ToDynamic};
-use wezterm_term::color::ColorPalette;
+use weenyterm_dynamic::{FromDynamic, ToDynamic};
+use weenyterm_term::color::ColorPalette;
 
 #[derive(Debug, Copy, Clone, FromDynamic, ToDynamic)]
 pub struct HsbTransform {
@@ -311,10 +311,10 @@ impl From<Palette> for ColorPalette {
 pub struct TabBarColor {
     /// Specifies the intensity attribute for the tab title text
     #[dynamic(default)]
-    pub intensity: wezterm_term::Intensity,
+    pub intensity: weenyterm_term::Intensity,
     /// Specifies the underline attribute for the tab title text
     #[dynamic(default)]
-    pub underline: wezterm_term::Underline,
+    pub underline: weenyterm_term::Underline,
     /// Specifies the italic attribute for the tab title text
     #[dynamic(default)]
     pub italic: bool,
@@ -674,7 +674,7 @@ pub struct ColorSchemeMetaData {
     pub name: Option<String>,
     pub author: Option<String>,
     pub origin_url: Option<String>,
-    pub wezterm_version: Option<String>,
+    pub weenyterm_version: Option<String>,
     #[dynamic(default)]
     pub aliases: Vec<String>,
 }

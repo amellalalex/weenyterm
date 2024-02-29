@@ -513,7 +513,7 @@ impl XConnection {
             // Following stuff is not obvious at all.
             // This was necessary in the past to handle GL when XCB owns the event queue.
             // It may not be necessary anymore, but it is included here
-            // because <https://github.com/wez/wezterm/issues/1992> is a resize related
+            // because <https://github.com/wez/weenyterm/issues/1992> is a resize related
             // issue and it might possibly be related to these dri2 related issues:
             // <https://bugs.freedesktop.org/show_bug.cgi?id=35945#c4>
             // and mailing thread starting here:

@@ -1,9 +1,9 @@
 # `HideApplication`
 
-On macOS, hide the WezTerm application.
+On macOS, hide the WeenyTerm application.
 
 ```lua
 config.keys = {
-  { key = 'h', mods = 'CMD', action = wezterm.action.HideApplication },
+  { key = 'h', mods = 'CMD', action = weenyterm.action.HideApplication },
 }
 ```

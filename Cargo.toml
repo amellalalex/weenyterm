@@ -5,13 +5,13 @@ members = [
   "strip-ansi-escapes",
   "sync-color-schemes",
   "deps/cairo",
-  "wezterm",
-  "wezterm-blob-leases",
-  "wezterm-dynamic",
-  "wezterm-gui",
-  "wezterm-mux-server",
-  "wezterm-open-url",
-  "wezterm-ssh"
+  "weenyterm",
+  "weenyterm-blob-leases",
+  "weenyterm-dynamic",
+  "weenyterm-gui",
+  "weenyterm-mux-server",
+  "weenyterm-open-url",
+  "weenyterm-ssh"
 ]
 resolver = "2"
 exclude = [

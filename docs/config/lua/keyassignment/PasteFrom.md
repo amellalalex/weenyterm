@@ -10,8 +10,8 @@ Possible values for source are:
 * `PrimarySelection` - paste from the primary selection buffer
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
 
 config.keys = {
   -- paste from the clipboard

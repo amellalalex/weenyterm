@@ -5,10 +5,10 @@ tags:
 # `font_rules`
 
 When textual output in the terminal is styled with bold, italic or other
-attributes, wezterm uses `font_rules` to decide how to render that text.
+attributes, weenyterm uses `font_rules` to decide how to render that text.
 
 By default, unstyled text will use the font specified by the [font](font.md)
-configuration, and wezterm will use that as a base, and then automatically
+configuration, and weenyterm will use that as a base, and then automatically
 generate appropriate `font_rules` that use heavier weight fonts for bold text,
 lighter weight fonts for dim text and italic fonts for italic text.
 
@@ -63,14 +63,14 @@ font-weights that are either too bold or too light for the default rules to
 produce great results, hence this set of rules.
 
 ```lua
-config.font = wezterm.font_with_fallback 'Operator Mono SSm Lig Medium'
+config.font = weenyterm.font_with_fallback 'Operator Mono SSm Lig Medium'
 config.font_rules = {
   -- For Bold-but-not-italic text, use this relatively bold font, and override
   -- its color to a tomato-red color to make bold text really stand out.
   {
     intensity = 'Bold',
     italic = false,
-    font = wezterm.font_with_fallback(
+    font = weenyterm.font_with_fallback(
       'Operator Mono SSm Lig',
       -- Override the color specified by the terminal output and force
       -- it to be tomato-red.
@@ -84,7 +84,7 @@ config.font_rules = {
   {
     intensity = 'Bold',
     italic = true,
-    font = wezterm.font_with_fallback {
+    font = weenyterm.font_with_fallback {
       family = 'Operator Mono SSm Lig',
       italic = true,
     },
@@ -94,7 +94,7 @@ config.font_rules = {
   {
     intensity = 'Normal',
     italic = true,
-    font = wezterm.font_with_fallback {
+    font = weenyterm.font_with_fallback {
       family = 'Operator Mono SSm Lig',
       weight = 'DemiLight',
       italic = true,
@@ -105,7 +105,7 @@ config.font_rules = {
   {
     intensity = 'Half',
     italic = true,
-    font = wezterm.font_with_fallback {
+    font = weenyterm.font_with_fallback {
       family = 'Operator Mono SSm Lig',
       weight = 'Light',
       italic = true,
@@ -116,7 +116,7 @@ config.font_rules = {
   {
     intensity = 'Half',
     italic = false,
-    font = wezterm.font_with_fallback {
+    font = weenyterm.font_with_fallback {
       family = 'Operator Mono SSm Lig',
       weight = 'Light',
     },
@@ -127,13 +127,13 @@ config.font_rules = {
 Here's another example combining `FiraCode` with `Victor Mono`, using `Victor Mono` only for italics:
 
 ```lua
-config.font = wezterm.font { family = 'FiraCode' }
+config.font = weenyterm.font { family = 'FiraCode' }
 
 config.font_rules = {
   {
     intensity = 'Bold',
     italic = true,
-    font = wezterm.font {
+    font = weenyterm.font {
       family = 'VictorMono',
       weight = 'Bold',
       style = 'Italic',
@@ -142,7 +142,7 @@ config.font_rules = {
   {
     italic = true,
     intensity = 'Half',
-    font = wezterm.font {
+    font = weenyterm.font {
       family = 'VictorMono',
       weight = 'DemiBold',
       style = 'Italic',
@@ -151,7 +151,7 @@ config.font_rules = {
   {
     italic = true,
     intensity = 'Normal',
-    font = wezterm.font {
+    font = weenyterm.font {
       family = 'VictorMono',
       style = 'Italic',
     },
@@ -161,27 +161,27 @@ config.font_rules = {
 
 ## Debugging Font Rules
 
-You can run `wezterm ls-fonts` to summarize the font rules and the fonts that
+You can run `weenyterm ls-fonts` to summarize the font rules and the fonts that
 match them:
 
 ```console
-$ wezterm ls-fonts
+$ weenyterm ls-fonts
 Primary font:
-wezterm.font_with_fallback({
+weenyterm.font_with_fallback({
   -- <built-in>, BuiltIn
   "JetBrains Mono",
 
-  -- /home/wez/.fonts/NotoColorEmoji.ttf, FontConfig
+  -- /home/weeny/.fonts/NotoColorEmoji.ttf, FontConfig
   "Noto Color Emoji",
 })
 
 
 When Intensity=Half Italic=true:
-wezterm.font_with_fallback({
+weenyterm.font_with_fallback({
   -- <built-in>, BuiltIn
   {family="JetBrains Mono", weight="ExtraLight", italic=true},
 
-  -- /home/wez/.fonts/NotoColorEmoji.ttf, FontConfig
+  -- /home/weeny/.fonts/NotoColorEmoji.ttf, FontConfig
   "Noto Color Emoji",
 
   -- <built-in>, BuiltIn
@@ -190,11 +190,11 @@ wezterm.font_with_fallback({
 
 
 When Intensity=Half Italic=false:
-wezterm.font_with_fallback({
+weenyterm.font_with_fallback({
   -- <built-in>, BuiltIn
   {family="JetBrains Mono", weight="ExtraLight"},
 
-  -- /home/wez/.fonts/NotoColorEmoji.ttf, FontConfig
+  -- /home/weeny/.fonts/NotoColorEmoji.ttf, FontConfig
   "Noto Color Emoji",
 
   -- <built-in>, BuiltIn
@@ -203,11 +203,11 @@ wezterm.font_with_fallback({
 
 
 When Intensity=Bold Italic=false:
-wezterm.font_with_fallback({
+weenyterm.font_with_fallback({
   -- <built-in>, BuiltIn
   {family="JetBrains Mono", weight="Bold"},
 
-  -- /home/wez/.fonts/NotoColorEmoji.ttf, FontConfig
+  -- /home/weeny/.fonts/NotoColorEmoji.ttf, FontConfig
   "Noto Color Emoji",
 
   -- <built-in>, BuiltIn
@@ -216,11 +216,11 @@ wezterm.font_with_fallback({
 
 
 When Intensity=Bold Italic=true:
-wezterm.font_with_fallback({
+weenyterm.font_with_fallback({
   -- <built-in>, BuiltIn
   {family="JetBrains Mono", weight="Bold", italic=true},
 
-  -- /home/wez/.fonts/NotoColorEmoji.ttf, FontConfig
+  -- /home/weeny/.fonts/NotoColorEmoji.ttf, FontConfig
   "Noto Color Emoji",
 
   -- <built-in>, BuiltIn
@@ -229,11 +229,11 @@ wezterm.font_with_fallback({
 
 
 When Intensity=Normal Italic=true:
-wezterm.font_with_fallback({
+weenyterm.font_with_fallback({
   -- <built-in>, BuiltIn
   {family="JetBrains Mono", italic=true},
 
-  -- /home/wez/.fonts/NotoColorEmoji.ttf, FontConfig
+  -- /home/weeny/.fonts/NotoColorEmoji.ttf, FontConfig
   "Noto Color Emoji",
 
   -- <built-in>, BuiltIn

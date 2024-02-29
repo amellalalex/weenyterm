@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <content_rating type="oars-1.0" />
+  <id>org.weenyfurlong.weenyterm</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <name>WeenyTerm</name>
+  <summary>Powerful terminal and multiplexer</summary>
+  <description>
+    <p>
+      WeenyTerm is a terminal emulator with support for modern features such as
+      fonts with ligatures, hyperlinks, multiple windows, tabs and split panes.
+    </p>
+
+    <p>
+      Configuration is expressed using Lua and many powerful functions are
+      provided to help you customize your terminal to your workflow.
+    </p>
+
+    <p>
+      Integrated ssh allows using multiple tabs and panes without requiring
+      tmux to be installed on the remote host, and remote weenyterm multiplexer
+      support allows tmux+mosh style workflows without using tmux or mosh,
+      while providing a fully native GUI locally.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">org.weenyfurlong.weenyterm.desktop</launchable>
+
+  <url type="homepage">https://weenyfurlong.org/weenyterm/</url>
+  <url type="help">https://weenyfurlong.org/weenyterm/help.html</url>
+  <url type="bugtracker">https://github.com/wez/weenyterm/issues</url>
+  <url type="donation">https://github.com/sponsors/weeny</url>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Use background image attachments</caption>
+      <image>https://weenyfurlong.org/weenyterm/screenshots/weenyterm-vday-screenshot.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Ligatures in VIM</caption>
+      <image>https://weenyfurlong.org/weenyterm/screenshots/two.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Multiple windows, tabs and panes are supported</caption>
+      <video>https://weenyfurlong.org/weenyterm/screenshots/weenyterm-tabs.mp4</video>
+    </screenshot>
+    <screenshot>
+      <caption>Quickselect makes mouseless selection fast and convenient</caption>
+      <image>https://weenyfurlong.org/weenyterm/screenshots/weenyterm-quick-select.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Dynamically change color schemes via escape sequences</caption>
+      <video>https://weenyfurlong.org/weenyterm/screenshots/weenyterm-dynamic-colors.mp4</video>
+    </screenshot>
+    <screenshot>
+      <caption>Use gradients as background image attachments</caption>
+      <image>https://weenyfurlong.org/weenyterm/screenshots/radial-gradient.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Compose multiple background layers with parallax scrolling</caption>
+      <video>https://weenyfurlong.org/weenyterm/screenshots/weenyterm-parallax-2.mp4</video>
+    </screenshot>
+  </screenshots>
+
+  <developer_name>Weeny Furlong</developer_name>
+
+  <releases>
+    <release version="@TAG_NAME@" date="@DATE@">
+      <description>
+        <p>
+          A very long list of improvements to performance and
+          resource utilization as well as new features.
+          The changelog has a complete list!
+        </p>
+      </description>
+    </release>
+  </releases>
+</component>

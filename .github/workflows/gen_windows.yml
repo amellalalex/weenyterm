@@ -69,5 +69,5 @@ jobs:
         with:
           name: "windows"
           path: |
-            WezTerm-*.zip
-            WezTerm-*.exe
+            WeenyTerm-*.zip
+            WeenyTerm-*.exe

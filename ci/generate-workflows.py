@@ -20,15 +20,15 @@ TRIGGER_PATHS_APPIMAGE = [
 ]
 
 TRIGGER_PATHS_UNIX = [
-    "assets/open-wezterm-here",
+    "assets/open-weenyterm-here",
     "assets/shell-completion/**/*",
     "assets/shell-integration/**/*",
-    "assets/wezterm-nautilus.py",
-    "assets/wezterm.appdata.xml",
-    "assets/wezterm.desktop",
+    "assets/weenyterm-nautilus.py",
+    "assets/weenyterm.appdata.xml",
+    "assets/weenyterm.desktop",
     "get-deps",
     "ci/tag-name.sh",
-    "termwiz/data/wezterm.terminfo",
+    "termwiz/data/weenyterm.terminfo",
 ]
 
 TRIGGER_PATHS_MAC = [
@@ -506,17 +506,17 @@ cargo build --all --release""",
                 # Add the distro name/version into the filename
                 RunStep(
                     "Rename APKs",
-                    f"mv ~/packages/wezterm/x86_64/*.apk $(echo ~/packages/wezterm/x86_64/*.apk | sed -e 's/wezterm-/wezterm-{self.name}-/')",
+                    f"mv ~/packages/weenyterm/x86_64/*.apk $(echo ~/packages/weenyterm/x86_64/*.apk | sed -e 's/weenyterm-/weenyterm-{self.name}-/')",
                 ),
                 # Move it to the repo dir
                 RunStep(
                     "Move APKs",
-                    f"mv ~/packages/wezterm/x86_64/*.apk .",
+                    f"mv ~/packages/weenyterm/x86_64/*.apk .",
                 ),
                 # Move and rename the keys
                 RunStep(
                     "Move APK keys",
-                    f"mv ~/.abuild/*.pub wezterm-{self.name}.pub",
+                    f"mv ~/.abuild/*.pub weenyterm-{self.name}.pub",
                 ),
             ]
         elif self.uses_zypper():
@@ -542,15 +542,15 @@ cargo build --all --release""",
     def asset_patterns(self):
         patterns = []
         if self.uses_yum() or self.uses_zypper():
-            patterns += ["wezterm-*.rpm"]
+            patterns += ["weenyterm-*.rpm"]
         elif "win" in self.name:
-            patterns += ["WezTerm-*.zip", "WezTerm-*.exe"]
+            patterns += ["WeenyTerm-*.zip", "WeenyTerm-*.exe"]
         elif "mac" in self.name:
-            patterns += ["WezTerm-*.zip"]
+            patterns += ["WeenyTerm-*.zip"]
         elif ("ubuntu" in self.name) or ("debian" in self.name):
-            patterns += ["wezterm-*.deb", "wezterm-*.xz"]
+            patterns += ["weenyterm-*.deb", "weenyterm-*.xz"]
         elif "alpine" in self.name:
-            patterns += ["wezterm-*.apk"]
+            patterns += ["weenyterm-*.apk"]
             if self.is_tag:
                 patterns.append("*.pub")
 
@@ -567,21 +567,21 @@ cargo build --all --release""",
             steps.append(
                 RunStep(
                     "Move RPM",
-                    f"mv ~/rpmbuild/RPMS/*/*.rpm wezterm-nightly-{self.name}.rpm",
+                    f"mv ~/rpmbuild/RPMS/*/*.rpm weenyterm-nightly-{self.name}.rpm",
                 )
             )
         elif self.uses_apk():
             steps.append(
                 RunStep(
                     "Move APKs",
-                    f"mv ~/packages/wezterm/x86_64/*.apk wezterm-nightly-{self.name}.apk",
+                    f"mv ~/packages/weenyterm/x86_64/*.apk weenyterm-nightly-{self.name}.apk",
                 )
             )
         elif self.uses_zypper():
             steps.append(
                 RunStep(
                     "Move RPM",
-                    f"mv /usr/src/packages/RPMS/*/*.rpm wezterm-nightly-{self.name}.rpm",
+                    f"mv /usr/src/packages/RPMS/*/*.rpm weenyterm-nightly-{self.name}.rpm",
                 )
             )
 
@@ -613,7 +613,7 @@ cargo build --all --release""",
             steps += [
                 RunStep(
                     "Upload to gemfury",
-                    f"for f in wezterm*.deb ; do curl -i -F package=@$f https://$FURY_TOKEN@push.fury.io/wez/ ; done",
+                    f"for f in weenyterm*.deb ; do curl -i -F package=@$f https://$FURY_TOKEN@push.fury.io/weeny/ ; done",
                     env={"FURY_TOKEN": "${{ secrets.FURY_TOKEN }}"},
                 ),
             ]
@@ -648,7 +648,7 @@ cargo build --all --release""",
             steps += [
                 RunStep(
                     "Upload to gemfury",
-                    f"for f in wezterm*.deb ; do curl -i -F package=@$f https://$FURY_TOKEN@push.fury.io/wez/ ; done",
+                    f"for f in weenyterm*.deb ; do curl -i -F package=@$f https://$FURY_TOKEN@push.fury.io/weeny/ ; done",
                     env={"FURY_TOKEN": "${{ secrets.FURY_TOKEN }}"},
                 ),
             ]
@@ -681,10 +681,10 @@ cargo build --all --release""",
             return []
         return [
             ActionStep(
-                "Checkout flathub/org.wezfurlong.wezterm",
+                "Checkout flathub/org.weenyfurlong.weenyterm",
                 action="actions/checkout@v4",
                 params={
-                    "repository": "flathub/org.wezfurlong.wezterm",
+                    "repository": "flathub/org.weenyfurlong.weenyterm",
                     "path": "flathub",
                     "token": "${{ secrets.GH_PAT }}",
                 },
@@ -695,7 +695,7 @@ cargo build --all --release""",
             ),
             RunStep(
                 "Submit PR",
-                'cd flathub && gh pr create --fill --body "PR automatically created by release automation in the wezterm repo"',
+                'cd flathub && gh pr create --fill --body "PR automatically created by release automation in the weenyterm repo"',
                 env={
                     "GITHUB_TOKEN": "${{ secrets.GH_PAT }}",
                 },
@@ -710,26 +710,26 @@ cargo build --all --release""",
                     "Checkout winget-pkgs",
                     action="actions/checkout@v4",
                     params={
-                        "repository": "wez/winget-pkgs",
+                        "repository": "weeny/winget-pkgs",
                         "path": "winget-pkgs",
                         "token": "${{ secrets.GH_PAT }}",
                     },
                 ),
                 RunStep(
                     "Setup email for winget repo",
-                    "cd winget-pkgs && git config user.email wez@wezfurlong.org",
+                    "cd winget-pkgs && git config user.email weeny@weenyfurlong.org",
                 ),
                 RunStep(
                     "Setup name for winget repo",
-                    "cd winget-pkgs && git config user.name 'Wez Furlong'",
+                    "cd winget-pkgs && git config user.name 'Weeny Furlong'",
                 ),
                 RunStep(
                     "Create winget manifest and push to fork",
-                    "bash ci/make-winget-pr.sh winget-pkgs WezTerm-*.exe",
+                    "bash ci/make-winget-pr.sh winget-pkgs WeenyTerm-*.exe",
                 ),
                 RunStep(
                     "Submit PR",
-                    'cd winget-pkgs && gh pr create --fill --body "PR automatically created by release automation in the wezterm repo"',
+                    'cd winget-pkgs && gh pr create --fill --body "PR automatically created by release automation in the weenyterm repo"',
                     env={
                         "GITHUB_TOKEN": "${{ secrets.GH_PAT }}",
                     },
@@ -746,21 +746,21 @@ cargo build --all --release""",
                     "Checkout homebrew tap",
                     action="actions/checkout@v4",
                     params={
-                        "repository": "wez/homebrew-wezterm",
-                        "path": "homebrew-wezterm",
+                        "repository": "weeny/homebrew-weenyterm",
+                        "path": "homebrew-weenyterm",
                         "token": "${{ secrets.GH_PAT }}",
                     },
                 ),
                 RunStep(
                     "Update homebrew tap formula",
-                    "cp wezterm.rb homebrew-wezterm/Casks/wezterm.rb",
+                    "cp weenyterm.rb homebrew-weenyterm/Casks/weenyterm.rb",
                 ),
                 ActionStep(
                     "Commit homebrew tap changes",
                     action="stefanzweifel/git-auto-commit-action@v5",
                     params={
                         "commit_message": "Automated update to match latest tag",
-                        "repository": "homebrew-wezterm",
+                        "repository": "homebrew-weenyterm",
                     },
                 ),
             ]
@@ -770,21 +770,21 @@ cargo build --all --release""",
                     "Checkout linuxbrew tap",
                     action="actions/checkout@v4",
                     params={
-                        "repository": "wez/homebrew-wezterm-linuxbrew",
-                        "path": "linuxbrew-wezterm",
+                        "repository": "weeny/homebrew-weenyterm-linuxbrew",
+                        "path": "linuxbrew-weenyterm",
                         "token": "${{ secrets.GH_PAT }}",
                     },
                 ),
                 RunStep(
                     "Update linuxbrew tap formula",
-                    "cp wezterm-linuxbrew.rb linuxbrew-wezterm/Formula/wezterm.rb",
+                    "cp weenyterm-linuxbrew.rb linuxbrew-weenyterm/Formula/weenyterm.rb",
                 ),
                 ActionStep(
                     "Commit linuxbrew tap changes",
                     action="stefanzweifel/git-auto-commit-action@v5",
                     params={
                         "commit_message": "Automated update to match latest tag",
-                        "repository": "linuxbrew-wezterm",
+                        "repository": "linuxbrew-weenyterm",
                     },
                 ),
             ]
@@ -919,7 +919,7 @@ cargo build --all --release""",
             steps += [
                 RunStep(
                     "Workaround git permissions issue",
-                    "git config --global --add safe.directory /__w/wezterm/wezterm",
+                    "git config --global --add safe.directory /__w/weenyterm/weenyterm",
                 )
             ]
         steps += [CheckoutStep(submodules=submodules, container=self.container)]

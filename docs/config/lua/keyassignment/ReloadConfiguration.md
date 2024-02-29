@@ -7,7 +7,7 @@ config.keys = {
   {
     key = 'r',
     mods = 'CMD|SHIFT',
-    action = wezterm.action.ReloadConfiguration,
+    action = weenyterm.action.ReloadConfiguration,
   },
 }
 ```

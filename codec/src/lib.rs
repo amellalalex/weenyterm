@@ -33,8 +33,8 @@ use termwiz::hyperlink::Hyperlink;
 use termwiz::image::{ImageData, TextureCoordinate};
 use termwiz::surface::{Line, SequenceNo};
 use thiserror::Error;
-use wezterm_term::color::ColorPalette;
-use wezterm_term::{Alert, ClipboardSelection, StableRowIndex, TerminalSize};
+use weenyterm_term::color::ColorPalette;
+use weenyterm_term::{Alert, ClipboardSelection, StableRowIndex, TerminalSize};
 
 #[derive(Error, Debug)]
 #[error("Corrupt Response")]
@@ -749,7 +749,7 @@ impl From<std::time::SystemTime> for InputSerial {
 #[derive(Deserialize, Serialize, PartialEq, Debug)]
 pub struct SendMouseEvent {
     pub pane_id: PaneId,
-    pub event: wezterm_term::input::MouseEvent,
+    pub event: weenyterm_term::input::MouseEvent,
 }
 
 #[derive(Deserialize, Serialize, PartialEq, Debug)]

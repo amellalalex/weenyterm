@@ -14,8 +14,8 @@ Here's an example of setting up (not very useful) hotkeys to cycle between
 windows:
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
 local config = {}
 
 config.keys = {

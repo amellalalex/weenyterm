@@ -8,7 +8,7 @@ use super::VisibleRowIndex;
 #[cfg(feature = "use_serde")]
 use serde::{Deserialize, Serialize};
 use std::time::{Duration, Instant};
-use wezterm_dynamic::{FromDynamic, ToDynamic};
+use weenyterm_dynamic::{FromDynamic, ToDynamic};
 
 pub use termwiz::input::{KeyCode, Modifiers as KeyModifiers};
 

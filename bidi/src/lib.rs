@@ -3,7 +3,7 @@ use level_stack::{LevelStack, Override};
 use log::trace;
 use std::borrow::Cow;
 use std::ops::Range;
-use wezterm_dynamic::{FromDynamic, ToDynamic};
+use weenyterm_dynamic::{FromDynamic, ToDynamic};
 
 mod bidi_brackets;
 mod bidi_class;

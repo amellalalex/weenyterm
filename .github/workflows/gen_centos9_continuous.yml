@@ -13,16 +13,16 @@ on:
       - ".github/workflows/gen_centos9_continuous.yml"
       - "assets/fonts/**/*"
       - "assets/icon/*"
-      - "assets/open-wezterm-here"
+      - "assets/open-weenyterm-here"
       - "assets/shell-completion/**/*"
       - "assets/shell-integration/**/*"
-      - "assets/wezterm-nautilus.py"
-      - "assets/wezterm.appdata.xml"
-      - "assets/wezterm.desktop"
+      - "assets/weenyterm-nautilus.py"
+      - "assets/weenyterm.appdata.xml"
+      - "assets/weenyterm.desktop"
       - "ci/deploy.sh"
       - "ci/tag-name.sh"
       - "get-deps"
-      - "termwiz/data/wezterm.terminfo"
+      - "termwiz/data/weenyterm.terminfo"
 
 jobs:
   build:
@@ -55,7 +55,7 @@ jobs:
         run: "yum install -y openssh-server"
       - name: "Workaround git permissions issue"
         shell: bash
-        run: "git config --global --add safe.directory /__w/wezterm/wezterm"
+        run: "git config --global --add safe.directory /__w/weenyterm/weenyterm"
       - name: "checkout repo"
         uses: actions/checkout@v4
         with:
@@ -95,12 +95,12 @@ jobs:
         run: "bash ci/deploy.sh"
       - name: "Move RPM"
         shell: bash
-        run: "mv ~/rpmbuild/RPMS/*/*.rpm wezterm-nightly-centos9.rpm"
+        run: "mv ~/rpmbuild/RPMS/*/*.rpm weenyterm-nightly-centos9.rpm"
       - name: "Upload artifact"
         uses: actions/upload-artifact@v3
         with:
           name: "centos9"
-          path: "wezterm-*.rpm"
+          path: "weenyterm-*.rpm"
           retention-days: 5
 
   upload:
@@ -110,7 +110,7 @@ jobs:
     steps:
       - name: "Workaround git permissions issue"
         shell: bash
-        run: "git config --global --add safe.directory /__w/wezterm/wezterm"
+        run: "git config --global --add safe.directory /__w/weenyterm/weenyterm"
       - name: "checkout repo"
         uses: actions/checkout@v4
       - name: "Download artifact"
@@ -119,9 +119,9 @@ jobs:
           name: "centos9"
       - name: "Checksum"
         shell: bash
-        run: "for f in wezterm-*.rpm ; do sha256sum $f > $f.sha256 ; done"
+        run: "for f in weenyterm-*.rpm ; do sha256sum $f > $f.sha256 ; done"
       - name: "Upload to Nightly Release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
-        run: "bash ci/retry.sh gh release upload --clobber nightly wezterm-*.rpm *.sha256"
+        run: "bash ci/retry.sh gh release upload --clobber nightly weenyterm-*.rpm *.sha256"

@@ -1,4 +1,4 @@
-wezterm supports integrating with the shell through the following means:
+weenyterm supports integrating with the shell through the following means:
 
 * `OSC 7` Escape sequences to advise the terminal of the working directory
 * `OSC 133` Escape sequence to define Input, Output and Prompt zones
@@ -14,10 +14,10 @@ or [conveniently selecting the complete output from a command](config/lua/keyass
 In order for these features to be enabled, you will need to configure your
 shell program to emit the escape sequences at the appropriate place.
 
-You can find some [examples for various shells in the wezterm
-repo](https://github.com/wez/wezterm/tree/main/assets/shell-integration).
+You can find some [examples for various shells in the weenyterm
+repo](https://github.com/wez/weenyterm/tree/main/assets/shell-integration).
 
-To use this file to setup shell integration in wezterm with Bash or Zsh, you can
+To use this file to setup shell integration in weenyterm with Bash or Zsh, you can
 copy the file to your computer and source it via `. /path/to/file.sh` in your `.bashrc`
 or `.zshrc`, or you can install it at `/etc/profile.d` on most unix systems.
 
@@ -39,7 +39,7 @@ can be found below.
 to environment variables, except that they are variables associated with a
 given pane rather than a process.
 
-Installing the wezterm shell integration will define the following user vars
+Installing the weenyterm shell integration will define the following user vars
 by default:
 
 * `WEZTERM_PROG` - the command line being executed by the shell
@@ -52,7 +52,7 @@ in your tmux.conf for user vars to work.
 
 Those vars will be updated each time the prompt is shown and just prior to executing a command.
 
-The shell integration provides a shell function named `__wezterm_set_user_var` which can be
+The shell integration provides a shell function named `__weenyterm_set_user_var` which can be
 used to set your own user vars.
 
 Setting a user var will generate events in the window that contains
@@ -101,7 +101,7 @@ for yourself.
 `cmd.exe` doesn't allow a lot of flexibility in configuring the prompt,
 but fortunately it does allow for emitting escape sequences.  You
 can use the `set_environment_variables` configuration to pre-configure
-the prompt environment in your `.wezterm.lua`; this example configures
+the prompt environment in your `.weenyterm.lua`; this example configures
 the use of OSC 7 as well as including the time and current directory in
 the visible prompt with green and purple colors, and makes the prompt
 span multiple lines:
@@ -154,17 +154,17 @@ function Invoke-Starship-PreCommand {
 [Clink](https://github.com/chrisant996/clink) brings bash style line editing,
 completions and autosuggestions to your Windows cmd.exe experience. If you
 haven't installed clink to be the global default on your system, you can
-configure wezterm to launch clink by setting the `default_prog` configuration
-in your `.wezterm.lua`; for example, if you have extracted clink to `c:\clink`
+configure weenyterm to launch clink by setting the `default_prog` configuration
+in your `.weenyterm.lua`; for example, if you have extracted clink to `c:\clink`
 you might configure this:
 
 ```lua
-local wezterm = require 'wezterm'
+local weenyterm = require 'weenyterm'
 local config = {}
 
 config.set_environment_variables = {}
 
-if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+if weenyterm.target_triple == 'x86_64-pc-windows-msvc' then
   -- Use OSC 7 as per the above example
   config.set_environment_variables['prompt'] =
     '$E]7;file://localhost/$P$E\\$E[32m$T$E[0m $E[35m$P$E[36m$_$G$E[0m '

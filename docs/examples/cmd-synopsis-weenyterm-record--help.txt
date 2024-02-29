@@ -1,0 +1,12 @@
+Record a terminal session as an asciicast
+
+Usage: weenyterm record [OPTIONS] [PROG]...
+
+Arguments:
+  [PROG]...  Start prog instead of the default_prog defined by your weenyterm
+             configuration
+
+Options:
+      --cwd <CWD>  Start in the specified directory, instead of the default_cwd
+                   defined by your weenyterm configuration
+  -h, --help       Print help

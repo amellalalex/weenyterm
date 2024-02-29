@@ -1,4 +1,4 @@
-# wezterm:leader_is_active()
+# weenyterm:leader_is_active()
 
 {{since('20220319-142410-0fcdea07')}}
 
@@ -8,9 +8,9 @@ This example shows `LEADER` in the right status area, and turns the cursor orang
 when the leader is active:
 
 ```lua
-local wezterm = require 'wezterm'
+local weenyterm = require 'weenyterm'
 
-wezterm.on('update-right-status', function(window, pane)
+weenyterm.on('update-right-status', function(window, pane)
   local leader = ''
   if window:leader_is_active() then
     leader = 'LEADER'

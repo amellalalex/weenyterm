@@ -5,8 +5,8 @@
 Moves the CopyMode cursor position one cell down.
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
 
 return {
   key_tables = {

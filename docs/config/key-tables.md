@@ -1,7 +1,7 @@
 {{since('20220408-101518-b908e2dd')}}
 
 In addition to the default key table defined by the `keys` configuration
-option, `wezterm` supports defining additional named key tables using the
+option, `weenyterm` supports defining additional named key tables using the
 `key_tables` configuration option.
 
 On its own, a named table doesn't do anything, but when paired with the
@@ -16,12 +16,12 @@ having to remember so many key combinations, so what we'd like to do is use
 modes, using `r` for resize and `a` for activation:
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
 local config = {}
 
 -- Show which key table is active in the status area
-wezterm.on('update-right-status', function(window, pane)
+weenyterm.on('update-right-status', function(window, pane)
   local name = window:active_key_table()
   if name then
     name = 'TABLE: ' .. name
@@ -102,7 +102,7 @@ return config
 
 ### Key Table Activation Stack
 
-Each `wezterm` GUI window maintains a stack of activations, which allows you to
+Each `weenyterm` GUI window maintains a stack of activations, which allows you to
 create complex layering of keyboard customization.
 
 The [ActivateKeyTable](lua/keyassignment/ActivateKeyTable.md) action will push
@@ -118,7 +118,7 @@ clear the entire stack.
 
 The stack is also cleared when the configuration is reloaded, so if you're
 working on a complex key table setup and get stuck, you may be able to unstick
-yourself by re-saving your wezterm configuration to trigger a reload.
+yourself by re-saving your weenyterm configuration to trigger a reload.
 
 {{since('20220624-141144-bd1b7c5d')}}
 

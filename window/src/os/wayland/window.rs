@@ -35,8 +35,8 @@ use wayland_client::protocol::wl_pointer::{ButtonState, WlPointer};
 use wayland_client::protocol::wl_surface::WlSurface;
 use wayland_client::{Connection as WConnection, Proxy};
 use wayland_egl::{is_available as egl_is_available, WlEglSurface};
-use wezterm_font::FontConfiguration;
-use wezterm_input_types::{
+use weenyterm_font::FontConfiguration;
+use weenyterm_input_types::{
     KeyboardLedStatus, Modifiers, MouseButtons, MouseEvent, MouseEventKind, MousePress,
     ScreenPoint, WindowDecorations,
 };
@@ -1027,8 +1027,8 @@ impl WaylandWindowInner {
         // which is necessary for the frame callback to get triggered.
         // Ordering the repaint after requesting the callback ensures that
         // we will get woken at the appropriate time.
-        // <https://github.com/wez/wezterm/issues/3468>
-        // <https://github.com/wez/wezterm/issues/3126>
+        // <https://github.com/wez/weenyterm/issues/3468>
+        // <https://github.com/wez/weenyterm/issues/3126>
         self.events.dispatch(WindowEvent::NeedRepaint);
 
         Ok(())

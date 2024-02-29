@@ -16,7 +16,7 @@ use std::borrow::Cow;
 use std::hash::Hash;
 use std::ops::Range;
 use std::sync::{Arc, Mutex, Weak};
-use wezterm_bidi::{Direction, ParagraphDirectionHint};
+use weenyterm_bidi::{Direction, ParagraphDirectionHint};
 
 #[cfg_attr(feature = "use_serde", derive(Serialize, Deserialize))]
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -623,7 +623,7 @@ impl Line {
         let my_cells = self.coerce_vec_storage();
         // Clamp to avoid out of bounds panic if the line is shorter
         // than the requested split point
-        // <https://github.com/wez/wezterm/issues/2355>
+        // <https://github.com/wez/weenyterm/issues/2355>
         let idx = idx.min(my_cells.len());
         let cells = my_cells.split_off(idx);
         Self {
@@ -788,7 +788,7 @@ impl Line {
         // should get filtered out in the terminal parsing layer,
         // but in case one does sneak through, we need to ensure that
         // we grow the cells array to hold this bogus entry.
-        // https://github.com/wez/wezterm/issues/768
+        // https://github.com/wez/weenyterm/issues/768
         let width = cell.width().max(1);
 
         self.invalidate_implicit_hyperlinks(seqno);

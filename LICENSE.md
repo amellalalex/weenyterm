@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2018-Present Wez Furlong
+Copyright (c) 2018-Present Weeny Furlong
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-WezTerm bundles `JetBrains Mono`, `Noto Color Emoji` and `Roboto` fonts.
+WeenyTerm bundles `JetBrains Mono`, `Noto Color Emoji` and `Roboto` fonts.
 Those are distributed under the terms of the OFL 1.1, the text of which
 can be found in the assets/fonts directory.
 
-WezTerm bundles `Symbols Nerd Font Mono`, built from only those icon sets
+WeenyTerm bundles `Symbols Nerd Font Mono`, built from only those icon sets
 available from https://github.com/ryanoasis/nerd-fonts which are clearly
 distributed under the terms of the OFL 1.1.
-Note that WezTerm excludes the Pomicons icon set from this collection.
+Note that WeenyTerm excludes the Pomicons icon set from this collection.

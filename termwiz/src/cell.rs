@@ -11,7 +11,7 @@ use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use std::hash::{Hash, Hasher};
 use std::mem;
 use std::sync::Arc;
-use wezterm_dynamic::{FromDynamic, ToDynamic};
+use weenyterm_dynamic::{FromDynamic, ToDynamic};
 
 #[cfg_attr(feature = "use_serde", derive(Serialize, Deserialize))]
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
@@ -504,7 +504,7 @@ impl CellAttributes {
         // color when erasing rather than other attributes, so it should
         // be fine to clear out the actual underline attribute.
         // Let's extend this to other line attribute types as well.
-        // <https://github.com/wez/wezterm/issues/2489>
+        // <https://github.com/wez/weenyterm/issues/2489>
         res.set_underline(Underline::None);
         res.set_overline(false);
         res.set_strikethrough(false);
@@ -899,7 +899,7 @@ impl UnicodeVersion {
     fn width(&self, c: WcWidth) -> usize {
         // Special case for symbol fonts that are naughtly and use
         // the unassigned range instead of the private use range.
-        // <https://github.com/wez/wezterm/issues/1864>
+        // <https://github.com/wez/weenyterm/issues/1864>
         if c == WcWidth::Unassigned {
             1
         } else if c == WcWidth::Ambiguous && self.ambiguous_are_wide {
@@ -954,7 +954,7 @@ pub fn unicode_column_width(s: &str, version: Option<UnicodeVersion>) -> usize {
 /// This means that a global understanding of the unicode version that
 /// is in use isn't a good solution.
 ///
-/// The approach that wezterm wants to take here is to define a
+/// The approach that weenyterm wants to take here is to define a
 /// configuration value that sets the starting level of unicode conformance,
 /// and to define an escape sequence that can push/pop a desired confirmance
 /// level onto a stack maintained by the terminal emulator.

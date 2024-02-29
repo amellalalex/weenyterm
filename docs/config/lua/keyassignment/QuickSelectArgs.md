@@ -11,13 +11,13 @@ the default or the [quick_select_patterns](../config/quick_select_patterns.md)
 configuration:
 
 ```lua
-local wezterm = require 'wezterm'
+local weenyterm = require 'weenyterm'
 
 config.keys = {
   {
     key = 'P',
     mods = 'CTRL',
-    action = wezterm.action.QuickSelectArgs {
+    action = weenyterm.action.QuickSelectArgs {
       patterns = {
         'https?://\\S+',
       },
@@ -39,25 +39,25 @@ quick-selected text, instead of copying it to the clipboard.  Here, we open
 the selected URL using the web browser:
 
 ```lua
-local wezterm = require 'wezterm'
+local weenyterm = require 'weenyterm'
 
 config.keys = {
   {
     key = 'P',
     mods = 'CTRL',
-    action = wezterm.action.QuickSelectArgs {
+    action = weenyterm.action.QuickSelectArgs {
       label = 'open url',
       patterns = {
         'https?://\\S+',
       },
-      action = wezterm.action_callback(function(window, pane)
+      action = weenyterm.action_callback(function(window, pane)
         local url = window:get_selection_text_for_pane(pane)
-        wezterm.log_info('opening: ' .. url)
-        wezterm.open_with(url)
+        weenyterm.log_info('opening: ' .. url)
+        weenyterm.open_with(url)
       end),
     },
   },
 }
 ```
 
-See also [wezterm.open_with](../wezterm/open_with.md).
+See also [weenyterm.open_with](../weenyterm/open_with.md).

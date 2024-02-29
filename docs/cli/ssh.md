@@ -1,6 +1,6 @@
-# `wezterm ssh`
+# `weenyterm ssh`
 
 ```console
-{% include "../examples/cmd-synopsis-wezterm-ssh--help.txt" %}
+{% include "../examples/cmd-synopsis-weenyterm-ssh--help.txt" %}
 ```
 

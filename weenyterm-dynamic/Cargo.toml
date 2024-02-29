@@ -1,0 +1,17 @@
+[package]
+name = "weenyterm-dynamic"
+version = "0.2.0"
+edition = "2021"
+repository = "https://github.com/wez/weenyterm"
+description = "config serialization for weenyterm via dynamic json-like data values"
+license = "MIT"
+
+[dependencies]
+weenyterm-dynamic-derive = { version="0.1", path="derive" }
+ordered-float = "4.1"
+thiserror = "1.0"
+strsim = "0.10"
+log = "0.4"
+
+[dev-dependencies]
+maplit = "1.0"

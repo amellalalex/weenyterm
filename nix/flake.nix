@@ -1,5 +1,5 @@
 {
-  description = "A GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust";
+  description = "A GPU-accelerated cross-platform terminal emulator and multiplexer written by @weeny and implemented in Rust";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -13,7 +13,7 @@
     };
 
     freetype2 = {
-      url = "github:wez/freetype2/de8b92dd7ec634e9e2b25ef534c54a3537555c11";
+      url = "github:weeny/freetype2/de8b92dd7ec634e9e2b25ef534c54a3537555c11";
       flake = false;
     };
 
@@ -91,7 +91,7 @@
       packages.default = rustPlatform.buildRustPackage rec {
         inherit buildInputs nativeBuildInputs;
 
-        name = "wezterm";
+        name = "weenyterm";
         src = ./..;
         version = self.shortRev or "dev";
 
@@ -116,47 +116,47 @@
           echo ${version} > .tag
 
           # tests are failing with: Unable to exchange encryption keys
-          rm -r wezterm-ssh/tests
+          rm -r weenyterm-ssh/tests
         '';
 
         preFixup = lib.optionalString stdenv.isLinux ''
           patchelf \
             --add-needed "${pkgs.libGL}/lib/libEGL.so.1" \
             --add-needed "${pkgs.vulkan-loader}/lib/libvulkan.so.1" \
-            $out/bin/wezterm-gui
+            $out/bin/weenyterm-gui
         '';
 
         postInstall = ''
           mkdir -p $out/nix-support
           echo "${passthru.terminfo}" >> $out/nix-support/propagated-user-env-packages
 
-          install -Dm644 assets/icon/terminal.png $out/share/icons/hicolor/128x128/apps/org.wezfurlong.wezterm.png
-          install -Dm644 assets/wezterm.desktop $out/share/applications/org.wezfurlong.wezterm.desktop
-          install -Dm644 assets/wezterm.appdata.xml $out/share/metainfo/org.wezfurlong.wezterm.appdata.xml
+          install -Dm644 assets/icon/terminal.png $out/share/icons/hicolor/128x128/apps/org.weenyfurlong.weenyterm.png
+          install -Dm644 assets/weenyterm.desktop $out/share/applications/org.weenyfurlong.weenyterm.desktop
+          install -Dm644 assets/weenyterm.appdata.xml $out/share/metainfo/org.weenyfurlong.weenyterm.appdata.xml
 
-          install -Dm644 assets/shell-integration/wezterm.sh -t $out/etc/profile.d
-          installShellCompletion --cmd wezterm \
+          install -Dm644 assets/shell-integration/weenyterm.sh -t $out/etc/profile.d
+          installShellCompletion --cmd weenyterm \
             --bash assets/shell-completion/bash \
             --fish assets/shell-completion/fish \
             --zsh assets/shell-completion/zsh
 
-          install -Dm644 assets/wezterm-nautilus.py -t $out/share/nautilus-python/extensions
+          install -Dm644 assets/weenyterm-nautilus.py -t $out/share/nautilus-python/extensions
         '';
 
         passthru = {
           terminfo =
-            pkgs.runCommand "wezterm-terminfo"
+            pkgs.runCommand "weenyterm-terminfo"
             {
               nativeBuildInputs = [pkgs.ncurses];
             } ''
               mkdir -p $out/share/terminfo $out/nix-support
-              tic -x -o $out/share/terminfo ${src}/termwiz/data/wezterm.terminfo
+              tic -x -o $out/share/terminfo ${src}/termwiz/data/weenyterm.terminfo
             '';
         };
       };
 
       devShell = pkgs.mkShell {
-        name = "wezterm-shell";
+        name = "weenyterm-shell";
         inherit nativeBuildInputs;
 
         buildInputs =

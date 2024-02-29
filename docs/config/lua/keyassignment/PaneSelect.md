@@ -37,8 +37,8 @@ Additional modes are now supported:
 You may now also set `show_pane_ids=true` to show the pane id alongside the label.
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
 
 -- 36 is the default, but you can choose a different size.
 -- Uses the same font as window_frame.font

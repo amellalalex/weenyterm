@@ -39,7 +39,7 @@ config.keys = {
   {
     key = '9',
     mods = 'ALT',
-    action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|TABS' },
+    action = weenyterm.action.ShowLauncherArgs { flags = 'FUZZY|TABS' },
   },
 }
 ```

@@ -3,8 +3,8 @@
 use crate::{configuration, ConfigHandle, NewlineCanon};
 use std::sync::Mutex;
 use termwiz::cell::UnicodeVersion;
-use wezterm_term::color::ColorPalette;
-use wezterm_term::config::BidiMode;
+use weenyterm_term::color::ColorPalette;
+use weenyterm_term::config::BidiMode;
 
 #[derive(Debug)]
 pub struct TermConfig {
@@ -43,7 +43,7 @@ impl TermConfig {
     }
 }
 
-impl wezterm_term::TerminalConfiguration for TermConfig {
+impl weenyterm_term::TerminalConfiguration for TermConfig {
     fn generation(&self) -> usize {
         self.configuration().generation()
     }
@@ -86,16 +86,16 @@ impl wezterm_term::TerminalConfiguration for TermConfig {
         self.configuration().enable_kitty_keyboard
     }
 
-    fn canonicalize_pasted_newlines(&self) -> wezterm_term::config::NewlineCanon {
+    fn canonicalize_pasted_newlines(&self) -> weenyterm_term::config::NewlineCanon {
         match self.configuration().canonicalize_pasted_newlines {
-            None => wezterm_term::config::NewlineCanon::default(),
-            Some(NewlineCanon::None) => wezterm_term::config::NewlineCanon::None,
-            Some(NewlineCanon::LineFeed) => wezterm_term::config::NewlineCanon::LineFeed,
+            None => weenyterm_term::config::NewlineCanon::default(),
+            Some(NewlineCanon::None) => weenyterm_term::config::NewlineCanon::None,
+            Some(NewlineCanon::LineFeed) => weenyterm_term::config::NewlineCanon::LineFeed,
             Some(NewlineCanon::CarriageReturn) => {
-                wezterm_term::config::NewlineCanon::CarriageReturn
+                weenyterm_term::config::NewlineCanon::CarriageReturn
             }
             Some(NewlineCanon::CarriageReturnAndLineFeed) => {
-                wezterm_term::config::NewlineCanon::CarriageReturnAndLineFeed
+                weenyterm_term::config::NewlineCanon::CarriageReturnAndLineFeed
             }
         }
     }

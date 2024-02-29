@@ -11,8 +11,8 @@ upon the input.
 `PromptInputLine` accepts two fields:
 
 * `description` - the text to show at the top of the display area. You may
-  embed escape sequences and/or use [wezterm.format](../wezterm/format.md).
-* `action` - and event callback registerd via `wezterm.action_callback`.  The
+  embed escape sequences and/or use [weenyterm.format](../weenyterm/format.md).
+* `action` - and event callback registerd via `weenyterm.action_callback`.  The
   callback's function signature is `(window, pane, line)` where `window` and
   `pane` are the [Window](../window/index.md) and [Pane](../pane/index.md)
   objects from the current pane and window, and `line` is the text that the
@@ -22,17 +22,17 @@ upon the input.
 ## Example of interactively renaming the current tab
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
 
-local config = wezterm.config_builder()
+local config = weenyterm.config_builder()
 config.keys = {
   {
     key = 'E',
     mods = 'CTRL|SHIFT',
     action = act.PromptInputLine {
       description = 'Enter new name for tab',
-      action = wezterm.action_callback(function(window, pane, line)
+      action = weenyterm.action_callback(function(window, pane, line)
         -- line will be `nil` if they hit escape without entering anything
         -- An empty string if they just hit enter
         -- Or the actual line of text they wrote
@@ -52,24 +52,24 @@ return config
 Similar to the above, but prompts for a name prior to creating
 the workspace.
 
-This example also shows the use of `wezterm.format` to emit colored text.
+This example also shows the use of `weenyterm.format` to emit colored text.
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
 
-local config = wezterm.config_builder()
+local config = weenyterm.config_builder()
 config.keys = {
   {
     key = 'N',
     mods = 'CTRL|SHIFT',
     action = act.PromptInputLine {
-      description = wezterm.format {
+      description = weenyterm.format {
         { Attribute = { Intensity = 'Bold' } },
         { Foreground = { AnsiColor = 'Fuchsia' } },
         { Text = 'Enter name for new workspace' },
       },
-      action = wezterm.action_callback(function(window, pane, line)
+      action = weenyterm.action_callback(function(window, pane, line)
         -- line will be `nil` if they hit escape without entering anything
         -- An empty string if they just hit enter
         -- Or the actual line of text they wrote

@@ -2,7 +2,7 @@ use crate::{dynamic_to_lua_value, lua_value_to_dynamic};
 use mlua::{IntoLua, Lua, MetaMethod, UserData, UserDataMethods, Value};
 use std::collections::BTreeMap;
 use std::marker::PhantomData;
-use wezterm_dynamic::{
+use weenyterm_dynamic::{
     Error as DynError, FromDynamic, FromDynamicOptions, ToDynamic, UnknownFieldAction,
     Value as DynValue,
 };
@@ -64,19 +64,19 @@ where
 }
 
 /// This type is used as an enum constructor for type `T`.
-/// The primary usage is to enable `wezterm.action` to have the following
+/// The primary usage is to enable `weenyterm.action` to have the following
 /// behaviors for KeyAssignment:
 ///
-/// `wezterm.action{QuickSelectArgs={}}` -> compatibility with prior versions;
+/// `weenyterm.action{QuickSelectArgs={}}` -> compatibility with prior versions;
 /// the table is passed through and from_dynamic -> lua conversion is attempted.
 ///
-/// `wezterm.action.QuickSelectArgs` -> since the `QuickSelectArgs` variant
+/// `weenyterm.action.QuickSelectArgs` -> since the `QuickSelectArgs` variant
 /// has a payload that impl Default, this is equivalent to the call above.
 ///
-/// `wezterm.action.QuickSelectArgs{}` -> equivalent to the call above, but
+/// `weenyterm.action.QuickSelectArgs{}` -> equivalent to the call above, but
 /// explicitly calls the constructor with no parameters.
 ///
-/// `wezterm.action.QuickSelectArgs{alphabet="abc"}` -> configures the alphabet.
+/// `weenyterm.action.QuickSelectArgs{alphabet="abc"}` -> configures the alphabet.
 ///
 /// This dynamic behavior is implemented using metatables.
 ///

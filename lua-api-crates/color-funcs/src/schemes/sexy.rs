@@ -50,7 +50,7 @@ impl Sexy {
                 name: Some(sexy.name),
                 author: Some(sexy.author),
                 origin_url: None,
-                wezterm_version: None,
+                weenyterm_version: None,
                 aliases: vec![],
             },
         })

@@ -1,7 +1,7 @@
 [package]
 name = "codec"
 version = "0.1.0"
-authors = ["Wez Furlong <wez@wezfurlong.org>"]
+authors = ["Weeny Furlong <weeny@weenyfurlong.org>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -20,7 +20,7 @@ smol = "1.2"
 termwiz = { path = "../termwiz" }
 thiserror = "1.0"
 varbincode = "0.1"
-wezterm-term = { path = "../term", features=["use_serde"] }
+weenyterm-term = { path = "../term", features=["use_serde"] }
 zstd = "0.11"
 
 [dev-dependencies]

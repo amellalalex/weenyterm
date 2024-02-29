@@ -5,8 +5,8 @@ offset. eg: `-1` activates the tab to the left of the current tab, while `1`
 activates the tab to the right.
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
 local config = {}
 
 config.keys = {

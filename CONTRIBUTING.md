@@ -1,4 +1,4 @@
-# Contributing to wezterm
+# Contributing to weenyterm
 
 Thanks for considering donating your time and energy!  I value any contribution,
 even if it is just to highlight a typo.
@@ -30,7 +30,7 @@ Look at [mkdocs serve](https://www.mkdocs.org/user-guide/cli/#mkdocs-serve) for 
 There are a lot of targets out there.  Today we have docs that are Ubuntu biased
 and I know that there are a lot flavors of Linux.  Rather than expand the README
 with instructions for those, please translate the instructions into steps that
-can be run in the [`get-deps`](https://github.com/wez/wezterm/blob/master/get-deps)
+can be run in the [`get-deps`](https://github.com/wez/weenyterm/blob/master/get-deps)
 script.
 
 ## Contributing code
@@ -44,11 +44,11 @@ If you are new to the Rust language check out <https://doc.rust-lang.org/rust-by
 The `term` directory holds the core terminal model code.  This is agnostic
 of any windowing system.  If you want to add support for terminal escape
 sequences and that sort of thing, you probably want to be in the `term` dir.
-Keep in mind that for maximal compatibility and utility `wezterm` aims to
+Keep in mind that for maximal compatibility and utility `weenyterm` aims to
 be compatible with the `xterm` behavior.
 https://invisible-island.net/xterm/ctlseqs/ctlseqs.html is a useful resource!
 
-The `src` directory holds the code for the `wezterm` program.  This is
+The `src` directory holds the code for the `weenyterm` program.  This is
 the GUI renderer for the terminal model.  If you want to change something
 about the GUI you want to be in the `src` dir.
 
@@ -76,7 +76,7 @@ If you get a panic and want to examine local variables, you'll need to use gdb:
 
 ```console
 $ cargo build
-$ gdb ./target/debug/wezterm
+$ gdb ./target/debug/weenyterm
 $ break rust_panic               # hit tab to complete the name of the panic symbol!
 $ run
 $ bt
@@ -96,7 +96,7 @@ There are some helper classes for writing tests for terminal behavior.
 Here's an example of a test to verify that the terminal contents
 match expectations:
 
-https://github.com/wez/wezterm/blob/master/term/src/test/mod.rs#L334
+https://github.com/wez/weenyterm/blob/master/term/src/test/mod.rs#L334
 
 Please also make a point of adding comments to your tests to help
 clarify the intent of the test!

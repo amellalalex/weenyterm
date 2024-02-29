@@ -121,7 +121,7 @@ pub fn register(lua: &Lua) -> anyhow::Result<()> {
     color.set(
         "get_default_colors",
         lua.create_function(|_, _: ()| {
-            let palette: Palette = wezterm_term::color::ColorPalette::default().into();
+            let palette: Palette = weenyterm_term::color::ColorPalette::default().into();
             Ok(palette)
         })?,
     )?;
@@ -166,11 +166,11 @@ pub fn register(lua: &Lua) -> anyhow::Result<()> {
         })?,
     )?;
 
-    let wezterm_mod = get_or_create_module(lua, "wezterm")?;
-    wezterm_mod.set("gradient_colors", lua.create_function(gradient_colors)?)?;
+    let weenyterm_mod = get_or_create_module(lua, "weenyterm")?;
+    weenyterm_mod.set("gradient_colors", lua.create_function(gradient_colors)?)?;
     color.set("gradient", lua.create_function(gradient_colors)?)?;
 
-    wezterm_mod.set(
+    weenyterm_mod.set(
         "get_builtin_color_schemes",
         lua.create_function(|_, ()| Ok(config::COLOR_SCHEMES.clone()))?,
     )?;

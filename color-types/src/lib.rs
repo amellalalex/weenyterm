@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
 use std::str::FromStr;
-use wezterm_dynamic::{FromDynamic, FromDynamicOptions, ToDynamic, Value};
+use weenyterm_dynamic::{FromDynamic, FromDynamicOptions, ToDynamic, Value};
 
 lazy_static::lazy_static! {
     static ref SRGB_TO_F32_TABLE: [f32;256] = generate_srgb8_to_linear_f32_table();
@@ -277,7 +277,7 @@ impl FromDynamic for SrgbaTuple {
     fn from_dynamic(
         value: &Value,
         options: FromDynamicOptions,
-    ) -> Result<Self, wezterm_dynamic::Error> {
+    ) -> Result<Self, weenyterm_dynamic::Error> {
         let s = String::from_dynamic(value, options)?;
         Ok(SrgbaTuple::from_str(&s).map_err(|()| format!("unknown color name: {}", s))?)
     }

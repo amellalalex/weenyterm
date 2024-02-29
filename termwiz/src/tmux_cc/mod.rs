@@ -671,8 +671,8 @@ here
 %layout-change @1 b25d,80x24,0,0,0
 %layout-change @1 cafd,120x29,0,0,0 cafd,120x29,0,0,0 *
 %output %1 \\033[1m\\033[7m%\\033[27m\\033[1m\\033[0m    \\015 \\015
-%output %1 \\033kwez@cube-localdomain:~\\033\\134\\033]2;wez@cube-localdomain:~\\033\\134
-%output %1 \\033]7;file://cube-localdomain/home/wez\\033\\134
+%output %1 \\033kweeny@cube-localdomain:~\\033\\134\\033]2;weeny@cube-localdomain:~\\033\\134
+%output %1 \\033]7;file://cube-localdomain/home/weeny\\033\\134
 %output %1 \\033[K\\033[?2004h
 %exit
 %exit I said so
@@ -735,12 +735,12 @@ here
                 },
                 Event::Output {
                     pane: 1,
-                    text: "\x1bkwez@cube-localdomain:~\x1b\\\x1b]2;wez@cube-localdomain:~\x1b\\"
+                    text: "\x1bkweeny@cube-localdomain:~\x1b\\\x1b]2;weeny@cube-localdomain:~\x1b\\"
                         .to_owned()
                 },
                 Event::Output {
                     pane: 1,
-                    text: "\x1b]7;file://cube-localdomain/home/wez\x1b\\".to_owned(),
+                    text: "\x1b]7;file://cube-localdomain/home/weeny\x1b\\".to_owned(),
                 },
                 Event::Output {
                     pane: 1,

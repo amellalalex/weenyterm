@@ -1,12 +1,12 @@
 [package]
-authors = ["Wez Furlong <wez@wezfurlong.org>"]
-name = "wezterm-term"
+authors = ["Weeny Furlong <weeny@weenyfurlong.org>"]
+name = "weenyterm-term"
 version = "0.1.0"
 edition = "2018"
-repository = "https://github.com/wez/wezterm"
-description = "The Virtual Terminal Emulator core from wezterm; helpful for implementing terminal emulators"
+repository = "https://github.com/wez/weenyterm"
+description = "The Virtual Terminal Emulator core from weenyterm; helpful for implementing terminal emulators"
 license = "MIT"
-documentation = "https://docs.rs/wezterm-term"
+documentation = "https://docs.rs/weenyterm-term"
 keywords = ["terminal", "emulator", "vte"]
 readme = "README.md"
 
@@ -32,8 +32,8 @@ serde = {version="1.0", features = ["rc"]}
 terminfo = "0.8"
 unicode-normalization = "0.1.21"
 url = "2"
-wezterm-bidi = { path = "../bidi" }
-wezterm-dynamic = { path = "../wezterm-dynamic" }
+weenyterm-bidi = { path = "../bidi" }
+weenyterm-dynamic = { path = "../weenyterm-dynamic" }
 
 [dev-dependencies]
 env_logger = "0.11"

@@ -5,8 +5,8 @@
 Move the CopyMode/SearchMode selection to the previous matching text on the previous page of the screen, if any.
 
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
+local weenyterm = require 'weenyterm'
+local act = weenyterm.action
 
 return {
   key_tables = {

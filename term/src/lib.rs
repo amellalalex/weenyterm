@@ -1,7 +1,7 @@
 //! This crate provides the core of the virtual terminal emulator implementation
-//! used by [wezterm](https://wezfurlong.org/wezterm/).  The home for this
-//! crate is in the wezterm repo and development is tracked at
-//! <https://github.com/wez/wezterm/>.
+//! used by [weenyterm](https://weenyfurlong.org/weenyterm/).  The home for this
+//! crate is in the weenyterm repo and development is tracked at
+//! <https://github.com/wez/weenyterm/>.
 //!
 //! It is full featured, providing terminal escape sequence parsing, keyboard
 //! and mouse input encoding, a model for the screen cells including scrollback,
@@ -21,7 +21,7 @@ use serde::{Deserialize, Serialize};
 use std::ops::{Deref, DerefMut, Range};
 use std::str;
 use termwiz::surface::SequenceNo;
-use wezterm_dynamic::{FromDynamic, ToDynamic};
+use weenyterm_dynamic::{FromDynamic, ToDynamic};
 
 pub mod config;
 pub use config::TerminalConfiguration;

@@ -11,4 +11,4 @@ config = { path = "../../config" }
 libc = "0.2"
 luahelper = { path = "../../luahelper" }
 procinfo = { path = "../../procinfo" }
-wezterm-dynamic = { path = "../../wezterm-dynamic" }
+weenyterm-dynamic = { path = "../../weenyterm-dynamic" }

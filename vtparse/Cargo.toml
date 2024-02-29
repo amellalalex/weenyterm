@@ -1,9 +1,9 @@
 [package]
-authors = ["Wez Furlong <wez@wezfurlong.org>"]
+authors = ["Weeny Furlong <weeny@weenyfurlong.org>"]
 name = "vtparse"
 version = "0.6.2"
 edition = "2018"
-repository = "https://github.com/wez/wezterm"
+repository = "https://github.com/wez/weenyterm"
 description = "Low level escape sequence parser"
 license = "MIT"
 documentation = "https://docs.rs/vtparse"

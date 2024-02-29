@@ -1,7 +1,7 @@
 [package]
 name = "rangeset"
 version = "0.1.0"
-authors = ["Wez Furlong <wez@wezfurlong.org>"]
+authors = ["Weeny Furlong <weeny@weenyfurlong.org>"]
 edition = "2018"
 
 [dependencies]

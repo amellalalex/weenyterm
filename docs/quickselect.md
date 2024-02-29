@@ -27,4 +27,4 @@ text, and cancel quick select mod.
 
 Pressing `ESCAPE` will cancel quick select mode.
 
-![Screenshot demonstrating the quickselect text highlights](screenshots/wezterm-quick-select.png)
+![Screenshot demonstrating the quickselect text highlights](screenshots/weenyterm-quick-select.png)

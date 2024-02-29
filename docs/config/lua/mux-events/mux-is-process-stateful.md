@@ -26,11 +26,11 @@ indenting the entries for each level of the process hierarchy.
 Since it returns `nil`, it uses the default behavior.
 
 ```lua
-local wezterm = require 'wezterm'
+local weenyterm = require 'weenyterm'
 
 function log_proc(proc, indent)
   indent = indent or ''
-  wezterm.log_info(
+  weenyterm.log_info(
     indent
       .. 'pid='
       .. proc.pid
@@ -39,8 +39,8 @@ function log_proc(proc, indent)
       .. ', status='
       .. proc.status
   )
-  wezterm.log_info(indent .. 'argv=' .. table.concat(proc.argv, ' '))
-  wezterm.log_info(
+  weenyterm.log_info(indent .. 'argv=' .. table.concat(proc.argv, ' '))
+  weenyterm.log_info(
     indent .. 'executable=' .. proc.executable .. ', cwd=' .. proc.cwd
   )
   for pid, child in pairs(proc.children) do
@@ -48,7 +48,7 @@ function log_proc(proc, indent)
   end
 end
 
-wezterm.on('mux-is-process-stateful', function(proc)
+weenyterm.on('mux-is-process-stateful', function(proc)
   log_proc(proc)
 
   -- Just use the default behavior
@@ -63,11 +63,11 @@ Produces the following logs for a `zsh` that spawned `bash` that spawned `vim fo
 ```
 INFO  config::lua > lua: pid=1913470, name=zsh, status=Sleep
 INFO  config::lua > lua: argv=-zsh
-INFO  config::lua > lua: executable=/usr/bin/zsh, cwd=/home/wez
+INFO  config::lua > lua: executable=/usr/bin/zsh, cwd=/home/weeny
 INFO  config::lua > lua:   pid=1913567, name=bash, status=Sleep
 INFO  config::lua > lua:   argv=bash
-INFO  config::lua > lua:   executable=/usr/bin/bash, cwd=/home/wez
+INFO  config::lua > lua:   executable=/usr/bin/bash, cwd=/home/weeny
 INFO  config::lua > lua:     pid=1913624, name=vim, status=Sleep
 INFO  config::lua > lua:     argv=vim foo
-INFO  config::lua > lua:     executable=/usr/bin/vim, cwd=/home/wez
+INFO  config::lua > lua:     executable=/usr/bin/vim, cwd=/home/weeny
 ```

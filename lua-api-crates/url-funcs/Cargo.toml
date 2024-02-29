@@ -11,4 +11,4 @@ config = { path = "../../config" }
 luahelper = { path = "../../luahelper" }
 percent-encoding = "2.3"
 url = "2"
-wezterm-dynamic = { path = "../../wezterm-dynamic" }
+weenyterm-dynamic = { path = "../../weenyterm-dynamic" }

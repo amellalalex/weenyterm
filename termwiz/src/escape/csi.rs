@@ -52,7 +52,7 @@ fn csi_size() {
     assert_eq!(std::mem::size_of::<CSI>(), 32);
 }
 
-pub use wezterm_input_types::KittyKeyboardFlags;
+pub use weenyterm_input_types::KittyKeyboardFlags;
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 #[repr(u16)]
@@ -2297,7 +2297,7 @@ impl<'a> CSIParser<'a> {
 
     fn parse_sgr_color(&mut self, params: &'a [CsiParam]) -> Result<ColorSpec, ()> {
         match params {
-            // wezterm extension to support an optional alpha channel in the `:` form only
+            // weenyterm extension to support an optional alpha channel in the `:` form only
             [_, CsiParam::P(b':'), CsiParam::Integer(6), CsiParam::P(b':'),
                     CsiParam::Integer(_colorspace), CsiParam::P(b':'),
                     red, CsiParam::P(b':'), green, CsiParam::P(b':'), blue, CsiParam::P(b':'), alpha, ..] => {

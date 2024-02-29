@@ -26,7 +26,7 @@ use std::time::{Duration, Instant};
 use termwiz::escape::csi::{DecPrivateMode, DecPrivateModeCode, Device, Mode};
 use termwiz::escape::{Action, CSI};
 use thiserror::*;
-use wezterm_term::{Clipboard, ClipboardSelection, DownloadHandler, TerminalSize};
+use weenyterm_term::{Clipboard, ClipboardSelection, DownloadHandler, TerminalSize};
 #[cfg(windows)]
 use winapi::um::winsock2::{SOL_SOCKET, SO_RCVBUF, SO_SNDBUF};
 
@@ -61,7 +61,7 @@ pub enum MuxNotification {
     ActiveWorkspaceChanged(Arc<ClientId>),
     Alert {
         pane_id: PaneId,
-        alert: wezterm_term::Alert,
+        alert: weenyterm_term::Alert,
     },
     Empty,
     AssignClipboard {
@@ -292,7 +292,7 @@ fn read_from_pane_pty(
             localpane::emit_output_for_pane(
                 pane_id,
                 &format!(
-                    "⚠️  wezterm: read_from_pane_pty: \
+                    "⚠️  weenyterm: read_from_pane_pty: \
                     Unable to allocate a socketpair: {err:#}"
                 ),
             );
@@ -1429,7 +1429,7 @@ impl Clipboard for MuxClipboard {
 
 struct MuxDownloader {}
 
-impl wezterm_term::DownloadHandler for MuxDownloader {
+impl weenyterm_term::DownloadHandler for MuxDownloader {
     fn save_to_downloads(&self, name: Option<String>, data: Vec<u8>) {
         if let Some(mux) = Mux::try_get() {
             mux.notify(MuxNotification::SaveToDownloads {

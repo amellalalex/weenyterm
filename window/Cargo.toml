@@ -1,9 +1,9 @@
 [package]
 name = "window"
 version = "0.1.0"
-authors = ["Wez Furlong"]
+authors = ["Weeny Furlong"]
 edition = "2018"
-repository = "https://github.com/wez/wezterm"
+repository = "https://github.com/wez/weenyterm"
 description = "Cross platform window setup and render"
 license = "MIT"
 build = "build.rs"
@@ -42,10 +42,10 @@ serde = {version="1.0", features = ["rc", "derive"]}
 tiny-skia = "0.11"
 glium = { version = "0.34", default-features = false }
 url = "2"
-wezterm-bidi = { path = "../bidi" }
-wezterm-color-types = { path = "../color-types" }
-wezterm-font = { path = "../wezterm-font" }
-wezterm-input-types = { path = "../wezterm-input-types" }
+weenyterm-bidi = { path = "../bidi" }
+weenyterm-color-types = { path = "../color-types" }
+weenyterm-font = { path = "../weenyterm-font" }
+weenyterm-input-types = { path = "../weenyterm-input-types" }
 
 [target."cfg(windows)".dependencies]
 clipboard-win = "2.2"

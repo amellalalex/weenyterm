@@ -1,8 +1,8 @@
 [package]
-name = "wezterm-bidi"
+name = "weenyterm-bidi"
 version = "0.2.3"
 edition = "2021"
-repository = "https://github.com/wez/wezterm"
+repository = "https://github.com/wez/weenyterm"
 description = "The Unicode Bidi Algorithm (UBA)"
 license = "MIT AND Unicode-DFS-2016"
 exclude = ["/data", "/tests"]
@@ -13,7 +13,7 @@ exclude = ["/data", "/tests"]
 
 [dependencies]
 log = "0.4"
-wezterm-dynamic = { version = "0.2", path = "../wezterm-dynamic" }
+weenyterm-dynamic = { version = "0.2", path = "../weenyterm-dynamic" }
 
 [dev-dependencies]
 k9 = "0.12.0"

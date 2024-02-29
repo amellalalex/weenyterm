@@ -75,4 +75,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: "macos"
-          path: "WezTerm-*.zip"
+          path: "WeenyTerm-*.zip"

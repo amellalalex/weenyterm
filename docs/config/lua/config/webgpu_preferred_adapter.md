@@ -10,7 +10,7 @@ Specifies which WebGpu adapter should be used.
 
 This option is only applicable when you have configured `front_end = "WebGpu"`.
 
-You can use the [wezterm.gui.enumerate_gpus()](../wezterm.gui/enumerate_gpus.md) function
+You can use the [weenyterm.gui.enumerate_gpus()](../weenyterm.gui/enumerate_gpus.md) function
 to return a list of GPUs.
 
 If you open the [Debug Overlay](../keyassignment/ShowDebugOverlay.md) (default:
@@ -18,7 +18,7 @@ If you open the [Debug Overlay](../keyassignment/ShowDebugOverlay.md) (default:
 the list:
 
 ```
-> wezterm.gui.enumerate_gpus()
+> weenyterm.gui.enumerate_gpus()
 [
     {
         "backend": "Vulkan",
@@ -67,9 +67,9 @@ config.front_end = 'WebGpu'
 alternatively, I might use:
 
 ```lua
-local wezterm = require 'wezterm'
+local weenyterm = require 'weenyterm'
 local config = {}
-local gpus = wezterm.gui.enumerate_gpus()
+local gpus = weenyterm.gui.enumerate_gpus()
 
 config.webgpu_preferred_adapter = gpus[1]
 config.front_end = 'WebGpu'
@@ -81,10 +81,10 @@ example will only enable WebGpu if there is an integrated GPU available with
 Vulkan drivers:
 
 ```lua
-local wezterm = require 'wezterm'
+local weenyterm = require 'weenyterm'
 local config = {}
 
-for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
+for _, gpu in ipairs(weenyterm.gui.enumerate_gpus()) do
   if gpu.backend == 'Vulkan' and gpu.device_type == 'IntegratedGpu' then
     config.webgpu_preferred_adapter = gpu
     config.front_end = 'WebGpu'

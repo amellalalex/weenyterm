@@ -24,7 +24,7 @@ use termwiz::escape::{
 use termwiz::input::KeyboardEncoding;
 use unicode_normalization::{is_nfc_quick, IsNormalized, UnicodeNormalization};
 use url::Url;
-use wezterm_bidi::ParagraphDirectionHint;
+use weenyterm_bidi::ParagraphDirectionHint;
 
 /// A helper struct for implementing `vtparse::VTActor` while compartmentalizing
 /// the terminal state and the embedding/host terminal interface
@@ -137,7 +137,7 @@ impl<'a> Performer<'a> {
                 // We got a zero-width grapheme.
                 // We used to force them into a cell to guarantee that we
                 // preserved them in the model, but it introduces presentation
-                // problems, such as <https://github.com/wez/wezterm/issues/1422>
+                // problems, such as <https://github.com/wez/weenyterm/issues/1422>
                 log::trace!("Eliding zero-width grapheme {:?}", g);
                 continue;
             }
@@ -225,7 +225,7 @@ impl<'a> Performer<'a> {
     /// in a mode where all printable output is accumulated for the title.
     /// To combat this, we pop_tmux_title_state when we're obviously moving
     /// to different escape sequence parsing states.
-    /// <https://github.com/wez/wezterm/issues/2442>
+    /// <https://github.com/wez/weenyterm/issues/2442>
     fn pop_tmux_title_state(&mut self) {
         if let Some(title) = self.accumulating_title.take() {
             log::debug!("ST never received for pending tmux title escape sequence: {title:?}");
@@ -440,7 +440,7 @@ impl<'a> Performer<'a> {
             }
             ControlCode::RI => self.c1_reverse_index(),
 
-            // wezterm only supports UTF-8, so does not support the
+            // weenyterm only supports UTF-8, so does not support the
             // DEC National Replacement Character Sets.  However, it does
             // support the DEC Special Graphics character set used by
             // numerous ncurses applications.  DEC Special Graphics can be
@@ -479,7 +479,7 @@ impl<'a> Performer<'a> {
             CSI::Cursor(termwiz::escape::csi::Cursor::Left(n)) => {
                 // We treat CUB (Cursor::Left) the same as Backspace as
                 // that is what xterm does.
-                // <https://github.com/wez/wezterm/issues/1273>
+                // <https://github.com/wez/weenyterm/issues/1273>
                 for _ in 0..n {
                     self.control(ControlCode::Backspace);
                 }

@@ -11,16 +11,16 @@ on:
       - ".github/workflows/gen_fedora37.yml"
       - "assets/fonts/**/*"
       - "assets/icon/*"
-      - "assets/open-wezterm-here"
+      - "assets/open-weenyterm-here"
       - "assets/shell-completion/**/*"
       - "assets/shell-integration/**/*"
-      - "assets/wezterm-nautilus.py"
-      - "assets/wezterm.appdata.xml"
-      - "assets/wezterm.desktop"
+      - "assets/weenyterm-nautilus.py"
+      - "assets/weenyterm.appdata.xml"
+      - "assets/weenyterm.desktop"
       - "ci/deploy.sh"
       - "ci/tag-name.sh"
       - "get-deps"
-      - "termwiz/data/wezterm.terminfo"
+      - "termwiz/data/weenyterm.terminfo"
 
 jobs:
   build:
@@ -49,7 +49,7 @@ jobs:
         run: "yum install -y openssh-server"
       - name: "Workaround git permissions issue"
         shell: bash
-        run: "git config --global --add safe.directory /__w/wezterm/wezterm"
+        run: "git config --global --add safe.directory /__w/weenyterm/weenyterm"
       - name: "checkout repo"
         uses: actions/checkout@v4
         with:
@@ -94,4 +94,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: "fedora37"
-          path: "wezterm-*.rpm"
+          path: "weenyterm-*.rpm"

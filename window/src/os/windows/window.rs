@@ -28,9 +28,9 @@ use std::path::PathBuf;
 use std::ptr::{null, null_mut};
 use std::rc::Rc;
 use std::sync::Mutex;
-use wezterm_color_types::LinearRgba;
-use wezterm_font::FontConfiguration;
-use wezterm_input_types::KeyboardLedStatus;
+use weenyterm_color_types::LinearRgba;
+use weenyterm_font::FontConfiguration;
+use weenyterm_input_types::KeyboardLedStatus;
 use winapi::shared::minwindef::*;
 use winapi::shared::ntdef::*;
 use winapi::shared::windef::*;
@@ -421,7 +421,7 @@ impl Window {
             cbClsExtra: 0,
             cbWndExtra: 0,
             hInstance: h_inst,
-            // FIXME: this resource is specific to the wezterm build and this should
+            // FIXME: this resource is specific to the weenyterm build and this should
             // really be made generic for other sorts of windows.
             // The ID is defined in assets/windows/resource.rc
             hIcon: unsafe { LoadIconW(h_inst, MAKEINTRESOURCEW(0x101)) },
@@ -1073,7 +1073,7 @@ unsafe fn update_title_font(hwnd: HWND) {
 
     let mut font = TITLE_FONT.lock().expect("locking title_font");
     if let Some(lf) = get_title_log_font(hwnd, hdc) {
-        *font = wezterm_font::locator::gdi::parse_log_font(&lf, hdc).ok();
+        *font = weenyterm_font::locator::gdi::parse_log_font(&lf, hdc).ok();
     }
 
     ReleaseDC(hwnd, hdc);
@@ -2713,7 +2713,7 @@ unsafe fn key(hwnd: HWND, msg: UINT, wparam: WPARAM, lparam: LPARAM) -> Option<L
                             // They pressed the same dead key twice,
                             // emit the underlying char again and call
                             // it done.
-                            // <https://github.com/wez/wezterm/issues/1729>
+                            // <https://github.com/wez/weenyterm/issues/1729>
                             inner.events.dispatch(WindowEvent::KeyEvent(key.clone()));
                             return Some(0);
                         }

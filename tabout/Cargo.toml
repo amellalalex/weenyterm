@@ -1,9 +1,9 @@
 [package]
 name = "tabout"
 version = "0.3.0"
-authors = ["Wez Furlong <wez@wezfurlong.org>"]
+authors = ["Weeny Furlong <weeny@weenyfurlong.org>"]
 edition = "2018"
-repository = "https://github.com/wez/wezterm"
+repository = "https://github.com/wez/weenyterm"
 description = "Tabulate output for CLI programs"
 license = "MIT"
 documentation = "https://docs.rs/tabout"

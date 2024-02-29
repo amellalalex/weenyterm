@@ -7,7 +7,7 @@ glyphs with underscores if it believes that your environment doesn't support
 UTF-8.
 
 If you're running on macOS, upgrade to `20200620-160318-e00b076c` or newer and
-WezTerm will automatically set `LANG` appropriately.
+WeenyTerm will automatically set `LANG` appropriately.
 
 Note that if you change your environment you will likely need to kill and
 restart your tmux server before it will take effect.
@@ -33,7 +33,7 @@ It is common for these environment variables to not be set, or to be set to
 invalid values by default!
 
 If you're running on macOS, upgrade to `20200620-160318-e00b076c` or newer
-and WezTerm will automatically set `LANG` appropriately.
+and WeenyTerm will automatically set `LANG` appropriately.
 
 You need to select a unicode locale for best results; for example:
 
@@ -77,10 +77,10 @@ for more information.
 
 If you have configured the use of a font that contains only latin characters
 and then try to display a glyph that isn't present in that font (perhaps an
-emoji, or perhaps some kanji) then wezterm will try to locate a fallback
+emoji, or perhaps some kanji) then weenyterm will try to locate a fallback
 font that does contain that glyph.
 
-Wezterm uses freetype and harfbuzz to perform font shaping and rendering in a
+Weenyterm uses freetype and harfbuzz to perform font shaping and rendering in a
 cross platform way, and as a consequence, doesn't have access to the system
 font fallback selection.  Instead it has a short list of fallback fonts that
 are likely to be present on the system and tries to use those.
@@ -90,13 +90,13 @@ the worst cases spaces where a glyph should be, then you have an issue with
 font fallback.
 
 You can resolve this by explicitly adding fallback font(s) the have the glyphs
-that you need in your `.wezterm.lua`:
+that you need in your `.weenyterm.lua`:
 
 ```lua
-local wezterm = require 'wezterm'
+local weenyterm = require 'weenyterm'
 
 return {
-  font = wezterm.font_with_fallback {
+  font = weenyterm.font_with_fallback {
     'My Preferred Font',
     -- This font has a broader selection of Chinese glyphs than my preferred font
     'DengXian',
@@ -115,7 +115,7 @@ sequence of codepoints and some combine in interesting ways such as a foot and
 a skin tone.  Applications that don't support this correctly may end up
 emitting incorrect output.  For example, pasting some emoji into the zsh REPL
 confuses its input parser and results in broken emoji output.  However, if you
-were to emit that same emoji from a script, wezterm would render it correctly.
+were to emit that same emoji from a script, weenyterm would render it correctly.
 
 If you're seeing this sort of issue, then you may be able to upgrade the
 affected application on that system to see if a newer version resolves that
@@ -123,10 +123,10 @@ issue.
 
 ### Multiple characters being rendered/combined as one character?
 
-`wezterm` supports [advanced font shaping](config/font-shaping.md), which,
+`weenyterm` supports [advanced font shaping](config/font-shaping.md), which,
 amongst other things, allows for multiple characters/glyphs to be combined into
 one [ligature](https://en.wikipedia.org/wiki/Ligature_(writing)). You may be
-experiencing this if, e.g., `!=` becomes rendered as `≠` in `wezterm`.
+experiencing this if, e.g., `!=` becomes rendered as `≠` in `weenyterm`.
 
 If you are seeing this kind of "font combining" and wish to disable it, then
 this is documented in [advanced font shaping options](config/font-shaping.md)
@@ -136,12 +136,12 @@ page.
 
 There are a number of layers in input processing that can influence this.
 
-The first thing to note is that `wezterm` will always and only output `UTF-8`
+The first thing to note is that `weenyterm` will always and only output `UTF-8`
 encoded text.  Your `LANG` and locale related environment must be set to
 reflect this; there is more information on that above.
 
 If the key in question is produced in combination with Alt/Option then [this
-section of the docs describes how wezterm processes
+section of the docs describes how weenyterm processes
 Alt/Option](config/keys.md), as well as options that influence that behavior.
 
 The next thing to verify is what byte sequences are being produced when you
@@ -151,8 +151,8 @@ This step helps to isolate the input from input processing layers in other
 applications.
 
 Interactive Unix programs generally depend upon the `TERM` environment variable
-being set appropriately.  `wezterm` sets this to `xterm-256color` by default,
-because wezterm aims to be compatible with with the settings defined by that
+being set appropriately.  `weenyterm` sets this to `xterm-256color` by default,
+because weenyterm aims to be compatible with with the settings defined by that
 terminfo entry.  Setting TERM to something else can change the byte sequences
 that interactive applications expect to see for some keys, effectively
 disabling those keys.
@@ -171,8 +171,8 @@ troubleshoot input/output weirdness independent of tmux first to minimize the
 number of variables!
 
 If after experimenting with your environment and related settings you believe
-that wezterm isn't sending the correct input then please [open an
-issue](https://github.com/wez/wezterm/issues) and include the `xxd` hexdump,
+that weenyterm isn't sending the correct input then please [open an
+issue](https://github.com/wez/weenyterm/issues) and include the `xxd` hexdump,
 and output from `env` and any other pertinent information about what you're
 trying and why it doesn't match your expectations.
 
@@ -187,7 +187,7 @@ environment.
 
 ## How do I enable undercurl (curly underlines)?
 
-Starting in version 20210314-114017-04b7cedd, WezTerm has support for colored
+Starting in version 20210314-114017-04b7cedd, WeenyTerm has support for colored
 and curly underlines.
 
 The relevant escape sequences are:
@@ -228,13 +228,13 @@ hi SpellCap   guisp=yellow gui=undercurl guifg=NONE guibg=NONE \
 If you are a neovim user then you will need to install a terminfo file that
 tells neovim about this support.
 
-You may wish to try these steps to install a copy of a `wezterm` terminfo file;
+You may wish to try these steps to install a copy of a `weenyterm` terminfo file;
 this will compile a copy of the terminfo and install it into your `~/.terminfo`
 directory:
 
 ```bash
 tempfile=$(mktemp) \
-  && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo \
+  && curl -o $tempfile https://raw.githubusercontent.com/weeny/weenyterm/master/termwiz/data/weenyterm.terminfo \
   && tic -x -o ~/.terminfo $tempfile \
   && rm $tempfile
 ```
@@ -243,12 +243,12 @@ With that in place, you can then start neovim like this, and it should enable
 undercurl:
 
 ```bash
-env TERM=wezterm nvim
+env TERM=weenyterm nvim
 ```
 
 Note: on Windows, the ConPTY layer strips out the curly underline escape
 sequences.  If you're missing this feature in your WSL instance, you will need
-to use either `wezterm ssh` or
+to use either `weenyterm ssh` or
 [multiplexing](multiplexing.md#connecting-into-windows-subsystem-for-linux)
 to bypass ConPTY.
 
@@ -264,7 +264,7 @@ reported as eg: `ESC [ A` (for UpArrow) to `ESC O A`.
 Some applications don't know how to deal with this and as a consequence, won't
 see the cursor keys.
 
-This is not an issue in WezTerm; the same issue manifests in any terminal
+This is not an issue in WeenyTerm; the same issue manifests in any terminal
 emulator that runs powershell.
 
 ## I use X11 or Wayland and my mouse cursor theme doesn't seem to work
@@ -274,7 +274,7 @@ emulator that runs powershell.
 Resolving the mouse cursor style in these environments is surprisingly complicated:
 
 * Determine the XCursor theme:
-  1. is `xcursor_theme` set in the wezterm configuration?
+  1. is `xcursor_theme` set in the weenyterm configuration?
   2. X11: Does the root window publish the `XCursor.theme` resource? (You can manually run `xprop -root | grep RESOURCE_MANAGER | perl -pe 's/\\n/\n/g'  | grep -i cursor` to check for yourself)
   3. Wayland: from the `XCURSOR_THEME` environment variable
   4. Otherwise, assume `default`
@@ -288,35 +288,35 @@ When a cursor is needed, the XCursor theme is tried first:
 1. X11: the X Server must support the `RENDER` extension, version 0.5 or later, and support ARGB32
 2. A set of candidate cursor names is produced for the desired cursor
 3. For each location in the icon path, the XCursor theme and the candidate name are combined to produce a candidate file name
-4. If the file exists, then wezterm will try to load it
+4. If the file exists, then weenyterm will try to load it
 
-If no XCursor was found, wezterm will fall back to using the default X11 cursor
+If no XCursor was found, weenyterm will fall back to using the default X11 cursor
 font provided by the system.
 
 {{since('20220624-141144-bd1b7c5d')}}
 
 When troubleshooting xcursor issues, you can enable tracing by turning on the log level shown
-below, and then moving the mouse over the wezterm window:
+below, and then moving the mouse over the weenyterm window:
 
 ```
-; WEZTERM_LOG=window::os::x11::cursor=trace wezterm
+; WEZTERM_LOG=window::os::x11::cursor=trace weenyterm
 07:34:40.001  TRACE  window::os::x11::cursor > Constructing default icon path because $XCURSOR_PATH is not set
 07:34:40.001  TRACE  window::os::x11::cursor > Using ~/.local/share because $XDG_DATA_HOME is not set
-07:34:40.001  TRACE  window::os::x11::cursor > Using $XDG_DATA_DIRS location "/home/wez/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/"
-07:34:40.001  TRACE  window::os::x11::cursor > icon_path is ["/home/wez/.local/share/icons", "/home/wez/.icons", "/home/wez/.local/share/flatpak/exports/share/icons", "/var/lib/flatpak/exports/share/icons", "/usr/local/share/icons", "/usr/share/icons", "/usr/share/pixmaps", "/home/wez/.cursors", "/usr/share/cursors/xorg-x11", "/usr/X11R6/lib/X11/icons"]
-07:34:41.838  TRACE  window::os::x11::cursor > candidate for Some(Text) is "/home/wez/.local/share/icons/Adwaita/cursors/xterm"
-07:34:41.838  TRACE  window::os::x11::cursor > candidate for Some(Text) is "/home/wez/.icons/Adwaita/cursors/xterm"
-07:34:41.839  TRACE  window::os::x11::cursor > candidate for Some(Text) is "/home/wez/.local/share/flatpak/exports/share/icons/Adwaita/cursors/xterm"
+07:34:40.001  TRACE  window::os::x11::cursor > Using $XDG_DATA_DIRS location "/home/weeny/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/"
+07:34:40.001  TRACE  window::os::x11::cursor > icon_path is ["/home/weeny/.local/share/icons", "/home/weeny/.icons", "/home/weeny/.local/share/flatpak/exports/share/icons", "/var/lib/flatpak/exports/share/icons", "/usr/local/share/icons", "/usr/share/icons", "/usr/share/pixmaps", "/home/weeny/.cursors", "/usr/share/cursors/xorg-x11", "/usr/X11R6/lib/X11/icons"]
+07:34:41.838  TRACE  window::os::x11::cursor > candidate for Some(Text) is "/home/weeny/.local/share/icons/Adwaita/cursors/xterm"
+07:34:41.838  TRACE  window::os::x11::cursor > candidate for Some(Text) is "/home/weeny/.icons/Adwaita/cursors/xterm"
+07:34:41.839  TRACE  window::os::x11::cursor > candidate for Some(Text) is "/home/weeny/.local/share/flatpak/exports/share/icons/Adwaita/cursors/xterm"
 07:34:41.839  TRACE  window::os::x11::cursor > candidate for Some(Text) is "/var/lib/flatpak/exports/share/icons/Adwaita/cursors/xterm"
 07:34:41.839  TRACE  window::os::x11::cursor > candidate for Some(Text) is "/usr/local/share/icons/Adwaita/cursors/xterm"
 07:34:41.839  TRACE  window::os::x11::cursor > candidate for Some(Text) is "/usr/share/icons/Adwaita/cursors/xterm"
 07:34:41.839  TRACE  window::os::x11::cursor > Some(Text) resolved to "/usr/share/icons/Adwaita/cursors/xterm"
-07:34:42.915  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/home/wez/.local/share/icons/Adwaita/cursors/top_left_arrow"
-07:34:42.915  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/home/wez/.local/share/icons/Adwaita/cursors/left_ptr"
-07:34:42.915  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/home/wez/.icons/Adwaita/cursors/top_left_arrow"
-07:34:42.915  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/home/wez/.icons/Adwaita/cursors/left_ptr"
-07:34:42.915  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/home/wez/.local/share/flatpak/exports/share/icons/Adwaita/cursors/top_left_arrow"
-07:34:42.915  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/home/wez/.local/share/flatpak/exports/share/icons/Adwaita/cursors/left_ptr"
+07:34:42.915  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/home/weeny/.local/share/icons/Adwaita/cursors/top_left_arrow"
+07:34:42.915  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/home/weeny/.local/share/icons/Adwaita/cursors/left_ptr"
+07:34:42.915  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/home/weeny/.icons/Adwaita/cursors/top_left_arrow"
+07:34:42.915  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/home/weeny/.icons/Adwaita/cursors/left_ptr"
+07:34:42.915  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/home/weeny/.local/share/flatpak/exports/share/icons/Adwaita/cursors/top_left_arrow"
+07:34:42.915  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/home/weeny/.local/share/flatpak/exports/share/icons/Adwaita/cursors/left_ptr"
 07:34:42.916  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/var/lib/flatpak/exports/share/icons/Adwaita/cursors/top_left_arrow"
 07:34:42.916  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/var/lib/flatpak/exports/share/icons/Adwaita/cursors/left_ptr"
 07:34:42.916  TRACE  window::os::x11::cursor > candidate for Some(Arrow) is "/usr/local/share/icons/Adwaita/cursors/top_left_arrow"
@@ -325,32 +325,32 @@ below, and then moving the mouse over the wezterm window:
 07:34:42.917  TRACE  window::os::x11::cursor > Some(Arrow) resolved to "/usr/share/icons/Adwaita/cursors/top_left_arrow"
 ```
 
-## I'm on macOS and wezterm cannot find things in my PATH
+## I'm on macOS and weenyterm cannot find things in my PATH
 
-On macOS, wezterm is typically launched directly by the Finder process and inherits
+On macOS, weenyterm is typically launched directly by the Finder process and inherits
 the default and fairly sparse macOS PATH environment.  That's sufficient for launching
 your shell, which is then responsible for processing your rcfiles and setting up your
 PATH.
 
-However, if you want wezterm to directly spawn some other utility that isn't in that
-basic PATH, wezterm will report that it cannot find it.
+However, if you want weenyterm to directly spawn some other utility that isn't in that
+basic PATH, weenyterm will report that it cannot find it.
 
 Probably the easiest to maintain solution is to change something like:
 
 ```lua
-wezterm.action.SpawnCommandInNewWindow {
-  args = { 'nvim', wezterm.config_file },
+weenyterm.action.SpawnCommandInNewWindow {
+  args = { 'nvim', weenyterm.config_file },
 }
 ```
 
 so that it explicitly spawns the command using your shell:
 
 ```lua
-wezterm.action.SpawnCommandInNewWindow {
+weenyterm.action.SpawnCommandInNewWindow {
   args = {
     os.getenv 'SHELL',
     '-c',
-    'nvim ' .. wezterm.shell_quote_arg(wezterm.config_file),
+    'nvim ' .. weenyterm.shell_quote_arg(weenyterm.config_file),
   },
 }
 ```
@@ -359,10 +359,10 @@ another option is to explicitly use the full path to the program on your system,
 something like:
 
 ```lua
-wezterm.action.SpawnCommandInNewWindow {
+weenyterm.action.SpawnCommandInNewWindow {
   args = {
-    wezterm.home_dir .. '/.local/bob/nvim-bin/nvim',
-    wezterm.config_file,
+    weenyterm.home_dir .. '/.local/bob/nvim-bin/nvim',
+    weenyterm.config_file,
   },
 }
 ```
@@ -373,7 +373,7 @@ and another other option is to explicitly set the PATH up:
 config.set_environment_variables = {
   PATH = {
     -- prepend the path to your utility
-    wezterm.home_dir
+    weenyterm.home_dir
       .. '/.local/bob/nvim-bin:'
       -- and include the rest of the PATH
       .. os.getenv 'PATH',
@@ -385,6 +385,6 @@ See also:
 
  * [set_environment_variables](config/lua/config/set_environment_variables.md)
  * [SpawnCommand](config/lua/SpawnCommand.md)
- * [wezterm.config_file](config/lua/wezterm/config_file.md)
- * [wezterm.shell_quote_arg](config/lua/wezterm/shell_quote_arg.md)
+ * [weenyterm.config_file](config/lua/weenyterm/config_file.md)
+ * [weenyterm.shell_quote_arg](config/lua/weenyterm/shell_quote_arg.md)
 

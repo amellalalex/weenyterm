@@ -5,7 +5,7 @@ though that text were literally typed into the terminal.
 
 ```lua
 config.keys = {
-  { key = 'm', mods = 'CMD', action = wezterm.action.SendString 'Hello' },
+  { key = 'm', mods = 'CMD', action = weenyterm.action.SendString 'Hello' },
 }
 ```
 
@@ -16,7 +16,7 @@ keybinding for moving backwards/forwards through a word in a line editor.
 `\x1b` is the ESC character:
 
 ```lua
-local act = wezterm.action
+local act = weenyterm.action
 
 config.keys = {
   -- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word

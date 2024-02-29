@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=WeenyTerm
+Comment=Weeny's Terminal Emulator
+Keywords=shell;prompt;command;commandline;cmd;
+Icon=org.weenyfurlong.weenyterm
+StartupWMClass=org.weenyfurlong.weenyterm
+TryExec=weenyterm
+Exec=weenyterm start --cwd .
+Type=Application
+Categories=System;TerminalEmulator;Utility;
+Terminal=false

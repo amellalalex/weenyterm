@@ -1,5 +1,5 @@
 [package]
-authors = ["Wez Furlong <wez@wezfurlong.org>"]
+authors = ["Weeny Furlong <weeny@weenyfurlong.org>"]
 name = "harfbuzz"
 version = "0.1.0"
 edition = "2018"

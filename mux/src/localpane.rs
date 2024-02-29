@@ -28,9 +28,9 @@ use termwiz::escape::{Action, DeviceControlMode};
 use termwiz::input::KeyboardEncoding;
 use termwiz::surface::{Line, SequenceNo};
 use url::Url;
-use wezterm_dynamic::Value;
-use wezterm_term::color::ColorPalette;
-use wezterm_term::{
+use weenyterm_dynamic::Value;
+use weenyterm_term::color::ColorPalette;
+use weenyterm_term::{
     Alert, AlertHandler, Clipboard, DownloadHandler, KeyCode, KeyModifiers, MouseEvent,
     SemanticZone, StableRowIndex, Terminal, TerminalConfiguration, TerminalSize,
 };
@@ -262,7 +262,7 @@ impl Pane for LocalPane {
         let mut proc = self.process.lock();
 
         const EXIT_BEHAVIOR: &str = "This message is shown because \
-            \x1b]8;;https://wezfurlong.org/wezterm/\
+            \x1b]8;;https://weenyfurlong.org/weenyterm/\
             config/lua/config/exit_behavior.html\
             \x1b\\exit_behavior\x1b]8;;\x1b\\";
 
@@ -446,7 +446,7 @@ impl Pane for LocalPane {
         let title = self.terminal.lock().get_title().to_string();
         // If the title is the default pane title, then try to spice
         // things up a bit by returning the process basename instead
-        if title == "wezterm" {
+        if title == "weenyterm" {
             if let Some(proc_name) = self.get_foreground_process_name(CachePolicy::AllowStale) {
                 let proc_name = std::path::Path::new(&proc_name);
                 if let Some(name) = proc_name.file_name() {
@@ -837,7 +837,7 @@ pub(crate) fn emit_output_for_pane(pane_id: PaneId, message: &str) {
     .detach();
 }
 
-impl wezterm_term::DeviceControlHandler for LocalPaneDCSHandler {
+impl weenyterm_term::DeviceControlHandler for LocalPaneDCSHandler {
     fn handle_device_control(&mut self, control: termwiz::escape::DeviceControlMode) {
         match control {
             DeviceControlMode::Enter(mode) => {
@@ -1129,7 +1129,7 @@ impl LocalPane {
 impl Drop for LocalPane {
     fn drop(&mut self) {
         // Avoid lingering zombies if we can, but don't block forever.
-        // <https://github.com/wez/wezterm/issues/558>
+        // <https://github.com/wez/weenyterm/issues/558>
         if let ProcessState::Running { signaller, .. } = &mut *self.process.lock() {
             let _ = signaller.kill();
         }

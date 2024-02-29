@@ -1,14 +1,14 @@
-wezterm uses an embedded ssh library to provide an integrated SSH client.  The
+weenyterm uses an embedded ssh library to provide an integrated SSH client.  The
 client can be used to make ad-hoc SSH connections to remote hosts
 by invoking the client like this:
 
 ```console
-$ wezterm ssh wez@my.server
+$ weenyterm ssh weeny@my.server
 ```
 
-(checkout `wezterm ssh -h` for more options).
+(checkout `weenyterm ssh -h` for more options).
 
-When invoked in this way, wezterm may prompt you for SSH authentication
+When invoked in this way, weenyterm may prompt you for SSH authentication
 and once a connection is established, open a new terminal window with
 your requested command, or your shell if you didn't specify one.
 
@@ -20,7 +20,7 @@ SSH sessions created in this way are non-persistent and all associated
 tabs will die if your network connection is interrupted.
 
 Take a look at [the multiplexing section](multiplexing.md) for an
-alternative configuration that connects to a remote wezterm instance
+alternative configuration that connects to a remote weenyterm instance
 and preserves your tabs.
 
 The [ssh_backend](config/lua/config/ssh_backend.md) configuration can
@@ -28,7 +28,7 @@ be used to specify which ssh library is used.
 
 {{since('20210404-112810-b63a949d')}}
 
-wezterm is now able to parse `~/.ssh/config` and `/etc/ssh/ssh_config`
+weenyterm is now able to parse `~/.ssh/config` and `/etc/ssh/ssh_config`
 and respects the following options:
 
 * `IdentityAgent`
@@ -57,11 +57,11 @@ All other options are parsed but have no effect.  Notably, neither `Match` or
 
 ### CLI Overrides
 
-`wezterm ssh` CLI allows overriding config settings via the command line.  This
+`weenyterm ssh` CLI allows overriding config settings via the command line.  This
 example shows how to specify the private key to use when connecting to
 `some-host`:
 
 ```bash
-wezterm ssh -oIdentityFile=/secret/id_ed25519 some-host
+weenyterm ssh -oIdentityFile=/secret/id_ed25519 some-host
 ```
 

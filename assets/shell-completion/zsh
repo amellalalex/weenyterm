@@ -1,8 +1,8 @@
-#compdef wezterm
+#compdef weenyterm
 
 autoload -U is-at-least
 
-_wezterm() {
+_weenyterm() {
     typeset -A opt_args
     typeset -a _arguments_options
     local ret=1
@@ -17,72 +17,72 @@ _wezterm() {
     _arguments "${_arguments_options[@]}" \
 '(-n --skip-config)--config-file=[Specify the configuration file to use, overrides the normal configuration file resolution]:CONFIG_FILE:_files' \
 '*--config=[Override specific configuration values]:name=value: ' \
-'-n[Skip loading wezterm.lua]' \
-'--skip-config[Skip loading wezterm.lua]' \
+'-n[Skip loading weenyterm.lua]' \
+'--skip-config[Skip loading weenyterm.lua]' \
 '-h[Print help]' \
 '--help[Print help]' \
 '-V[Print version]' \
 '--version[Print version]' \
-":: :_wezterm_commands" \
-"*::: :->wezterm" \
+":: :_weenyterm_commands" \
+"*::: :->weenyterm" \
 && ret=0
     case $state in
-    (wezterm)
+    (weenyterm)
         words=($line[1] "${words[@]}")
         (( CURRENT += 1 ))
-        curcontext="${curcontext%:*:*}:wezterm-command-$line[1]:"
+        curcontext="${curcontext%:*:*}:weenyterm-command-$line[1]:"
         case $line[1] in
             (start)
 _arguments "${_arguments_options[@]}" \
 '--cwd=[Specify the current working directory for the initially spawned program]:CWD:_files -/' \
-'--class=[Override the default windowing system class. The default is "org.wezfurlong.wezterm". Under X11 and Windows this changes the window class. Under Wayland this changes the app_id. This changes the class for all windows spawned by this instance of wezterm, including error, update and ssh authentication dialogs]:CLASS: ' \
+'--class=[Override the default windowing system class. The default is "org.weenyfurlong.weenyterm". Under X11 and Windows this changes the window class. Under Wayland this changes the app_id. This changes the class for all windows spawned by this instance of weenyterm, including error, update and ssh authentication dialogs]:CLASS: ' \
 '--workspace=[Override the default workspace with the provided name. The default is "default"]:WORKSPACE: ' \
 '--position=[Override the position for the initial window launched by this process.]:POSITION: ' \
 '--domain=[Name of the multiplexer domain section from the configuration to which you'\''d like to connect. If omitted, the default domain will be used]:DOMAIN: ' \
-'--no-auto-connect[If true, do not connect to domains marked as connect_automatically in your wezterm configuration file]' \
-'--always-new-process[If enabled, don'\''t try to ask an existing wezterm GUI instance to start the command.  Instead, always start the GUI in this invocation of wezterm so that you can wait for the command to complete by waiting for this wezterm process to finish]' \
+'--no-auto-connect[If true, do not connect to domains marked as connect_automatically in your weenyterm configuration file]' \
+'--always-new-process[If enabled, don'\''t try to ask an existing weenyterm GUI instance to start the command.  Instead, always start the GUI in this invocation of weenyterm so that you can wait for the command to complete by waiting for this weenyterm process to finish]' \
 '(--always-new-process)--new-tab[When spawning into an existing GUI instance, spawn a new tab into the active window rather than spawn a new window]' \
 '-e[Dummy argument that consumes "-e" and does nothing. This is meant as a compatibility layer for supporting the widely adopted standard of passing the command to execute to the terminal via a "-e" option. This works because we then treat the remaining cmdline as trailing options, that will automatically be parsed via the existing "prog" option. This option exists only as a fallback. It is recommended to pass the command as a normal trailing command instead if possible]' \
-'--attach[When used with --domain, if the domain already has running panes, wezterm will simply attach and will NOT spawn the specified PROG. If you omit --attach when using --domain, wezterm will attach AND then spawn PROG]' \
+'--attach[When used with --domain, if the domain already has running panes, weenyterm will simply attach and will NOT spawn the specified PROG. If you omit --attach when using --domain, weenyterm will attach AND then spawn PROG]' \
 '-h[Print help (see more with '\''--help'\'')]' \
 '--help[Print help (see more with '\''--help'\'')]' \
-'*::prog -- Instead of executing your shell, run PROG. For example\: `wezterm start -- bash -l` will spawn bash as if it were a login shell. \[aliases\: -e\]:_cmdambivalent' \
+'*::prog -- Instead of executing your shell, run PROG. For example\: `weenyterm start -- bash -l` will spawn bash as if it were a login shell. \[aliases\: -e\]:_cmdambivalent' \
 && ret=0
 ;;
 (blocking-start)
 _arguments "${_arguments_options[@]}" \
 '--cwd=[Specify the current working directory for the initially spawned program]:CWD:_files -/' \
-'--class=[Override the default windowing system class. The default is "org.wezfurlong.wezterm". Under X11 and Windows this changes the window class. Under Wayland this changes the app_id. This changes the class for all windows spawned by this instance of wezterm, including error, update and ssh authentication dialogs]:CLASS: ' \
+'--class=[Override the default windowing system class. The default is "org.weenyfurlong.weenyterm". Under X11 and Windows this changes the window class. Under Wayland this changes the app_id. This changes the class for all windows spawned by this instance of weenyterm, including error, update and ssh authentication dialogs]:CLASS: ' \
 '--workspace=[Override the default workspace with the provided name. The default is "default"]:WORKSPACE: ' \
 '--position=[Override the position for the initial window launched by this process.]:POSITION: ' \
 '--domain=[Name of the multiplexer domain section from the configuration to which you'\''d like to connect. If omitted, the default domain will be used]:DOMAIN: ' \
-'--no-auto-connect[If true, do not connect to domains marked as connect_automatically in your wezterm configuration file]' \
-'--always-new-process[If enabled, don'\''t try to ask an existing wezterm GUI instance to start the command.  Instead, always start the GUI in this invocation of wezterm so that you can wait for the command to complete by waiting for this wezterm process to finish]' \
+'--no-auto-connect[If true, do not connect to domains marked as connect_automatically in your weenyterm configuration file]' \
+'--always-new-process[If enabled, don'\''t try to ask an existing weenyterm GUI instance to start the command.  Instead, always start the GUI in this invocation of weenyterm so that you can wait for the command to complete by waiting for this weenyterm process to finish]' \
 '(--always-new-process)--new-tab[When spawning into an existing GUI instance, spawn a new tab into the active window rather than spawn a new window]' \
 '-e[Dummy argument that consumes "-e" and does nothing. This is meant as a compatibility layer for supporting the widely adopted standard of passing the command to execute to the terminal via a "-e" option. This works because we then treat the remaining cmdline as trailing options, that will automatically be parsed via the existing "prog" option. This option exists only as a fallback. It is recommended to pass the command as a normal trailing command instead if possible]' \
-'--attach[When used with --domain, if the domain already has running panes, wezterm will simply attach and will NOT spawn the specified PROG. If you omit --attach when using --domain, wezterm will attach AND then spawn PROG]' \
+'--attach[When used with --domain, if the domain already has running panes, weenyterm will simply attach and will NOT spawn the specified PROG. If you omit --attach when using --domain, weenyterm will attach AND then spawn PROG]' \
 '-h[Print help (see more with '\''--help'\'')]' \
 '--help[Print help (see more with '\''--help'\'')]' \
-'*::prog -- Instead of executing your shell, run PROG. For example\: `wezterm start -- bash -l` will spawn bash as if it were a login shell. \[aliases\: -e\]:_cmdambivalent' \
+'*::prog -- Instead of executing your shell, run PROG. For example\: `weenyterm start -- bash -l` will spawn bash as if it were a login shell. \[aliases\: -e\]:_cmdambivalent' \
 && ret=0
 ;;
 (ssh)
 _arguments "${_arguments_options[@]}" \
-'*-o+[Override specific SSH configuration options. \`wezterm ssh\` is able to parse some (but not all!) options from your \`~/.ssh/config\` and \`/etc/ssh/ssh_config\` files. This command line switch allows you to override or otherwise specify ssh_config style options]:name=value: ' \
-'*--ssh-option=[Override specific SSH configuration options. \`wezterm ssh\` is able to parse some (but not all!) options from your \`~/.ssh/config\` and \`/etc/ssh/ssh_config\` files. This command line switch allows you to override or otherwise specify ssh_config style options]:name=value: ' \
-'--class=[Override the default windowing system class. The default is "org.wezfurlong.wezterm". Under X11 and Windows this changes the window class. Under Wayland this changes the app_id. This changes the class for all windows spawned by this instance of wezterm, including error, update and ssh authentication dialogs]:CLASS: ' \
+'*-o+[Override specific SSH configuration options. \`weenyterm ssh\` is able to parse some (but not all!) options from your \`~/.ssh/config\` and \`/etc/ssh/ssh_config\` files. This command line switch allows you to override or otherwise specify ssh_config style options]:name=value: ' \
+'*--ssh-option=[Override specific SSH configuration options. \`weenyterm ssh\` is able to parse some (but not all!) options from your \`~/.ssh/config\` and \`/etc/ssh/ssh_config\` files. This command line switch allows you to override or otherwise specify ssh_config style options]:name=value: ' \
+'--class=[Override the default windowing system class. The default is "org.weenyfurlong.weenyterm". Under X11 and Windows this changes the window class. Under Wayland this changes the app_id. This changes the class for all windows spawned by this instance of weenyterm, including error, update and ssh authentication dialogs]:CLASS: ' \
 '--position=[Override the position for the initial window launched by this process.]:POSITION: ' \
 '-v[Enable verbose ssh protocol tracing. The trace information is printed to the stderr stream of the process]' \
 '-h[Print help (see more with '\''--help'\'')]' \
 '--help[Print help (see more with '\''--help'\'')]' \
 ':user_at_host_and_port -- Specifies the remote system using the form\: `\[username@\]host\[\:port\]`. If `username@` is omitted, then your local $USER is used instead. If `\:port` is omitted, then the standard ssh port (22) is used instead:' \
-'*::prog -- Instead of executing your shell, run PROG. For example\: `wezterm ssh user@host -- bash -l` will spawn bash as if it were a login shell:_cmdambivalent' \
+'*::prog -- Instead of executing your shell, run PROG. For example\: `weenyterm ssh user@host -- bash -l` will spawn bash as if it were a login shell:_cmdambivalent' \
 && ret=0
 ;;
 (serial)
 _arguments "${_arguments_options[@]}" \
 '--baud=[Set the baud rate.  The default is 9600 baud]:BAUD: ' \
-'--class=[Override the default windowing system class. The default is "org.wezfurlong.wezterm". Under X11 and Windows this changes the window class. Under Wayland this changes the app_id. This changes the class for all windows spawned by this instance of wezterm, including error, update and ssh authentication dialogs]:CLASS: ' \
+'--class=[Override the default windowing system class. The default is "org.weenyfurlong.weenyterm". Under X11 and Windows this changes the window class. Under Wayland this changes the app_id. This changes the class for all windows spawned by this instance of weenyterm, including error, update and ssh authentication dialogs]:CLASS: ' \
 '--position=[Override the position for the initial window launched by this process.]:POSITION: ' \
 '-h[Print help (see more with '\''--help'\'')]' \
 '--help[Print help (see more with '\''--help'\'')]' \
@@ -91,14 +91,14 @@ _arguments "${_arguments_options[@]}" \
 ;;
 (connect)
 _arguments "${_arguments_options[@]}" \
-'--class=[Override the default windowing system class. The default is "org.wezfurlong.wezterm". Under X11 and Windows this changes the window class. Under Wayland this changes the app_id. This changes the class for all windows spawned by this instance of wezterm, including error, update and ssh authentication dialogs]:CLASS: ' \
+'--class=[Override the default windowing system class. The default is "org.weenyfurlong.weenyterm". Under X11 and Windows this changes the window class. Under Wayland this changes the app_id. This changes the class for all windows spawned by this instance of weenyterm, including error, update and ssh authentication dialogs]:CLASS: ' \
 '--workspace=[Override the default workspace with the provided name. The default is "default"]:WORKSPACE: ' \
 '--position=[Override the position for the initial window launched by this process.]:POSITION: ' \
 '--new-tab[When spawning into an existing GUI instance, spawn a new tab into the active window rather than spawn a new window]' \
 '-h[Print help (see more with '\''--help'\'')]' \
 '--help[Print help (see more with '\''--help'\'')]' \
 ':domain_name -- Name of the multiplexer domain section from the configuration to which you'\''d like to connect:' \
-'*::prog -- Instead of executing your shell, run PROG. For example\: `wezterm start -- bash -l` will spawn bash as if it were a login shell:_cmdambivalent' \
+'*::prog -- Instead of executing your shell, run PROG. For example\: `weenyterm start -- bash -l` will spawn bash as if it were a login shell:_cmdambivalent' \
 && ret=0
 ;;
 (ls-fonts)
@@ -123,10 +123,10 @@ _arguments "${_arguments_options[@]}" \
 _arguments "${_arguments_options[@]}" \
 '--class=[When connecting to a gui instance, if you started the gui with \`--class SOMETHING\`, you should also pass that same value here in order for the client to find the correct gui instance]:CLASS: ' \
 '--no-auto-start[Don'\''t automatically start the server]' \
-'--prefer-mux[Prefer connecting to a background mux server. The default is to prefer connecting to a running wezterm gui instance]' \
+'--prefer-mux[Prefer connecting to a background mux server. The default is to prefer connecting to a running weenyterm gui instance]' \
 '-h[Print help]' \
 '--help[Print help]' \
-":: :_wezterm__cli_commands" \
+":: :_weenyterm__cli_commands" \
 "*::: :->cli" \
 && ret=0
 
@@ -134,7 +134,7 @@ _arguments "${_arguments_options[@]}" \
     (cli)
         words=($line[1] "${words[@]}")
         (( CURRENT += 1 ))
-        curcontext="${curcontext%:*:*}:wezterm-cli-command-$line[1]:"
+        curcontext="${curcontext%:*:*}:weenyterm-cli-command-$line[1]:"
         case $line[1] in
             (list)
 _arguments "${_arguments_options[@]}" \
@@ -188,7 +188,7 @@ _arguments "${_arguments_options[@]}" \
 '--top-level[Rather than splitting the active pane, split the entire window]' \
 '-h[Print help]' \
 '--help[Print help]' \
-'*::prog -- Instead of executing your shell, run PROG. For example\: `wezterm cli split-pane -- bash -l` will spawn bash as if it were a login shell:_cmdambivalent' \
+'*::prog -- Instead of executing your shell, run PROG. For example\: `weenyterm cli split-pane -- bash -l` will spawn bash as if it were a login shell:_cmdambivalent' \
 && ret=0
 ;;
 (spawn)
@@ -201,7 +201,7 @@ _arguments "${_arguments_options[@]}" \
 '--new-window[Spawn into a new window, rather than a new tab]' \
 '-h[Print help]' \
 '--help[Print help]' \
-'*::prog -- Instead of executing your shell, run PROG. For example\: `wezterm cli spawn -- bash -l` will spawn bash as if it were a login shell:_cmdambivalent' \
+'*::prog -- Instead of executing your shell, run PROG. For example\: `weenyterm cli spawn -- bash -l` will spawn bash as if it were a login shell:_cmdambivalent' \
 && ret=0
 ;;
 (send-text)
@@ -312,7 +312,7 @@ _arguments "${_arguments_options[@]}" \
 ;;
 (help)
 _arguments "${_arguments_options[@]}" \
-":: :_wezterm__cli__help_commands" \
+":: :_weenyterm__cli__help_commands" \
 "*::: :->help" \
 && ret=0
 
@@ -320,7 +320,7 @@ _arguments "${_arguments_options[@]}" \
     (help)
         words=($line[1] "${words[@]}")
         (( CURRENT += 1 ))
-        curcontext="${curcontext%:*:*}:wezterm-cli-help-command-$line[1]:"
+        curcontext="${curcontext%:*:*}:weenyterm-cli-help-command-$line[1]:"
         case $line[1] in
             (list)
 _arguments "${_arguments_options[@]}" \
@@ -416,14 +416,14 @@ _arguments "${_arguments_options[@]}" \
 '--height=[Specify the display height; defaults to "auto" which automatically selects an appropriate size.  You may also use an integer value \`N\` to specify the number of cells, or \`Npx\` to specify the number of pixels, or \`N%\` to size relative to the terminal height]:HEIGHT: ' \
 '--position=[Set the cursor position prior to displaying the image. The default is to use the current cursor position. Coordinates are expressed in cells with 0,0 being the top left cell position]:POSITION: ' \
 '--tmux-passthru=[How to manage passing the escape through to tmux]:TMUX_PASSTHRU:(disable enable detect)' \
-'--max-pixels=[Set the maximum number of pixels per image frame. Images will be scaled down so that they do not exceed this size, unless \`--no-resample\` is also used. The default value matches the limit set by wezterm. Note that resampling the image here will reduce any animated images to a single frame]:MAX_PIXELS: ' \
+'--max-pixels=[Set the maximum number of pixels per image frame. Images will be scaled down so that they do not exceed this size, unless \`--no-resample\` is also used. The default value matches the limit set by weenyterm. Note that resampling the image here will reduce any animated images to a single frame]:MAX_PIXELS: ' \
 '--resample-format=[Specify the image format to use to encode resampled/resized images.  The default is to match the input format, but you can choose an alternative format]:RESAMPLE_FORMAT:(png jpeg input)' \
 '--resample-filter=[Specify the filtering technique used when resizing/resampling images.  The default is a reasonable middle ground of speed and quality]:RESAMPLE_FILTER:(nearest triangle catmull-rom gaussian lanczos3)' \
 '--resize=[Pre-process the image to resize it to the specified dimensions, expressed as eg\: 800x600 (width x height). The resize is independent of other parameters that control the image placement and dimensions in the terminal; this is provided as a convenience preprocessing step]:WIDTHxHEIGHT: ' \
 '--no-preserve-aspect-ratio[Do not respect the aspect ratio.  The default is to respect the aspect ratio]' \
 '--no-move-cursor[Do not move the cursor after displaying the image. Note that when used like this from the shell, there is a very high chance that shell prompt will overwrite the image; you may wish to also use \`--hold\` in that case]' \
 '--hold[Wait for enter to be pressed after displaying the image]' \
-'--no-resample[Do not resample images whose frames are larger than the max-pixels value. Note that this will typically result in the image refusing to display in wezterm]' \
+'--no-resample[Do not resample images whose frames are larger than the max-pixels value. Note that this will typically result in the image refusing to display in weenyterm]' \
 '--show-resample-timing[When resampling or resizing, display some diagnostics around the timing/performance of that operation]' \
 '-h[Print help (see more with '\''--help'\'')]' \
 '--help[Print help (see more with '\''--help'\'')]' \
@@ -441,10 +441,10 @@ _arguments "${_arguments_options[@]}" \
 ;;
 (record)
 _arguments "${_arguments_options[@]}" \
-'--cwd=[Start in the specified directory, instead of the default_cwd defined by your wezterm configuration]:CWD:_files' \
+'--cwd=[Start in the specified directory, instead of the default_cwd defined by your weenyterm configuration]:CWD:_files' \
 '-h[Print help]' \
 '--help[Print help]' \
-'*::prog -- Start prog instead of the default_prog defined by your wezterm configuration:' \
+'*::prog -- Start prog instead of the default_prog defined by your weenyterm configuration:' \
 && ret=0
 ;;
 (replay)
@@ -466,7 +466,7 @@ _arguments "${_arguments_options[@]}" \
 ;;
 (help)
 _arguments "${_arguments_options[@]}" \
-":: :_wezterm__help_commands" \
+":: :_weenyterm__help_commands" \
 "*::: :->help" \
 && ret=0
 
@@ -474,7 +474,7 @@ _arguments "${_arguments_options[@]}" \
     (help)
         words=($line[1] "${words[@]}")
         (( CURRENT += 1 ))
-        curcontext="${curcontext%:*:*}:wezterm-help-command-$line[1]:"
+        curcontext="${curcontext%:*:*}:weenyterm-help-command-$line[1]:"
         case $line[1] in
             (start)
 _arguments "${_arguments_options[@]}" \
@@ -506,7 +506,7 @@ _arguments "${_arguments_options[@]}" \
 ;;
 (cli)
 _arguments "${_arguments_options[@]}" \
-":: :_wezterm__help__cli_commands" \
+":: :_weenyterm__help__cli_commands" \
 "*::: :->cli" \
 && ret=0
 
@@ -514,7 +514,7 @@ _arguments "${_arguments_options[@]}" \
     (cli)
         words=($line[1] "${words[@]}")
         (( CURRENT += 1 ))
-        curcontext="${curcontext%:*:*}:wezterm-help-cli-command-$line[1]:"
+        curcontext="${curcontext%:*:*}:weenyterm-help-cli-command-$line[1]:"
         case $line[1] in
             (list)
 _arguments "${_arguments_options[@]}" \
@@ -629,14 +629,14 @@ esac
 esac
 }
 
-(( $+functions[_wezterm_commands] )) ||
-_wezterm_commands() {
+(( $+functions[_weenyterm_commands] )) ||
+_weenyterm_commands() {
     local commands; commands=(
 'start:Start the GUI, optionally running an alternative program \[aliases\: -e\]' \
 'blocking-start:Start the GUI in blocking mode. You shouldn'\''t see this, but you may see it in shell completions because of this open clap issue\: <https\://github.com/clap-rs/clap/issues/1335>' \
 'ssh:Establish an ssh session' \
 'serial:Open a serial port' \
-'connect:Connect to wezterm multiplexer' \
+'connect:Connect to weenyterm multiplexer' \
 'ls-fonts:Display information about fonts' \
 'show-keys:Show key assignments' \
 'cli:Interact with experimental mux server' \
@@ -647,80 +647,80 @@ _wezterm_commands() {
 'shell-completion:Generate shell completion information' \
 'help:Print this message or the help of the given subcommand(s)' \
     )
-    _describe -t commands 'wezterm commands' commands "$@"
+    _describe -t commands 'weenyterm commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__activate-pane_commands] )) ||
-_wezterm__cli__activate-pane_commands() {
+(( $+functions[_weenyterm__cli__activate-pane_commands] )) ||
+_weenyterm__cli__activate-pane_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli activate-pane commands' commands "$@"
+    _describe -t commands 'weenyterm cli activate-pane commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__activate-pane_commands] )) ||
-_wezterm__cli__help__activate-pane_commands() {
+(( $+functions[_weenyterm__cli__help__activate-pane_commands] )) ||
+_weenyterm__cli__help__activate-pane_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help activate-pane commands' commands "$@"
+    _describe -t commands 'weenyterm cli help activate-pane commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__activate-pane_commands] )) ||
-_wezterm__help__cli__activate-pane_commands() {
+(( $+functions[_weenyterm__help__cli__activate-pane_commands] )) ||
+_weenyterm__help__cli__activate-pane_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli activate-pane commands' commands "$@"
+    _describe -t commands 'weenyterm help cli activate-pane commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__activate-pane-direction_commands] )) ||
-_wezterm__cli__activate-pane-direction_commands() {
+(( $+functions[_weenyterm__cli__activate-pane-direction_commands] )) ||
+_weenyterm__cli__activate-pane-direction_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli activate-pane-direction commands' commands "$@"
+    _describe -t commands 'weenyterm cli activate-pane-direction commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__activate-pane-direction_commands] )) ||
-_wezterm__cli__help__activate-pane-direction_commands() {
+(( $+functions[_weenyterm__cli__help__activate-pane-direction_commands] )) ||
+_weenyterm__cli__help__activate-pane-direction_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help activate-pane-direction commands' commands "$@"
+    _describe -t commands 'weenyterm cli help activate-pane-direction commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__activate-pane-direction_commands] )) ||
-_wezterm__help__cli__activate-pane-direction_commands() {
+(( $+functions[_weenyterm__help__cli__activate-pane-direction_commands] )) ||
+_weenyterm__help__cli__activate-pane-direction_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli activate-pane-direction commands' commands "$@"
+    _describe -t commands 'weenyterm help cli activate-pane-direction commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__activate-tab_commands] )) ||
-_wezterm__cli__activate-tab_commands() {
+(( $+functions[_weenyterm__cli__activate-tab_commands] )) ||
+_weenyterm__cli__activate-tab_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli activate-tab commands' commands "$@"
+    _describe -t commands 'weenyterm cli activate-tab commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__activate-tab_commands] )) ||
-_wezterm__cli__help__activate-tab_commands() {
+(( $+functions[_weenyterm__cli__help__activate-tab_commands] )) ||
+_weenyterm__cli__help__activate-tab_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help activate-tab commands' commands "$@"
+    _describe -t commands 'weenyterm cli help activate-tab commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__activate-tab_commands] )) ||
-_wezterm__help__cli__activate-tab_commands() {
+(( $+functions[_weenyterm__help__cli__activate-tab_commands] )) ||
+_weenyterm__help__cli__activate-tab_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli activate-tab commands' commands "$@"
+    _describe -t commands 'weenyterm help cli activate-tab commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__adjust-pane-size_commands] )) ||
-_wezterm__cli__adjust-pane-size_commands() {
+(( $+functions[_weenyterm__cli__adjust-pane-size_commands] )) ||
+_weenyterm__cli__adjust-pane-size_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli adjust-pane-size commands' commands "$@"
+    _describe -t commands 'weenyterm cli adjust-pane-size commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__adjust-pane-size_commands] )) ||
-_wezterm__cli__help__adjust-pane-size_commands() {
+(( $+functions[_weenyterm__cli__help__adjust-pane-size_commands] )) ||
+_weenyterm__cli__help__adjust-pane-size_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help adjust-pane-size commands' commands "$@"
+    _describe -t commands 'weenyterm cli help adjust-pane-size commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__adjust-pane-size_commands] )) ||
-_wezterm__help__cli__adjust-pane-size_commands() {
+(( $+functions[_weenyterm__help__cli__adjust-pane-size_commands] )) ||
+_weenyterm__help__cli__adjust-pane-size_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli adjust-pane-size commands' commands "$@"
+    _describe -t commands 'weenyterm help cli adjust-pane-size commands' commands "$@"
 }
-(( $+functions[_wezterm__blocking-start_commands] )) ||
-_wezterm__blocking-start_commands() {
+(( $+functions[_weenyterm__blocking-start_commands] )) ||
+_weenyterm__blocking-start_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm blocking-start commands' commands "$@"
+    _describe -t commands 'weenyterm blocking-start commands' commands "$@"
 }
-(( $+functions[_wezterm__help__blocking-start_commands] )) ||
-_wezterm__help__blocking-start_commands() {
+(( $+functions[_weenyterm__help__blocking-start_commands] )) ||
+_weenyterm__help__blocking-start_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help blocking-start commands' commands "$@"
+    _describe -t commands 'weenyterm help blocking-start commands' commands "$@"
 }
-(( $+functions[_wezterm__cli_commands] )) ||
-_wezterm__cli_commands() {
+(( $+functions[_weenyterm__cli_commands] )) ||
+_weenyterm__cli_commands() {
     local commands; commands=(
 'list:list windows, tabs and panes' \
 'list-clients:list clients' \
@@ -745,10 +745,10 @@ Outputs the pane-id for the newly created pane on success' \
 'zoom-pane:Zoom, unzoom, or toggle zoom state' \
 'help:Print this message or the help of the given subcommand(s)' \
     )
-    _describe -t commands 'wezterm cli commands' commands "$@"
+    _describe -t commands 'weenyterm cli commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli_commands] )) ||
-_wezterm__help__cli_commands() {
+(( $+functions[_weenyterm__help__cli_commands] )) ||
+_weenyterm__help__cli_commands() {
     local commands; commands=(
 'list:list windows, tabs and panes' \
 'list-clients:list clients' \
@@ -772,50 +772,50 @@ Outputs the pane-id for the newly created pane on success' \
 'rename-workspace:Rename a workspace' \
 'zoom-pane:Zoom, unzoom, or toggle zoom state' \
     )
-    _describe -t commands 'wezterm help cli commands' commands "$@"
+    _describe -t commands 'weenyterm help cli commands' commands "$@"
 }
-(( $+functions[_wezterm__connect_commands] )) ||
-_wezterm__connect_commands() {
+(( $+functions[_weenyterm__connect_commands] )) ||
+_weenyterm__connect_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm connect commands' commands "$@"
+    _describe -t commands 'weenyterm connect commands' commands "$@"
 }
-(( $+functions[_wezterm__help__connect_commands] )) ||
-_wezterm__help__connect_commands() {
+(( $+functions[_weenyterm__help__connect_commands] )) ||
+_weenyterm__help__connect_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help connect commands' commands "$@"
+    _describe -t commands 'weenyterm help connect commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__get-pane-direction_commands] )) ||
-_wezterm__cli__get-pane-direction_commands() {
+(( $+functions[_weenyterm__cli__get-pane-direction_commands] )) ||
+_weenyterm__cli__get-pane-direction_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli get-pane-direction commands' commands "$@"
+    _describe -t commands 'weenyterm cli get-pane-direction commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__get-pane-direction_commands] )) ||
-_wezterm__cli__help__get-pane-direction_commands() {
+(( $+functions[_weenyterm__cli__help__get-pane-direction_commands] )) ||
+_weenyterm__cli__help__get-pane-direction_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help get-pane-direction commands' commands "$@"
+    _describe -t commands 'weenyterm cli help get-pane-direction commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__get-pane-direction_commands] )) ||
-_wezterm__help__cli__get-pane-direction_commands() {
+(( $+functions[_weenyterm__help__cli__get-pane-direction_commands] )) ||
+_weenyterm__help__cli__get-pane-direction_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli get-pane-direction commands' commands "$@"
+    _describe -t commands 'weenyterm help cli get-pane-direction commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__get-text_commands] )) ||
-_wezterm__cli__get-text_commands() {
+(( $+functions[_weenyterm__cli__get-text_commands] )) ||
+_weenyterm__cli__get-text_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli get-text commands' commands "$@"
+    _describe -t commands 'weenyterm cli get-text commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__get-text_commands] )) ||
-_wezterm__cli__help__get-text_commands() {
+(( $+functions[_weenyterm__cli__help__get-text_commands] )) ||
+_weenyterm__cli__help__get-text_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help get-text commands' commands "$@"
+    _describe -t commands 'weenyterm cli help get-text commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__get-text_commands] )) ||
-_wezterm__help__cli__get-text_commands() {
+(( $+functions[_weenyterm__help__cli__get-text_commands] )) ||
+_weenyterm__help__cli__get-text_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli get-text commands' commands "$@"
+    _describe -t commands 'weenyterm help cli get-text commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help_commands] )) ||
-_wezterm__cli__help_commands() {
+(( $+functions[_weenyterm__cli__help_commands] )) ||
+_weenyterm__cli__help_commands() {
     local commands; commands=(
 'list:list windows, tabs and panes' \
 'list-clients:list clients' \
@@ -840,21 +840,21 @@ Outputs the pane-id for the newly created pane on success' \
 'zoom-pane:Zoom, unzoom, or toggle zoom state' \
 'help:Print this message or the help of the given subcommand(s)' \
     )
-    _describe -t commands 'wezterm cli help commands' commands "$@"
+    _describe -t commands 'weenyterm cli help commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__help_commands] )) ||
-_wezterm__cli__help__help_commands() {
+(( $+functions[_weenyterm__cli__help__help_commands] )) ||
+_weenyterm__cli__help__help_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help help commands' commands "$@"
+    _describe -t commands 'weenyterm cli help help commands' commands "$@"
 }
-(( $+functions[_wezterm__help_commands] )) ||
-_wezterm__help_commands() {
+(( $+functions[_weenyterm__help_commands] )) ||
+_weenyterm__help_commands() {
     local commands; commands=(
 'start:Start the GUI, optionally running an alternative program \[aliases\: -e\]' \
 'blocking-start:Start the GUI in blocking mode. You shouldn'\''t see this, but you may see it in shell completions because of this open clap issue\: <https\://github.com/clap-rs/clap/issues/1335>' \
 'ssh:Establish an ssh session' \
 'serial:Open a serial port' \
-'connect:Connect to wezterm multiplexer' \
+'connect:Connect to weenyterm multiplexer' \
 'ls-fonts:Display information about fonts' \
 'show-keys:Show key assignments' \
 'cli:Interact with experimental mux server' \
@@ -865,311 +865,311 @@ _wezterm__help_commands() {
 'shell-completion:Generate shell completion information' \
 'help:Print this message or the help of the given subcommand(s)' \
     )
-    _describe -t commands 'wezterm help commands' commands "$@"
+    _describe -t commands 'weenyterm help commands' commands "$@"
 }
-(( $+functions[_wezterm__help__help_commands] )) ||
-_wezterm__help__help_commands() {
+(( $+functions[_weenyterm__help__help_commands] )) ||
+_weenyterm__help__help_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help help commands' commands "$@"
+    _describe -t commands 'weenyterm help help commands' commands "$@"
 }
-(( $+functions[_wezterm__help__imgcat_commands] )) ||
-_wezterm__help__imgcat_commands() {
+(( $+functions[_weenyterm__help__imgcat_commands] )) ||
+_weenyterm__help__imgcat_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help imgcat commands' commands "$@"
+    _describe -t commands 'weenyterm help imgcat commands' commands "$@"
 }
-(( $+functions[_wezterm__imgcat_commands] )) ||
-_wezterm__imgcat_commands() {
+(( $+functions[_weenyterm__imgcat_commands] )) ||
+_weenyterm__imgcat_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm imgcat commands' commands "$@"
+    _describe -t commands 'weenyterm imgcat commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__kill-pane_commands] )) ||
-_wezterm__cli__help__kill-pane_commands() {
+(( $+functions[_weenyterm__cli__help__kill-pane_commands] )) ||
+_weenyterm__cli__help__kill-pane_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help kill-pane commands' commands "$@"
+    _describe -t commands 'weenyterm cli help kill-pane commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__kill-pane_commands] )) ||
-_wezterm__cli__kill-pane_commands() {
+(( $+functions[_weenyterm__cli__kill-pane_commands] )) ||
+_weenyterm__cli__kill-pane_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli kill-pane commands' commands "$@"
+    _describe -t commands 'weenyterm cli kill-pane commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__kill-pane_commands] )) ||
-_wezterm__help__cli__kill-pane_commands() {
+(( $+functions[_weenyterm__help__cli__kill-pane_commands] )) ||
+_weenyterm__help__cli__kill-pane_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli kill-pane commands' commands "$@"
+    _describe -t commands 'weenyterm help cli kill-pane commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__list_commands] )) ||
-_wezterm__cli__help__list_commands() {
+(( $+functions[_weenyterm__cli__help__list_commands] )) ||
+_weenyterm__cli__help__list_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help list commands' commands "$@"
+    _describe -t commands 'weenyterm cli help list commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__list_commands] )) ||
-_wezterm__cli__list_commands() {
+(( $+functions[_weenyterm__cli__list_commands] )) ||
+_weenyterm__cli__list_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli list commands' commands "$@"
+    _describe -t commands 'weenyterm cli list commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__list_commands] )) ||
-_wezterm__help__cli__list_commands() {
+(( $+functions[_weenyterm__help__cli__list_commands] )) ||
+_weenyterm__help__cli__list_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli list commands' commands "$@"
+    _describe -t commands 'weenyterm help cli list commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__list-clients_commands] )) ||
-_wezterm__cli__help__list-clients_commands() {
+(( $+functions[_weenyterm__cli__help__list-clients_commands] )) ||
+_weenyterm__cli__help__list-clients_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help list-clients commands' commands "$@"
+    _describe -t commands 'weenyterm cli help list-clients commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__list-clients_commands] )) ||
-_wezterm__cli__list-clients_commands() {
+(( $+functions[_weenyterm__cli__list-clients_commands] )) ||
+_weenyterm__cli__list-clients_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli list-clients commands' commands "$@"
+    _describe -t commands 'weenyterm cli list-clients commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__list-clients_commands] )) ||
-_wezterm__help__cli__list-clients_commands() {
+(( $+functions[_weenyterm__help__cli__list-clients_commands] )) ||
+_weenyterm__help__cli__list-clients_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli list-clients commands' commands "$@"
+    _describe -t commands 'weenyterm help cli list-clients commands' commands "$@"
 }
-(( $+functions[_wezterm__help__ls-fonts_commands] )) ||
-_wezterm__help__ls-fonts_commands() {
+(( $+functions[_weenyterm__help__ls-fonts_commands] )) ||
+_weenyterm__help__ls-fonts_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help ls-fonts commands' commands "$@"
+    _describe -t commands 'weenyterm help ls-fonts commands' commands "$@"
 }
-(( $+functions[_wezterm__ls-fonts_commands] )) ||
-_wezterm__ls-fonts_commands() {
+(( $+functions[_weenyterm__ls-fonts_commands] )) ||
+_weenyterm__ls-fonts_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm ls-fonts commands' commands "$@"
+    _describe -t commands 'weenyterm ls-fonts commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__move-pane-to-new-tab_commands] )) ||
-_wezterm__cli__help__move-pane-to-new-tab_commands() {
+(( $+functions[_weenyterm__cli__help__move-pane-to-new-tab_commands] )) ||
+_weenyterm__cli__help__move-pane-to-new-tab_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help move-pane-to-new-tab commands' commands "$@"
+    _describe -t commands 'weenyterm cli help move-pane-to-new-tab commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__move-pane-to-new-tab_commands] )) ||
-_wezterm__cli__move-pane-to-new-tab_commands() {
+(( $+functions[_weenyterm__cli__move-pane-to-new-tab_commands] )) ||
+_weenyterm__cli__move-pane-to-new-tab_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli move-pane-to-new-tab commands' commands "$@"
+    _describe -t commands 'weenyterm cli move-pane-to-new-tab commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__move-pane-to-new-tab_commands] )) ||
-_wezterm__help__cli__move-pane-to-new-tab_commands() {
+(( $+functions[_weenyterm__help__cli__move-pane-to-new-tab_commands] )) ||
+_weenyterm__help__cli__move-pane-to-new-tab_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli move-pane-to-new-tab commands' commands "$@"
+    _describe -t commands 'weenyterm help cli move-pane-to-new-tab commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__proxy_commands] )) ||
-_wezterm__cli__help__proxy_commands() {
+(( $+functions[_weenyterm__cli__help__proxy_commands] )) ||
+_weenyterm__cli__help__proxy_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help proxy commands' commands "$@"
+    _describe -t commands 'weenyterm cli help proxy commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__proxy_commands] )) ||
-_wezterm__cli__proxy_commands() {
+(( $+functions[_weenyterm__cli__proxy_commands] )) ||
+_weenyterm__cli__proxy_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli proxy commands' commands "$@"
+    _describe -t commands 'weenyterm cli proxy commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__proxy_commands] )) ||
-_wezterm__help__cli__proxy_commands() {
+(( $+functions[_weenyterm__help__cli__proxy_commands] )) ||
+_weenyterm__help__cli__proxy_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli proxy commands' commands "$@"
+    _describe -t commands 'weenyterm help cli proxy commands' commands "$@"
 }
-(( $+functions[_wezterm__help__record_commands] )) ||
-_wezterm__help__record_commands() {
+(( $+functions[_weenyterm__help__record_commands] )) ||
+_weenyterm__help__record_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help record commands' commands "$@"
+    _describe -t commands 'weenyterm help record commands' commands "$@"
 }
-(( $+functions[_wezterm__record_commands] )) ||
-_wezterm__record_commands() {
+(( $+functions[_weenyterm__record_commands] )) ||
+_weenyterm__record_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm record commands' commands "$@"
+    _describe -t commands 'weenyterm record commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__rename-workspace_commands] )) ||
-_wezterm__cli__help__rename-workspace_commands() {
+(( $+functions[_weenyterm__cli__help__rename-workspace_commands] )) ||
+_weenyterm__cli__help__rename-workspace_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help rename-workspace commands' commands "$@"
+    _describe -t commands 'weenyterm cli help rename-workspace commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__rename-workspace_commands] )) ||
-_wezterm__cli__rename-workspace_commands() {
+(( $+functions[_weenyterm__cli__rename-workspace_commands] )) ||
+_weenyterm__cli__rename-workspace_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli rename-workspace commands' commands "$@"
+    _describe -t commands 'weenyterm cli rename-workspace commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__rename-workspace_commands] )) ||
-_wezterm__help__cli__rename-workspace_commands() {
+(( $+functions[_weenyterm__help__cli__rename-workspace_commands] )) ||
+_weenyterm__help__cli__rename-workspace_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli rename-workspace commands' commands "$@"
+    _describe -t commands 'weenyterm help cli rename-workspace commands' commands "$@"
 }
-(( $+functions[_wezterm__help__replay_commands] )) ||
-_wezterm__help__replay_commands() {
+(( $+functions[_weenyterm__help__replay_commands] )) ||
+_weenyterm__help__replay_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help replay commands' commands "$@"
+    _describe -t commands 'weenyterm help replay commands' commands "$@"
 }
-(( $+functions[_wezterm__replay_commands] )) ||
-_wezterm__replay_commands() {
+(( $+functions[_weenyterm__replay_commands] )) ||
+_weenyterm__replay_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm replay commands' commands "$@"
+    _describe -t commands 'weenyterm replay commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__send-text_commands] )) ||
-_wezterm__cli__help__send-text_commands() {
+(( $+functions[_weenyterm__cli__help__send-text_commands] )) ||
+_weenyterm__cli__help__send-text_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help send-text commands' commands "$@"
+    _describe -t commands 'weenyterm cli help send-text commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__send-text_commands] )) ||
-_wezterm__cli__send-text_commands() {
+(( $+functions[_weenyterm__cli__send-text_commands] )) ||
+_weenyterm__cli__send-text_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli send-text commands' commands "$@"
+    _describe -t commands 'weenyterm cli send-text commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__send-text_commands] )) ||
-_wezterm__help__cli__send-text_commands() {
+(( $+functions[_weenyterm__help__cli__send-text_commands] )) ||
+_weenyterm__help__cli__send-text_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli send-text commands' commands "$@"
+    _describe -t commands 'weenyterm help cli send-text commands' commands "$@"
 }
-(( $+functions[_wezterm__help__serial_commands] )) ||
-_wezterm__help__serial_commands() {
+(( $+functions[_weenyterm__help__serial_commands] )) ||
+_weenyterm__help__serial_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help serial commands' commands "$@"
+    _describe -t commands 'weenyterm help serial commands' commands "$@"
 }
-(( $+functions[_wezterm__serial_commands] )) ||
-_wezterm__serial_commands() {
+(( $+functions[_weenyterm__serial_commands] )) ||
+_weenyterm__serial_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm serial commands' commands "$@"
+    _describe -t commands 'weenyterm serial commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__set-tab-title_commands] )) ||
-_wezterm__cli__help__set-tab-title_commands() {
+(( $+functions[_weenyterm__cli__help__set-tab-title_commands] )) ||
+_weenyterm__cli__help__set-tab-title_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help set-tab-title commands' commands "$@"
+    _describe -t commands 'weenyterm cli help set-tab-title commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__set-tab-title_commands] )) ||
-_wezterm__cli__set-tab-title_commands() {
+(( $+functions[_weenyterm__cli__set-tab-title_commands] )) ||
+_weenyterm__cli__set-tab-title_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli set-tab-title commands' commands "$@"
+    _describe -t commands 'weenyterm cli set-tab-title commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__set-tab-title_commands] )) ||
-_wezterm__help__cli__set-tab-title_commands() {
+(( $+functions[_weenyterm__help__cli__set-tab-title_commands] )) ||
+_weenyterm__help__cli__set-tab-title_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli set-tab-title commands' commands "$@"
+    _describe -t commands 'weenyterm help cli set-tab-title commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__set-window-title_commands] )) ||
-_wezterm__cli__help__set-window-title_commands() {
+(( $+functions[_weenyterm__cli__help__set-window-title_commands] )) ||
+_weenyterm__cli__help__set-window-title_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help set-window-title commands' commands "$@"
+    _describe -t commands 'weenyterm cli help set-window-title commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__set-window-title_commands] )) ||
-_wezterm__cli__set-window-title_commands() {
+(( $+functions[_weenyterm__cli__set-window-title_commands] )) ||
+_weenyterm__cli__set-window-title_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli set-window-title commands' commands "$@"
+    _describe -t commands 'weenyterm cli set-window-title commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__set-window-title_commands] )) ||
-_wezterm__help__cli__set-window-title_commands() {
+(( $+functions[_weenyterm__help__cli__set-window-title_commands] )) ||
+_weenyterm__help__cli__set-window-title_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli set-window-title commands' commands "$@"
+    _describe -t commands 'weenyterm help cli set-window-title commands' commands "$@"
 }
-(( $+functions[_wezterm__help__set-working-directory_commands] )) ||
-_wezterm__help__set-working-directory_commands() {
+(( $+functions[_weenyterm__help__set-working-directory_commands] )) ||
+_weenyterm__help__set-working-directory_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help set-working-directory commands' commands "$@"
+    _describe -t commands 'weenyterm help set-working-directory commands' commands "$@"
 }
-(( $+functions[_wezterm__set-working-directory_commands] )) ||
-_wezterm__set-working-directory_commands() {
+(( $+functions[_weenyterm__set-working-directory_commands] )) ||
+_weenyterm__set-working-directory_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm set-working-directory commands' commands "$@"
+    _describe -t commands 'weenyterm set-working-directory commands' commands "$@"
 }
-(( $+functions[_wezterm__help__shell-completion_commands] )) ||
-_wezterm__help__shell-completion_commands() {
+(( $+functions[_weenyterm__help__shell-completion_commands] )) ||
+_weenyterm__help__shell-completion_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help shell-completion commands' commands "$@"
+    _describe -t commands 'weenyterm help shell-completion commands' commands "$@"
 }
-(( $+functions[_wezterm__shell-completion_commands] )) ||
-_wezterm__shell-completion_commands() {
+(( $+functions[_weenyterm__shell-completion_commands] )) ||
+_weenyterm__shell-completion_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm shell-completion commands' commands "$@"
+    _describe -t commands 'weenyterm shell-completion commands' commands "$@"
 }
-(( $+functions[_wezterm__help__show-keys_commands] )) ||
-_wezterm__help__show-keys_commands() {
+(( $+functions[_weenyterm__help__show-keys_commands] )) ||
+_weenyterm__help__show-keys_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help show-keys commands' commands "$@"
+    _describe -t commands 'weenyterm help show-keys commands' commands "$@"
 }
-(( $+functions[_wezterm__show-keys_commands] )) ||
-_wezterm__show-keys_commands() {
+(( $+functions[_weenyterm__show-keys_commands] )) ||
+_weenyterm__show-keys_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm show-keys commands' commands "$@"
+    _describe -t commands 'weenyterm show-keys commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__spawn_commands] )) ||
-_wezterm__cli__help__spawn_commands() {
+(( $+functions[_weenyterm__cli__help__spawn_commands] )) ||
+_weenyterm__cli__help__spawn_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help spawn commands' commands "$@"
+    _describe -t commands 'weenyterm cli help spawn commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__spawn_commands] )) ||
-_wezterm__cli__spawn_commands() {
+(( $+functions[_weenyterm__cli__spawn_commands] )) ||
+_weenyterm__cli__spawn_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli spawn commands' commands "$@"
+    _describe -t commands 'weenyterm cli spawn commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__spawn_commands] )) ||
-_wezterm__help__cli__spawn_commands() {
+(( $+functions[_weenyterm__help__cli__spawn_commands] )) ||
+_weenyterm__help__cli__spawn_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli spawn commands' commands "$@"
+    _describe -t commands 'weenyterm help cli spawn commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__split-pane_commands] )) ||
-_wezterm__cli__help__split-pane_commands() {
+(( $+functions[_weenyterm__cli__help__split-pane_commands] )) ||
+_weenyterm__cli__help__split-pane_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help split-pane commands' commands "$@"
+    _describe -t commands 'weenyterm cli help split-pane commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__split-pane_commands] )) ||
-_wezterm__cli__split-pane_commands() {
+(( $+functions[_weenyterm__cli__split-pane_commands] )) ||
+_weenyterm__cli__split-pane_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli split-pane commands' commands "$@"
+    _describe -t commands 'weenyterm cli split-pane commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__split-pane_commands] )) ||
-_wezterm__help__cli__split-pane_commands() {
+(( $+functions[_weenyterm__help__cli__split-pane_commands] )) ||
+_weenyterm__help__cli__split-pane_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli split-pane commands' commands "$@"
+    _describe -t commands 'weenyterm help cli split-pane commands' commands "$@"
 }
-(( $+functions[_wezterm__help__ssh_commands] )) ||
-_wezterm__help__ssh_commands() {
+(( $+functions[_weenyterm__help__ssh_commands] )) ||
+_weenyterm__help__ssh_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help ssh commands' commands "$@"
+    _describe -t commands 'weenyterm help ssh commands' commands "$@"
 }
-(( $+functions[_wezterm__ssh_commands] )) ||
-_wezterm__ssh_commands() {
+(( $+functions[_weenyterm__ssh_commands] )) ||
+_weenyterm__ssh_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm ssh commands' commands "$@"
+    _describe -t commands 'weenyterm ssh commands' commands "$@"
 }
-(( $+functions[_wezterm__help__start_commands] )) ||
-_wezterm__help__start_commands() {
+(( $+functions[_weenyterm__help__start_commands] )) ||
+_weenyterm__help__start_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help start commands' commands "$@"
+    _describe -t commands 'weenyterm help start commands' commands "$@"
 }
-(( $+functions[_wezterm__start_commands] )) ||
-_wezterm__start_commands() {
+(( $+functions[_weenyterm__start_commands] )) ||
+_weenyterm__start_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm start commands' commands "$@"
+    _describe -t commands 'weenyterm start commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__tlscreds_commands] )) ||
-_wezterm__cli__help__tlscreds_commands() {
+(( $+functions[_weenyterm__cli__help__tlscreds_commands] )) ||
+_weenyterm__cli__help__tlscreds_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help tlscreds commands' commands "$@"
+    _describe -t commands 'weenyterm cli help tlscreds commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__tlscreds_commands] )) ||
-_wezterm__cli__tlscreds_commands() {
+(( $+functions[_weenyterm__cli__tlscreds_commands] )) ||
+_weenyterm__cli__tlscreds_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli tlscreds commands' commands "$@"
+    _describe -t commands 'weenyterm cli tlscreds commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__tlscreds_commands] )) ||
-_wezterm__help__cli__tlscreds_commands() {
+(( $+functions[_weenyterm__help__cli__tlscreds_commands] )) ||
+_weenyterm__help__cli__tlscreds_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli tlscreds commands' commands "$@"
+    _describe -t commands 'weenyterm help cli tlscreds commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__help__zoom-pane_commands] )) ||
-_wezterm__cli__help__zoom-pane_commands() {
+(( $+functions[_weenyterm__cli__help__zoom-pane_commands] )) ||
+_weenyterm__cli__help__zoom-pane_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli help zoom-pane commands' commands "$@"
+    _describe -t commands 'weenyterm cli help zoom-pane commands' commands "$@"
 }
-(( $+functions[_wezterm__cli__zoom-pane_commands] )) ||
-_wezterm__cli__zoom-pane_commands() {
+(( $+functions[_weenyterm__cli__zoom-pane_commands] )) ||
+_weenyterm__cli__zoom-pane_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm cli zoom-pane commands' commands "$@"
+    _describe -t commands 'weenyterm cli zoom-pane commands' commands "$@"
 }
-(( $+functions[_wezterm__help__cli__zoom-pane_commands] )) ||
-_wezterm__help__cli__zoom-pane_commands() {
+(( $+functions[_weenyterm__help__cli__zoom-pane_commands] )) ||
+_weenyterm__help__cli__zoom-pane_commands() {
     local commands; commands=()
-    _describe -t commands 'wezterm help cli zoom-pane commands' commands "$@"
+    _describe -t commands 'weenyterm help cli zoom-pane commands' commands "$@"
 }
 
-if [ "$funcstack[1]" = "_wezterm" ]; then
-    _wezterm "$@"
+if [ "$funcstack[1]" = "_weenyterm" ]; then
+    _weenyterm "$@"
 else
-    compdef _wezterm wezterm
+    compdef _weenyterm weenyterm
 fi

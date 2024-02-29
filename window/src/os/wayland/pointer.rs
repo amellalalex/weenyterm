@@ -10,7 +10,7 @@ use wayland_client::backend::ObjectId;
 use wayland_client::protocol::wl_pointer::{ButtonState, WlPointer};
 use wayland_client::protocol::wl_seat::WlSeat;
 use wayland_client::{Connection, Proxy, QueueHandle};
-use wezterm_input_types::MousePress;
+use weenyterm_input_types::MousePress;
 
 use crate::wayland::SurfaceUserData;
 

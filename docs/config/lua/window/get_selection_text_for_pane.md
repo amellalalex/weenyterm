@@ -14,11 +14,11 @@ potentially be mapped into multiple windows.
 This example logs the current selection when a CTRL+SHIFT+E is pressed:
 
 ```lua
-local wezterm = require 'wezterm'
+local weenyterm = require 'weenyterm'
 
-wezterm.on('log-selection', function(window, pane)
+weenyterm.on('log-selection', function(window, pane)
   local sel = window:get_selection_text_for_pane(pane)
-  wezterm.log_info('selection is: ' .. sel)
+  weenyterm.log_info('selection is: ' .. sel)
 end)
 
 return {
@@ -26,7 +26,7 @@ return {
     {
       key = 'E',
       mods = 'CTRL',
-      action = wezterm.action.EmitEvent 'log-selection',
+      action = weenyterm.action.EmitEvent 'log-selection',
     },
   },
 }

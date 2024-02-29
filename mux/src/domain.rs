@@ -22,7 +22,7 @@ use std::ffi::OsString;
 use std::io::Write;
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
-use wezterm_term::TerminalSize;
+use weenyterm_term::TerminalSize;
 
 static DOMAIN_ID: ::std::sync::atomic::AtomicUsize = ::std::sync::atomic::AtomicUsize::new(0);
 pub type DomainId = usize;
@@ -603,11 +603,11 @@ impl Domain for LocalDomain {
         let child_result = pair.slave.spawn_command(cmd);
         let mut writer = WriterWrapper::new(pair.master.take_writer()?);
 
-        let mut terminal = wezterm_term::Terminal::new(
+        let mut terminal = weenyterm_term::Terminal::new(
             size,
             std::sync::Arc::new(config::TermConfig::new()),
-            "WezTerm",
-            config::wezterm_version(),
+            "WeenyTerm",
+            config::weenyterm_version(),
             Box::new(writer.clone()),
         );
         if self.is_conpty() {
@@ -660,7 +660,7 @@ impl Domain for LocalDomain {
     async fn domain_label(&self) -> String {
         if let Some(ed) = self.resolve_exec_domain() {
             match &ed.label {
-                Some(ValueOrFunc::Value(wezterm_dynamic::Value::String(s))) => s.to_string(),
+                Some(ValueOrFunc::Value(weenyterm_dynamic::Value::String(s))) => s.to_string(),
                 Some(ValueOrFunc::Func(label_func)) => {
                     let label = config::with_lua_config_on_main_thread(|lua| async {
                         let lua = lua.ok_or_else(|| anyhow::anyhow!("missing lua context"))?;

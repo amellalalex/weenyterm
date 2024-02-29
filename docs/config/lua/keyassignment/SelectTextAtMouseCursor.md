@@ -17,7 +17,7 @@ on any character withing that region:
 config.mouse_bindings = {
   {
     event = { Down = { streak = 3, button = 'Left' } },
-    action = wezterm.action.SelectTextAtMouseCursor 'SemanticZone',
+    action = weenyterm.action.SelectTextAtMouseCursor 'SemanticZone',
     mods = 'NONE',
   },
 }

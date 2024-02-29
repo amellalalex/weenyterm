@@ -8,8 +8,8 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0"
 config = { path = "../../config" }
-wezterm-dynamic = { path = "../../wezterm-dynamic" }
-wezterm-term = { path = "../../term" }
+weenyterm-dynamic = { path = "../../weenyterm-dynamic" }
+weenyterm-term = { path = "../../term" }
 libc = "0.2"
 log = "0.4"
 luahelper = { path = "../../luahelper" }

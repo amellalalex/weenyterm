@@ -1,10 +1,10 @@
-copyright: Copyright &copy; 2018-Present Wez Furlong
+copyright: Copyright &copy; 2018-Present Weeny Furlong
 use_directory_urls: false
-site_name: Wez's Terminal Emulator
-site_url: https://wezfurlong.org/wezterm/
-site_description: Wez's Terminal Emulator
-repo_url: https://github.com/wez/wezterm
-repo_name: wez/wezterm
+site_name: Weeny's Terminal Emulator
+site_url: https://weenyfurlong.org/weenyterm/
+site_description: Weeny's Terminal Emulator
+repo_url: https://github.com/wez/weenyterm
+repo_name: weeny/weenyterm
 edit_uri: edit/main/docs/
 docs_dir: docs
 site_dir: gh_pages
@@ -99,8 +99,8 @@ markdown_extensions:
   - pymdownx.saneheaders
   - pymdownx.magiclink:
       repo_url_shorthand: true
-      user: wez
-      repo: wezterm
+      user: weeny
+      repo: weenyterm
   - pymdownx.details
   - attr_list
   - md_in_html
@@ -130,8 +130,8 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/wez/wezterm
+      link: https://github.com/wez/weenyterm
     - icon: fontawesome/brands/mastodon
-      link: https://fosstodon.org/@wez
+      link: https://fosstodon.org/@weeny
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/wezfurlong
+      link: https://twitter.com/weenyfurlong

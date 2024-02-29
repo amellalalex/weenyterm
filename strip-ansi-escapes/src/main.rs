@@ -8,9 +8,9 @@ use termwiz::escape::{Action, ControlCode};
 /// stdin and prints the result on stdout.
 /// It preserves only printable characters and CR, LF and HT.
 ///
-/// This utility is part of WezTerm.
+/// This utility is part of WeenyTerm.
 ///
-/// https://github.com/wez/wezterm
+/// https://github.com/wez/weenyterm
 struct Opt {}
 
 fn main() -> Result<()> {

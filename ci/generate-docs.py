@@ -276,7 +276,7 @@ title: Color Schemes with first letter "{scheme_prefix}"
                     origin_url = scheme["metadata"].get("origin_url", None)
                     if origin_url:
                         idx.write(f"Source: <{origin_url}><br/>\n")
-                    version = scheme["metadata"].get("wezterm_version", None)
+                    version = scheme["metadata"].get("weenyterm_version", None)
                     if version and version != "Always":
                         idx.write(f"{{{{since('{version}')}}}}<br/>\n")
 
@@ -322,7 +322,7 @@ document.addEventListener("DOMContentLoaded", function() {{
 
 TOC = [
     Page(
-        "WezTerm",
+        "WeenyTerm",
         "index.md",
         children=[
             Page("Features", "features.md"),
@@ -375,36 +375,36 @@ TOC = [
                 "config/lua/config",
             ),
             Gen(
-                "module: wezterm",
-                "config/lua/wezterm",
+                "module: weenyterm",
+                "config/lua/weenyterm",
             ),
             Gen(
-                "module: wezterm.color",
-                "config/lua/wezterm.color",
+                "module: weenyterm.color",
+                "config/lua/weenyterm.color",
             ),
             Gen(
-                "module: wezterm.gui",
-                "config/lua/wezterm.gui",
+                "module: weenyterm.gui",
+                "config/lua/weenyterm.gui",
             ),
             Gen(
-                "module: wezterm.mux",
-                "config/lua/wezterm.mux",
+                "module: weenyterm.mux",
+                "config/lua/weenyterm.mux",
             ),
             Gen(
-                "module: wezterm.procinfo",
-                "config/lua/wezterm.procinfo",
+                "module: weenyterm.procinfo",
+                "config/lua/weenyterm.procinfo",
             ),
             Gen(
-                "module: wezterm.serde",
-                "config/lua/wezterm.serde",
+                "module: weenyterm.serde",
+                "config/lua/weenyterm.serde",
             ),
             Gen(
-                "module: wezterm.time",
-                "config/lua/wezterm.time",
+                "module: weenyterm.time",
+                "config/lua/weenyterm.time",
             ),
             Gen(
-                "module: wezterm.url",
-                "config/lua/wezterm.url",
+                "module: weenyterm.url",
+                "config/lua/weenyterm.url",
             ),
             Gen(
                 "enum: KeyAssignment",
@@ -424,7 +424,7 @@ TOC = [
             Page("object: TabInformation", "config/lua/TabInformation.md"),
             Page("object: SshDomain", "config/lua/SshDomain.md"),
             Page("object: SpawnCommand", "config/lua/SpawnCommand.md"),
-            Gen("object: Time", "config/lua/wezterm.time/Time"),
+            Gen("object: Time", "config/lua/weenyterm.time/Time"),
             Page("object: TlsDomainClient", "config/lua/TlsDomainClient.md"),
             Page("object: TlsDomainServer", "config/lua/TlsDomainServer.md"),
             Gen(
@@ -454,17 +454,17 @@ TOC = [
         "CLI Reference",
         "cli/general.md",
         children=[
-            Gen("wezterm cli", "cli/cli"),
-            Page("wezterm connect", "cli/connect.md"),
-            Page("wezterm imgcat", "cli/imgcat.md"),
-            Page("wezterm ls-fonts", "cli/ls-fonts.md"),
-            Page("wezterm record", "cli/record.md"),
-            Page("wezterm replay", "cli/replay.md"),
-            Page("wezterm serial", "cli/serial.md"),
-            Page("wezterm set-working-directory", "cli/set-working-directory.md"),
-            Page("wezterm show-keys", "cli/show-keys.md"),
-            Page("wezterm ssh", "cli/ssh.md"),
-            Page("wezterm start", "cli/start.md"),
+            Gen("weenyterm cli", "cli/cli"),
+            Page("weenyterm connect", "cli/connect.md"),
+            Page("weenyterm imgcat", "cli/imgcat.md"),
+            Page("weenyterm ls-fonts", "cli/ls-fonts.md"),
+            Page("weenyterm record", "cli/record.md"),
+            Page("weenyterm replay", "cli/replay.md"),
+            Page("weenyterm serial", "cli/serial.md"),
+            Page("weenyterm set-working-directory", "cli/set-working-directory.md"),
+            Page("weenyterm show-keys", "cli/show-keys.md"),
+            Page("weenyterm ssh", "cli/ssh.md"),
+            Page("weenyterm start", "cli/start.md"),
         ],
     ),
     Page(

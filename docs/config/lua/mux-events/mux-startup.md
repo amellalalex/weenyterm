@@ -13,12 +13,12 @@ This event is useful for starting a set of programs in a standard
 configuration to save you the effort of doing it manually each time:
 
 ```lua
-local wezterm = require 'wezterm'
-local mux = wezterm.mux
+local weenyterm = require 'weenyterm'
+local mux = weenyterm.mux
 
 -- this is called by the mux server when it starts up.
 -- It makes a window split top/bottom
-wezterm.on('mux-startup', function()
+weenyterm.on('mux-startup', function()
   local tab, pane, window = mux.spawn_window {}
   pane:split { direction = 'Top' }
 end)
@@ -31,4 +31,4 @@ return {
 ```
 
 See also:
-* [wezterm.mux](../wezterm.mux/index.md)
+* [weenyterm.mux](../weenyterm.mux/index.md)

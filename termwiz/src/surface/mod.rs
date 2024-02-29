@@ -8,7 +8,7 @@ use ordered_float::NotNan;
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
 use std::cmp::min;
-use wezterm_dynamic::{FromDynamic, ToDynamic};
+use weenyterm_dynamic::{FromDynamic, ToDynamic};
 
 pub mod change;
 pub mod line;
